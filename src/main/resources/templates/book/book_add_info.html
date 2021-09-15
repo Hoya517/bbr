@@ -6,31 +6,47 @@
 </head>
 <body>
 <form th:action method="post">
-    책이름: <input type="text" name="title"/><br>
-    저자: <input type="text" name="author"/><br>
-    출판사: <input type="text" name="publisher"/><br>
-    출판일 (ex. 20210101): <input type="text" name="datetime"/><br>
-    정가 (ex. 18000): <input type="text" name="price"/><br>
+    책이름: <input type="text" name="title" id="title" value=""/><br>
+    저자: <input type="text" name="author" id="authors" value=""/><br>
+    출판사: <input type="text" name="publisher" id="publisher" value=""/><br>
+    출판일 (ex. 2021-01-01): <input type="text" name="datetime" id="datetime" value=""/><br>
+    정가 (ex. 18000): <input type="text" name="price" id="price" value=""/><br>
     <input type="submit"/>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    searchParam('title');
+    sch = location.search
+
+    const title = new URLSearchParams(sch);
+    const title2 = title.get('title');
+    //const title3 = title2.toString();
+    console.log(title2);
+    console.log("위에");
+    searchParam(title2); //실행
+
+
+
 
     function searchParam(key) {
-        const title = new URLSearchParams(key).get();
-        console.log(title);
-        $.ajax({
-            method: "GET",
-            url: "https://dapi.kakao.com/v3/search/book?target=title",
-            data: {query: title},
-            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"}
-        })
-            .done(function (msg) {
-                console.log(msg);
 
-            });
+        console.log(key);
+        $.ajax({
+            type: "GET",
+            url: "https://dapi.kakao.com/v3/search/book?target=title",
+            data: {query: key},
+            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
+            success : function (msg){
+                console.log(msg);
+                let data = msg.documents[0];
+                $("#title").val(data.title);
+                $("#authors").val(data.authors);
+                $("#publisher").val(data.publisher);
+                $("#datetime").val(data.datetime.toString().substring(0,10));
+                $("#price").val(data.price);
+            }
+
+        });
     }
 
 </script>
