@@ -19,7 +19,7 @@
     searchParam('title');
 
     function searchParam(key) {
-        const title = new URLSearchParams(key).toString();
+        const title = new URLSearchParams(key).get();
         console.log(title);
         $.ajax({
             method: "GET",
