@@ -24,6 +24,8 @@ public class Book extends BaseTimeEntity {
     private String author;
     private String publisher;
     private String datetime;
+    private String thumbnail;
+
     private int price;
     private int stockQuantity;
 
@@ -31,11 +33,12 @@ public class Book extends BaseTimeEntity {
     private List<Category> categories = new ArrayList<>();
 
     @Builder
-    public Book(String title, String author, String publisher, String datetime, int price) {
+    public Book(String title, String author, String publisher, String datetime, int price, String thumbnail) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.datetime = datetime;
         this.price = price;
+        this.thumbnail = thumbnail;
     }
 }

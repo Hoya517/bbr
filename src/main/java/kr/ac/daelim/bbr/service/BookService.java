@@ -13,7 +13,7 @@ public class BookService {
     private final BookRepository bookRepository;
 
     @Transactional
-    public Long save(BookSaveRequestDto dto) {
-        return bookRepository.save(dto.toEntity()).getId();
+    public Long save(BookSaveRequestDto bookSaveRequestDto) {
+        return bookRepository.save(bookSaveRequestDto.toEntity()).getId();
     }
 }

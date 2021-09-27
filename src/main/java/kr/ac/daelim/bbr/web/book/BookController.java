@@ -29,14 +29,16 @@ public class BookController {
     }
 
     @GetMapping("/book/add")
-    public String addBook(@Param("title") String title) {
-
+    public String addBook(
+            @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto,
+            @Param("title") String title
+    ) {
         return "book/book_add_info";
     }
 
     @PostMapping("/book/add")
-    public String addBook(@ModelAttribute BookSaveRequestDto dto) {
-        bookService.save(dto);
-        return "redirect:/book/add";
+    public String addBook(@ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) {
+        bookService.save(bookSaveRequestDto);
+        return "redirect:/";
     }
 }
