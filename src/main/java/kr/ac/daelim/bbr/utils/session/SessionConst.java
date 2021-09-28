@@ -1,4 +1,4 @@
-package kr.ac.daelim.bbr.web;
+package kr.ac.daelim.bbr.utils.session;
 
 public class SessionConst {
 

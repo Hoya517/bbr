@@ -1,7 +1,7 @@
 package kr.ac.daelim.bbr.web.login;
 
 import kr.ac.daelim.bbr.domain.member.Member;
-import kr.ac.daelim.bbr.web.SessionConst;
+import kr.ac.daelim.bbr.utils.session.SessionConst;
 import kr.ac.daelim.bbr.service.LoginService;
 import kr.ac.daelim.bbr.web.login.dto.LoginRequestDto;
 import lombok.RequiredArgsConstructor;

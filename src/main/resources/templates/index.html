@@ -30,9 +30,19 @@
         </div>
         <div class="my_menu">
           <div class="profile_area">
-            <a href="#" class="link_login">
+            <a class="link_login" th:if="${member} == null" href="loginForm.html" th:href="@{/login}" >
               <span class="text">로그인</span>
             </a>
+            <div th:if="${member} != null">
+              <div class="link_login">
+                <span class="text" th:text="${member.name}">사용자 이름</span>
+              </div>
+              <form th:action="@{/logout}" method="post">
+                <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
+                  로그아웃
+                </button>
+              </form>
+            </div>
           </div>
           <div class="ly_menu">
             <div class="menu_area">

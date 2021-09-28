@@ -31,6 +31,6 @@ public class MemberController {
         }
 
         memberService.save(memberSaveRequestDto);
-        return "redirect:/";
+        return "redirect:/login";
     }
 }
