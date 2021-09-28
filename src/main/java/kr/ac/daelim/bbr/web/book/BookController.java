@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -22,22 +24,14 @@ public class BookController {
         return "book/book_search";
     }
 
-    @GetMapping("/book/choice")
-    public String getBookInfo() {
-
-        return "/book/add";
-    }
-
     @GetMapping("/book/add")
-    public String addBook(
-            @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto,
-            @Param("title") String title
-    ) {
-        return "book/book_add_info";
+    public String addBook(@ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto,
+                          @Param("title") String title) {
+        return "book/book_add";
     }
 
     @PostMapping("/book/add")
-    public String addBook(@ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) {
+    public String addBook(@ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) throws IOException {
         bookService.save(bookSaveRequestDto);
         return "redirect:/";
     }

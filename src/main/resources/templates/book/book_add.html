@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action method="post" th:object="${bookSaveRequestDto}">
+
+<h1>책 정보 입력</h1>
+
+<form th:action method="post" th:object="${bookSaveRequestDto}" enctype="multipart/form-data">
     책이름: <input type="text" th:field="*{title}"/><br>
     저자: <input type="text" id th:field="*{author}"/><br>
     출판사: <input type="text" th:field="*{publisher}"/><br>
@@ -13,7 +16,24 @@
     정가 (ex. 18000): <input type="text" th:field="*{price}"/><br>
     <div id="thumbnail-img"></div>
     <input type="hidden" th:field="*{thumbnail}"/>
-    <input type="submit"/>
+
+    <hr>
+
+    책 표지 사진을 촬영해주세요. (선택 사항 -  책의 표지가 없는 경우 노출되지 않습니다.)<br>
+    <input type="file" name="attachFile" th:field="*{attachFile}"><br>
+    <br>
+    책 상태에 대해 간단하게 적어주세요. (선택 사항 - 책의 상태에 따라 반납이 불가할 수 있습니다.)<br>
+    <textarea id="content" name="content"></textarea>
+
+    <hr>
+
+    어느 수업때 사용한 책인가요? (선택 사항 - 구매자들에게 더욱 쉽게 노출됩니다.)<br>
+    <select></select>
+
+    <hr>
+
+    <input type="submit" />
+
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
