@@ -26,7 +26,7 @@ public class MemberController {
 
     @PostMapping("/add")
     public String save(@Valid @ModelAttribute MemberSaveRequestDto memberSaveRequestDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !memberSaveRequestDto.getPersonalInfoTermYn().booleanValue() || !memberSaveRequestDto.getPersonalInfoTermYn().booleanValue()) {
             return "members/joinForm";
         }
 

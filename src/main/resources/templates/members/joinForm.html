@@ -47,6 +47,21 @@
             <div class="field-error" th:errors="*{name}" />
         </div>
 
+        <!-- select box (학부-학과) 추가 -->
+
+        <!-- 모두 동의 버튼 추가? -->
+        <!-- 체크박스 유효성 검사 추가 -->
+        <div>
+            <div class="form-check">
+                <input type="checkbox" id="personalInfoTermYn" th:field="*{personalInfoTermYn}" class="form-check-input" >
+                <label class="form-check-label" for="personalInfoTermYn">[필수] <span> &nbsp;개인정보 수집 및 이용</span>에 동의합니다.</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="serviceTermYn" th:field="*{serviceTermYn}" class="form-check-input" >
+                <label class="form-check-label" for="serviceTermYn">[필수] <span> &nbsp;서비스 이용약관</span>에 동의합니다.</label>
+            </div>
+        </div>
+
         <hr class="my-4">
 
         <div class="row">

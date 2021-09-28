@@ -12,12 +12,16 @@ public class MemberSaveRequestDto {
     @NotEmpty private String username;
     @NotEmpty private String password;
     @NotEmpty private String name;
+    private Boolean personalInfoTermYn;
+    private Boolean serviceTermYn;
 
     @Builder
-    public MemberSaveRequestDto(String username, String password, String name) {
+    public MemberSaveRequestDto(String username, String password, String name, Boolean personalInfoTermYn, Boolean serviceTermYn) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.personalInfoTermYn = personalInfoTermYn;
+        this.serviceTermYn = serviceTermYn;
     }
 
     public Member toEntity() {
@@ -25,6 +29,8 @@ public class MemberSaveRequestDto {
                 .username(username)
                 .password(password)
                 .name(name)
+                .personalInfoTermYn(String.valueOf(personalInfoTermYn))
+                .serviceTermYn(String.valueOf(serviceTermYn))
                 .build();
     }
 }
