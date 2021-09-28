@@ -22,7 +22,6 @@
 
     const title = new URLSearchParams(sch);
     const title2 = title.get('title');
-    //const title3 = title2.toString();
     console.log(title2);
     console.log("위에");
     searchParam(title2); //실행
@@ -34,8 +33,9 @@
             type: "GET",
             url: "https://dapi.kakao.com/v3/search/book?target=title",
             data: {query: key},
-            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
-            success : function (msg){
+            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"}
+        })
+            .done(function (msg) {
                 console.log(msg);
                 let data = msg.documents[0];
                 $("#title").val(data.title);
@@ -45,8 +45,7 @@
                 $("#price").val(data.price);
                 $("#thumbnail-img").append("<img src='" + data.thumbnail + "'/><br>");
                 $("#thumbnail").val(data.thumbnail);
-            }
-        });
+            });
     }
 
 </script>
