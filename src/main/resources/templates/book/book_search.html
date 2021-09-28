@@ -35,7 +35,7 @@
                 .done(function (msg) {
                     console.log(msg);
                     for (var i = 0; i < 10; i++){
-                        $("div").append("<h2><a href='http://localhost:8080/book/add?title="+msg.documents[i].title+"'>" + msg.documents[i].title + "</a></h2>");
+                        $("div").append("<h2><a href='http://localhost:8080/book/add?t="+msg.documents[i].title+"'>" + msg.documents[i].title + "</a></h2>");
                         $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
                         $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
                         $("div").append("<strong>출판일:</strong> " + msg.documents[i].datetime.toString().substring(0,10) + "<br>");
