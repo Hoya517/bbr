@@ -1,0 +1,179 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.wrap {
+  height: 100%;
+}
+
+.home {
+  position: relative;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+ul, li, a {
+  text-decoration: none;
+  list-style-type : none;
+}
+
+div {
+  display: block;
+}
+
+
+
+/* contents */
+.contents {
+  min-height: 780px;
+  padding-left: 225px;
+  margin: 50px 0 36px;
+  background-color: #fff;
+}
+
+.container {
+  min-height: 600px;
+  background-color: #fff;
+}
+
+.content {
+  padding-bottom: 48px;
+}
+
+.content {
+  position: relative;
+  width: 964px;
+  margin: 0 auto;
+}
+
+.end_title {
+  margin-top: 60px;
+  font-size: 30px;
+  line-height: 36px;
+  color: #232323;
+}
+
+.mag_list_section {
+  margin: 40px -17px 0 0;
+}
+
+.mag_list .list_item {
+  float: left;
+  width: 33.33%;
+  padding: 0 17px 39px 0;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+.mag_list .thumb_area {
+  position: relative;
+  padding-top: 100%;
+}
+
+.mag_list .link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mag_list .thumb_area img {
+  width: 70%;
+  height: 70%;
+}
+
+.mag_list .info {
+  height: 75px;
+}
+
+.mag_list .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  display: block;
+  max-height: 42px;
+  padding-top: 11px;
+  font-size: 16px;
+  line-height: 21px;
+  color: #232323;
+  white-space: pre-line;
+}
+
+.mag_list .sub {
+  margin-top: 5px;
+}
+
+.mag_list .sub .item {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 15px;
+  vertical-align: top;
+  color: #999;
+}
+
+.blind {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.mag_list:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+
+/* more btn */
+.btn_more_list {
+  margin-bottom: 35px;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px solid #e4e4e4;
+}
+
+.btn_more_list .link {
+  display: inline-block;
+  padding: 19px 20px;
+  vertical-align: top;
+}
+
+.btn_more_list .text {
+  font-size: 15px;
+  line-height: 19px;
+  color: #232323;
+}
+
+.btn_more_list .text:after {
+  display: inline-block;
+  /* vertical-align: top; */
+  content: "";
+  /* background-position: -1008px -615px; */
+  width: 13px;
+  height: 10px;
+  margin: 7px 0 0 6px;
+  background-image: url(../icons/down-arrow.png);
+  background-size: 13px 10px;
+}
+
+
+/* rank mark */
+.mag_list .thumb_area a span {
+  display: block;
+  position: absolute;
+  top: -11px;
+  left: -1px;
+  z-index: 1;
+  color: #fff;
+  background:#5ca6e3;
+  text-align: center;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+}

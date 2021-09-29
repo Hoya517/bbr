@@ -1,0 +1,76 @@
+/* footer - bottom */
+.footer {
+  position: absolute;
+  left: 225px;
+  right: 0;
+  height: 164px;
+  background-color: #f2f2f2;
+}
+
+.footer .naver_info {
+  padding: 21px 21px 17px;
+}
+
+.footer .naver_info .item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.naver_info>.item {
+  margin-left: -2px;
+}
+.naver_info .item {
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #666;
+}
+
+.naver_info .item_head {
+  margin-right: 8px;
+  font-weight: 400;
+  color: rgba(97,97,97,.6);
+}
+
+.footer .naver_info .item+.item {
+  margin-left: 18px;
+}
+
+address {
+  font-style: normal;
+}
+
+.link_email {
+  color: #666;
+}
+
+
+
+/* footer - top */
+.terms {
+  height: 52px;
+  padding: 0 15px;
+  border: 1px solid rgba(30,30,30,.05);
+  border-width: 1px 0;
+}
+
+.footer .terms {
+  top: 0;
+  right: 9px;
+}
+
+.footer .terms .item {
+  padding: 19px 10px 18px;
+}
+
+.terms .item {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 16px;
+  vertical-align: top;
+  color: #939393;
+}
+
+strong {
+  font-weight: bold;
+}
