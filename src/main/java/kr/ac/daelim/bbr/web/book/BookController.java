@@ -20,7 +20,7 @@ public class BookController {
 
     @GetMapping("/search")
     public String searchBook() {
-        return "book_search2";
+        return "book/book_search";
     }
 
     @GetMapping("/add")
