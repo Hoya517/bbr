@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="./css/book_info.css" th:href="@{/css/book_info.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu --> 
+      <header class="header side_bar">
+        <h1 class="logo">
+          <a href="/" class="link_logo router-link-active">
+            <span class="blind">프로젝트 제목</span>
+          </a>
+        </h1>
+        <a href="#" role="button" aria-expanded="false" class="btn_search">
+          <span class="blind">검색</span>
+        </a>
+        <div class="search_area">
+          <span class="input_area">
+            <input type="search" role="combobox" id="search_keyword" aria-expanded="false" aria-haspopup="listbox" title="검색창" placeholder="VIBE 검색" autocomplete="off" class="input_search">
+          </span>
+          <a href="#" role="button" class="btn_close_search">
+            <span class="blind">검색 닫기</span>
+          </a>
+        </div>
+        <div class="my_menu">
+          <div class="profile_area">
+            <a href="#" class="link_login">
+              <span class="text">로그인</span>
+            </a>
+          </div>
+          <div class="ly_menu">
+            <div class="menu_area">
+              <ul role="menu" class="menu_list">
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_today on">
+                    <span class="text"> 오늘의 책 <span class="blind">선택됨</span></span>
+                  </a>
+                </li>
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_chart">
+                    <span class="text"> 학과 </span>
+                  </a>
+                </li>
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_newalbum">
+                    <span class="text"> 전공 </span>
+                  </a>
+                </li>
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_dj">
+                    <span class="text"> 교양 </span>
+                  </a>
+                </li>
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_mag">
+                    <span class="text"> 신규 </span>
+                  </a>
+                </li>
+                <li role="presentation" class="menu_item">
+                  <a href="#" role="menuitem" class="link_menu link_monthly">
+                    <span class="text"> 인기 </span>
+                  </a>
+                </li>
+              </ul>
+              <div role="menu" class="extra_menu">
+                <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text title"># 판매해볼까?</a>
+                <a href="#" class="link_extra link_text"> 카메라로 바코드 스캔 </a>
+                <a href="/about" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> ISBN / 책이름으로 검색 </a>
+                <a href="/membership/vibe" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- contents --> 
+      <div class="contents" th:object="${book}">
+        <div class="wrap_detail_info inner">
+          <!-- image -->
+          <div class="box_image">
+            <div class="slide_detail_img">
+              <ul style="visibility:visible">
+                <li>
+                  <a href="#">
+                    <img th:unless="${book.thumbnail} eq null" th:src="${book.thumbnail}" class="v-lazy-image v-lazy-image-loaded" alt="thumbnail">
+                    <img th:unless="${book.attachFile} eq null" th:src="|/images/${book.attachFile.storeFileName}|" class="v-lazy-image v-lazy-image-loaded" alt="thumbnail">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- rank txt -->
+            <div>
+              <strong class="bestseller_score">종합 베스트셀러 4위</strong>
+            </div>
+            <!-- star points -->
+            <div class="review_star">
+              <span style="width:100%"></span>
+            </div>
+          </div>
+          <!-- right section -->
+          <div class="box_detail_info">
+            <!-- title-->
+            <h3 th:text="${book.title}">2022 선재국어 강의노트 문법·어휘 편 (스프링)</h3>
+            <span class="title_sub">
+              <span class="book_subtitle"> 강의 핵심 내용 압축 정리</span>
+              <span class="book_grp_name">공부서점 ONLY   </span>  
+            </span>
+            <!-- book info -->
+            <div class="info_book">
+              <div class="info_more">
+                <span th:text="${book.author}">책 제목</span>
+              </div>
+              <div class="info_more">
+                <span th:text="${book.publisher}">출판사</span>
+              </div>
+                <em th:text="${book.datetime}">출간일: 2021-09-17</em>
+            </div>
+            <!-- book condition -->
+            <div class="book_slipt_apply common_box">
+              <strong class="left_box">
+                책 설명
+              </strong>
+              <div class="right_box">
+                <span class="text text_black">
+                  양장본, 스프링, 책 내용, CD포함 등등<br>
+                  책 설명 관련 내용
+                </span>
+              </div>
+            </div>
+            <!-- book count -->
+            <div class="buy_number common_box">
+              <strong class="left_box">구매수량</strong>
+              <div class="right_box">
+                <div class="buy_count">
+                  <a href="javascript:void(0);" class="btn_minus" id="btn_minus">빼기</a>
+                  <input type="text" value="1" id="ordcnt">
+                  <a href="javascript:void(0);" class="btn_plus" id="btn_plus">더하기</a>
+                </div>
+                <!-- price -->
+                <div class="buy_price">
+                  <span class="discount_price">
+                    <strong>11,000원</strong>
+                  </span>
+                  <strong class="total" th:text="${book.price}+원"><span>합계</span>9,900원</strong>
+                  <em class="saving"><span class="badges_red">적립</span>적립금 110원
+                  <span class="discount">(1%)</span></em>
+                </div>
+              </div>
+              <!-- buy button -->
+              <div class="buy_btn_wrap">
+                <a href="javascript:void(0);" class="btn_cb cb_gray_line go_cart" id="cartBtn">장바구니</a>
+                <a href="javascript:void(0);" class="btn_cb cb_violet go_buy" id="btnBuy">바로구매</a>
+              </div>
+            </div>
+            <!-- reference -->
+            <div class="detail_info_notice">
+              <table>
+                <tbody>
+                  <tr>
+                    <th scope="row">참고사항</th>
+                    <td>
+                      참고사항 내용
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer --> 
+      <footer class="footer">
+        <div class="terms">
+          <a href="https://policy.naver.com/policy/privacy.html" target="_blank" rel="noopener noreferrer" class="item">
+            <strong>개인정보처리방침</strong>
+          </a>
+          <a href="#" target="_blank" class="item">BBR 이용약관</a>
+          <a href="https://help.naver.com/support/alias/contents1/vibe/vibe_7.naver" target="_blank" rel="noopener noreferrer" class="item">고객센터</a>
+          <a href="https://help.naver.com/support/alias/contents1/vibe/vibe_6.naver" target="_blank" rel="noopener noreferrer" class="item">결제/환불 안내</a>
+          <a href="https://www.navercorp.com" target="_blank" rel="noopener noreferrer" class="item">© BBR. ALL RIGHT RESERVED.</a>
+        </div>
+        <div class="naver_info">
+          <span class="item">BBR Project</span>
+          <div>
+            <span class="item">
+              <span class="item_head">대표</span>김남경, 김주호, 전소진</span>
+              <span class="item"><span class="item_head">호스팅 서비스 제공</span>BBR</span>
+            </div>
+            <address>
+              <span class="item">
+                <span class="item_head">주소</span>경기도 안양시 동안구 비산동 임곡로 29, 대림대학교</span>
+                <span class="item"><span class="item_head">대표전화</span>031-467-4700</span>
+                <span class="item"><span class="item_head">이메일</span>
+                <a href="mailto:ccnaver@naver.com" class="link_email">Book@book.com</a>
+              </span>
+            </address>
+          </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

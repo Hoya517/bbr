@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link href="./css/index.css" rel="stylesheet">
+  <link href="./css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
 </head>
 <body>
   <div class="wrap">
@@ -79,12 +79,10 @@
                 </li>
               </ul>
               <div role="menu" class="extra_menu">
-                <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text">#내돈내봄</a>
-                <a href="#" class="link_extra link_text">온스테이지</a>
-                <a href="/about" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> 서비스 소개 </a>
-                <a href="/membership/vibe" class="link_extra link_text" role="menuitem"> 멤버십 구독 </a>
-                <a href="/vibereview" class="link_extra link_text" role="menuitem"> 사용자 리뷰 </a>
-                <a href="/comingsoonvibe" role="menuitem" class="link_extra link_text comingsoonvibe"> 커밍쑨 </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="link_extra link_text title"># 판매해볼까?</a>
+<!--                <a href="#" class="link_extra link_text"> 카메라로 바코드 스캔 </a>-->
+                <a href="#" th:href="@{/books/search}" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> 책이름으로 검색 </a>
+                <a href="#" th:href="@{/books/add}" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
               </div>
             </div>
           </div>
@@ -123,8 +121,29 @@
           <h3 class="section_title_wrap">
             <a href="/magazines" class="section_title"> 오늘의 신간 <span class="blind">전체보기</span></a>
           </h3>
-            <div class="list_wrap_larger is_mag"><div>
+            <div class="list_wrap_larger is_mag">
+            <div>
               <ul class="scroll_list">
+                <li class="list_item" th:each="book: ${books}" >
+                  <div class="thumb_area">
+                    <a href="book_info.html" th:href="@{/books/{id}(id=${book.id})}" class="link"> <!-- href 수정 -->
+                      <div class="thumb">
+                        <img th:if="${book.attachFile} == ''" th:src="${book.thumbnail}" class="v-lazy-image v-lazy-image-loaded" alt="thumbnail">
+                        <img th:if="${book.thumbnail} == ''" th:src="|/images/${book.attachFile.storeFileName}|" class="v-lazy-image v-lazy-image-loaded" alt="thumbnail">
+                      </div>
+                      <div class="title">
+                        <span th:text="${book.title}">책 제목</span>
+                      </div>
+                      <div class="writer">
+                        <span th:text="${book.author}">작가</span><br>
+                        <span th:text="${book.publisher}">출판사</span>
+                      </div>
+                      <div class="sub">
+                        <span class="item" th:text="${book.datetime}">2021.09.09 </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
                 <li class="list_item">
                   <div class="thumb_area">
                     <a href="/magazines/52880" class="link">
@@ -149,44 +168,6 @@
                     <a href="/magazines/52880" class="link">
                       <div class="thumb">
                         <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/0907/0100023057118-BP.jpg" class="v-lazy-image v-lazy-image-loaded" alt="눈 부신 밤 하늘 아래 슬기.zip>">
-                      </div>
-                    </a>
-                  </div>
-                  <a href="/magazines/52880" class="title">책 제목
-                    <span class="blind">페이지로 이동</span>
-                  </a>
-                  <div class="writer">
-                    <span>작가/출판사</span>
-                  </div>
-                  <div class="sub">
-                    <span class="item">
-                    <span class="blind">작성일</span> 2021.09.09 </span>
-                  </div>
-                </li>
-                <li class="list_item">
-                  <div class="thumb_area">
-                    <a href="./book_info.html" class="link">
-                      <div class="thumb">
-                        <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/upload/2021/0909/JWseT.jpg" class="v-lazy-image v-lazy-image-loaded" alt="눈 부신 밤 하늘 아래 슬기.zip>">
-                      </div>
-                    </a>
-                  </div>
-                  <a href="./book_info.html" class="title">책 제목
-                    <span class="blind">페이지로 이동</span>
-                  </a>
-                  <div class="writer">
-                    <span>작가/출판사</span>
-                  </div>
-                  <div class="sub">
-                    <span class="item">
-                    <span class="blind">작성일</span> 2021.09.09 </span>
-                  </div>
-                </li>
-                <li class="list_item">
-                  <div class="thumb_area">
-                    <a href="/magazines/52880" class="link">
-                      <div class="thumb">
-                        <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/0910/0100023052199-BP.jpg" class="v-lazy-image v-lazy-image-loaded" alt="눈 부신 밤 하늘 아래 슬기.zip>">
                       </div>
                     </a>
                   </div>
