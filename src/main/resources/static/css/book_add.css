@@ -1,54 +1,51 @@
-.add_sh{
-    width: 900px;
-    height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+.contents{
+    max-width: 560px;
     margin: 0 auto;
-    border: 1px solid #d3d3d3;
+    align-items: center;
     text-align: center;
-    padding: 20px;
-}
-.add_form_div{
-    margin-top: 15px;
-}
-.add_form_div div input{
-    width: 300px;
-    height: 30px;
-    margin-bottom: 5px;
-
-}
-.add_form_p{
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 30px;
+    padding-left: 0!important;
+    margin-top: 25px;
 }
 
-
-
-
-.aad_tw_ect1{
-    margin: 10px 0 10px 0;
-}
-
-.add_tw{
-    width: 900px;
-    height: 100%;
-    margin: 0 auto;
+.img_width{
+    width: 160px;
     border: 1px solid #d3d3d3;
-    text-align: center;
-    padding: 20px;
-    margin-top: 15px;
+    margin-bottom: 7px;
 }
-.ass{
-    display: none;
-}
-.add_tw_button{
-    margin-top: 15px;
-}
-.as1,.as2,.as3{
+.none_img{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 7px;
 }
-.as1 input,.as2 input,.as3 input{
-    width: 300px;
-    height: 30px;
+.form-control_div{
+    margin-bottom: 9px;
+    text-align: left;
+}
+.form-control_div span,.none_img span{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 19px;
+
+}
+.last{
+    margin-bottom: 20px;
+}
+.as1 a,.as2 a,.as3 button{
+    margin-top: 10px;
+}
+.add_form_p{
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 30px;
+}
+.as2{
+    display: none;
+}
+.as3{
+    display: none;
+}
+.as_span{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 19px;
 }
