@@ -203,12 +203,3 @@ div {
   background-image: url(../icons/down-arrow.png);
   background-size: 13px 10px;
 }
-
-
-.select_box {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  margin-right: -8px;
-}
-
