@@ -48,12 +48,12 @@
         <div>
             <!-- TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 -->
             <label for="email">이메일</label>
-            <span><input type="text" id="email" th:field="*{email}" class="form-control" th:errorclass="field-error">@email.daelim.ac.kr
-            <button type="button" id="sendMail">인증메일발송</button></span>
-            <div class="field-error" th:errors="*{email}" />
-            <input type="text" id="code" th:field="*{code}" class="form-control" th:errorclass="field-error">
-            <span><button type="button" id="verifyCode">본인인증</button>
-            <input type="hidden" id="emailAuthYn" th:field="*{emailAuthYn}"></span>
+            <input type="text" id="email"  class="form-control" th:errorclass="field-error">@email.daelim.ac.kr
+            <button type="button" id="sendMail">인증메일발송</button>
+            <div class="field-error"  />
+            <input type="text" id="code" class="form-control" th:errorclass="field-error">
+            <button type="button" id="verifyCode">본인인증</button>
+            <input type="hidden" id="emailAuthYn" >
         </div>
         <div>
             <label for="username">아이디</label>
@@ -103,31 +103,33 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
-        $("#sendMail").click(function () {
-            $.ajax({
-                method: "POST",
-                url: "/members/sendMail",
-                data: {email: $("#email").val()}
-            })
-                .done(function () {
-                    console.log('이메일 발송')
-                });
-        });
-    });
-
-    $(document).ready(function () {
-        $("#verifyCode").click(function () {
-            $.ajax({
-                method: "POST",
-                url: "/members/verifyCode",
-                data: {code: $("#code").val()}
-            })
-                .done(function (msg) {
-                    $("#emailAuthYn").val(msg);
-                });
-        });
-    });
+    // 메일발송
+    // $(document).ready(function () {
+    //     $("#sendMail").click(function () {
+    //         $.ajax({
+    //             method: "POST",
+    //             url: "/members/sendMail",
+    //             data: {email: $("#email").val()}
+    //         })
+    //             .done(function () {
+    //                 console.log('이메일 발송')
+    //             });
+    //     });
+    // });
+    //
+    // 본인인증
+    // $(document).ready(function () {
+    //     $("#verifyCode").click(function () {
+    //         $.ajax({
+    //             method: "POST",
+    //             url: "/members/verifyCode",
+    //             data: {code: $("#code").val()}
+    //         })
+    //             .done(function (msg) {
+    //                 $("#emailAuthYn").val(msg);
+    //             });
+    //     });
+    // });
 </script>
 </body>
 </html>

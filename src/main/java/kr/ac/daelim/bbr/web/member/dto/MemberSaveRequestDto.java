@@ -13,11 +13,13 @@ public class MemberSaveRequestDto {
     @NotEmpty private String phone;
     @NotEmpty private String birth;
     @NotEmpty private String email;
-    @NotEmpty private String code;
+//    @NotEmpty
+    private String code;
     @NotEmpty private String username;
     @NotEmpty private String password;
     @NotEmpty private String department;
-    @NotEmpty private String emailAuthYn;
+//    @NotEmpty
+    private String emailAuthYn;
     private Boolean personalInfoTermYn;
     private Boolean serviceTermYn;
 

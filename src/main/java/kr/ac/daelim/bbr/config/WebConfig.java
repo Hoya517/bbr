@@ -1,4 +1,4 @@
-package kr.ac.daelim.bbr.web;
+package kr.ac.daelim.bbr.config;
 
 import kr.ac.daelim.bbr.web.argumentresolver.LoginMemberArgumentResolver;
 import org.springframework.context.annotation.Configuration;
