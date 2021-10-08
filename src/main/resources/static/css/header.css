@@ -200,9 +200,10 @@ header .link_menu.on {
 }
 
 header .link_today.on:before {
-	/* background-position: -286px -1056px; */
-	width: 20px;
-	height: 20px;
+  width: 25px;
+	height: 25px;
+  background-image: url(../icons/home-r.png);
+  background-size: 25px 25px;
   
 }
 
@@ -231,35 +232,38 @@ header .link_menu:before {
 }
 
 header .link_chart:before {
-	background-position: -805px -1022px;
-	width: 20px;
-	height: 20px;
-  
+  width: 24px;
+	height: 24px;
+  background-image: url(../icons/department-w.png);
+  background-size: 24px 24px;
 }
 
 header .link_newalbum:before {
-	width: 20px;
-	height: 20px;
-  background-image: url(../icons/major.png);
-  background-size: 20px 20px;
+	width: 25px;
+	height: 25px;
+  background-image: url(../icons/major-w.png);
+  background-size: 25px 25px;
 }
 
 header .link_dj:before {
-	background-position: -861px -1022px;
-	width: 20px;
-	height: 20px;
+	width: 26px;
+	height: 26px;
+  background-image: url(../icons/non-major-w.png);
+  background-size: 26px 26px;
 }
 
 header .link_mag:before {
-	background-position: -973px -1022px;
-	width: 20px;
-	height: 20px;
+	width: 25px;
+	height: 25px;
+  background-image: url(../icons/new-w.png);
+  background-size: 25px 25px;
 }
 
 header .link_monthly:before {
-	background-position: -1029px -1022px;
-	width: 20px;
-	height: 20px;
+	width: 25px;
+	height: 25px;
+  background-image: url(../icons/rank-w.png);
+  background-size: 25px 25px;
 }
 
 

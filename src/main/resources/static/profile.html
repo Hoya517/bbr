@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로필 수정</title>
+  <link href="./css/profile.css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu --> 
+      <div data-include-path="header.html"></div>
+      <!-- contents --> 
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+            <div class="c_header">
+              <h2>프로필 수정</h2>
+            </div>
+            <form id="profileForm" method="post" enctype="multipart/form-data">
+              <input type="hidden" id="" name="" value="">
+              <input type="hidden" id="" name="" value="">
+              <input type="hidden" id="" name="" value="">
+              <fieldset>
+                <legend>프로필 수정</legend>
+                <table class="tbl_model">
+                  <caption><span class="blind">프로필 수정</span></caption>
+                  <colgroup>
+                    <col style="width:22%"><col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">프로필 사진</div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <div class="profile_photo">
+                            <img id="imgThumb" src="./images/cat.jpg">
+                            <span class="mask"></span>
+                          </div>
+                          <div class="btn_area_btm">
+                            <span class="btn_file">
+                              <label for="inputImage" class="btn_model">
+                                <b id="btnChangeProfile" class="btn2" onclick="">사진변경</b>
+                              </label>
+                              <input type="file" id="inputImage" name="profileImage" accept="image/*">
+                            </span>
+                            <a href="" class="btn_model">
+                              <b id="btnDelete" class="btn2" onclick="">삭제</b>
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpNickname">별명</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <p class="contxt_webctrl nickname">
+                            <input type="text" name="nickname" id="" value="회원" onclick="">
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="btn_wrap">
+                  <a href="" class="btn_model">
+                    <b id="btnConfirm" class="btn2 txt_disable" onclick="">적용</b>
+                  </a>
+                  <a href="" class="btn_model">
+                    <b id="btnCancel" class="btn2" onclick="">취소</b>
+                  </a>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- footer --> 
+      <div data-include-path="footer.html"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

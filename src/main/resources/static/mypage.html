@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이 페이지</title>
+  <link href="./css/mypage.css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu --> 
+      <div data-include-path="header.html"></div>
+      <!-- contents --> 
+      <div class="container">
+        <div class="content section_home">
+          <h2 class="end_title"> 마이 페이지 </h2>
+          <div class="column">
+            <!-- profile -->
+            <div class="sh_group">
+              <div class="sh_header">
+                <h2>프로필</h2>
+              </div>
+              <div class="sh_content">
+                <dl class="sh_lst">
+                <dt class="blind">프로필 사진</dt>
+                <dd class="pic_desc">
+                  <a href="#" onclick="">
+                    <img src="./images/cat.jpg" width="80" height="80" alt="">
+                    <span class="spimg img_frame"></span>
+                  </a>
+                </dd>
+                <dt class="blind">&nbsp;</dt>
+                <dd class="intro_desc">&nbsp;</dd>
+                <dt class="nic_tit">닉네임</dt>
+                <dd class="nic_desc">회원</dd>
+                </dl>
+              </div>
+              <p class="btn_area_btm">
+                <a href="./profile.html" onclick="" class="btn_model">
+                  <b class="btn2">수정</b>
+                </a>
+              </p>
+            </div>
+            <!-- sell book -->
+            <div class="sh_group">
+              <div class="sh_header">
+                <h2>책 등록 내역</h2>
+              </div>
+              <div class="sh_content">
+                <p class="contxt">그동안 등록했던 책들을 확인해보세요!</p>
+              </div>
+              <p class="btn_area_btm">
+                <a href="./sell_book.html" class="btn_model" onclick="">
+                  <b class="btn2">등록 내역 확인</b>
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+              <!-- profile info -->
+              <div class="sh_group ">
+                <div class="sh_header">
+                  <h2>연락처 및 개인정보</h2>
+                </div>
+                <div class="sh_content">
+                  <dl class="sh_lst2">
+                  <dt>이메일</dt>
+                  <dd>bb******@d*******.com</dd>
+                  <dt>휴대전화</dt>
+                  <dd>+82 10-1***-5***</dd>
+                  </dl>
+                </div>
+                <p class="btn_area_btm">
+                  <a href="/./personal_info.html" onclick="" class="btn_model">
+                    <b class="btn2">수정</b>
+                  </a>
+                </p>
+              </div>
+              <!-- buy book -->
+            <div class="sh_group">
+              <div class="sh_header">
+                <h2>책 구매 내역</h2>
+              </div>
+              <div class="sh_content">
+                <p class="contxt">그동안 구매했던 책들을 확인해보세요!</p>
+              </div>
+              <p class="btn_area_btm">
+                <a href="./buy_book.html" class="btn_model" onclick="">
+                  <b class="btn2">구매 내역 확인</b>
+                </a>
+              </p>
+            </div>
+          </div>
+          <p class="desc_sub">BBR을 더 이상 이용하지 않는다면 <a href="" onclick="" class="more">회원탈퇴 바로가기</a></p>
+        </div>
+      </div>
+      <!-- footer --> 
+      <div data-include-path="footer.html"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -205,10 +205,38 @@ div {
 }
 
 
+
+/* select box */
 .select_box {
   position: absolute;
-  top: 2px;
+  top: -2px;
   right: 0;
   margin-right: -8px;
+  width: 400px;
+  height: 38px;
+  display: flex;
 }
 
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0px 10px;
+  width: 100%;
+  font-size: 14px;
+  color: #232323;
+  border: #999 1px solid;
+  border-radius: 5px;
+  background: url(../icons/down-filled-arrow.png) no-repeat;
+  background-size: 10px 10px;
+  background-position: 95%;
+}
+
+.select:focus {
+  color: black;
+}
+
+.major_arrow {
+  margin-top: 10px;
+}

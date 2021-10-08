@@ -28,7 +28,7 @@ div {
 .contents {
   min-height: 780px;
   padding-left: 225px;
-  margin: 50px 0 36px;
+  /* margin: 50px 0 36px; */
   background-color: #fff;
 }
 
@@ -55,7 +55,7 @@ div {
 }
 
 .mag_list_section {
-  margin: 40px -17px 0 0;
+  margin: 30px -17px 0 0;
 }
 
 .mag_list .list_item {

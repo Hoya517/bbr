@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>책 등록 내역</title>
+  <link href="./css/sell_book.css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu --> 
+      <div data-include-path="header.html"></div>
+      <!-- contents --> 
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+            <h2 class="end_title"> 책 등록 내역 </h2>
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>지은이</th>
+                  <th>판매 금액</th>
+                  <th>포인트</th>
+                  <th>등록 날짜</th>
+                  <th>등록 상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+                
+                <tr>
+                  <td>2</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+                
+                <tr>
+                  <td>3</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+
+                <tr>
+                  <td>4</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+
+                <tr>
+                  <td>5</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+
+                <tr>
+                  <td>6</td>
+                  <td>트렌드 코리아 2022</td>
+                  <td>김난도</td>
+                  <td>16,200원</td>
+                  <td>116,200pt</td>
+                  <td>2021.10.06</td>
+                  <td>진행중</td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+      <!-- footer --> 
+      <div data-include-path="footer.html"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
