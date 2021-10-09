@@ -93,9 +93,27 @@
     const title = queryParam.get('t');
     searchParam(title); //실행
 
+    function searchParam(key) {
+        $.ajax({
+            type: "GET",
+            url: "https://dapi.kakao.com/v3/search/book?target=title",
+            data: {query: key},
+            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
+            success : function (msg){
+                let data = msg.documents[0];
+                $("#title").val(data.title);
+                $("#author").val(data.authors);
+                $("#publisher").val(data.publisher);
+                $("#datetime").val(data.datetime.toString().substring(0,10));
+                $("#price").val(data.price);
+                $("#thumbnail-img").append("<img class=\"img_width \" src='" + data.thumbnail + "'/><br>");
+                $("#thumbnail").val(data.thumbnail);
+            }
+        });
+    }
     function next1(){
-            $(".as1").hide();
-            $(".as2").show();
+        $(".as1").hide();
+        $(".as2").show();
     }
     function next2(){
         $(".as2").hide();
@@ -109,29 +127,6 @@
         $(".as3").hide();
         $(".as2").show();
     }
-
-    function searchParam(key) {
-
-        console.log(key);
-        $.ajax({
-            type: "GET",
-            url: "https://dapi.kakao.com/v3/search/book?target=title",
-            data: {query: key},
-            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
-            success : function (msg){
-                console.log(msg);
-                let data = msg.documents[0];
-                $("#title").val(data.title);
-                $("#author").val(data.authors);
-                $("#publisher").val(data.publisher);
-                $("#datetime").val(data.datetime.toString().substring(0,10));
-                $("#price").val(data.price);
-                $("#thumbnail-img").append("<img class=\"img_width \" src='" + data.thumbnail + "'/><br>");
-                $("#thumbnail").val(data.thumbnail);
-            }
-        });
-    }
-
 </script>
 </body>
 </html>

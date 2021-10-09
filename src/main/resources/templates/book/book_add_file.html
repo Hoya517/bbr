@@ -89,9 +89,37 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script th:inline="javascript">
+    sch = location.search
+
+    const queryParam = new URLSearchParams(sch);
+    const title = queryParam.get('t');
+
+    if (title != null)
+        searchParam(title); //실행
+
+    function searchParam(key) {
+
+        console.log(key);
+        $.ajax({
+            type: "GET",
+            url: "https://dapi.kakao.com/v3/search/book?target=title",
+            data: {query: key},
+            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
+            success : function (msg){
+                let data = msg.documents[0];
+                $("#title").val(data.title);
+                $("#author").val(data.authors);
+                $("#publisher").val(data.publisher);
+                $("#datetime").val(data.datetime.toString().substring(0,10));
+                $("#price").val(data.price);
+                $("#thumbnail-img").append("<img class=\"img_width \" src='" + data.thumbnail + "'/><br>");
+                $("#thumbnail").val(data.thumbnail);
+            }
+        });
+    }
     function next1(){
-            $(".as1").hide();
-            $(".as2").show();
+        $(".as1").hide();
+        $(".as2").show();
     }
     function next2(){
         $(".as2").hide();
