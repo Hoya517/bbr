@@ -35,7 +35,7 @@ public class BookController {
     }
 
     @GetMapping("/add")
-    public String addBookForm(@Login Member loginMember, Model model, @RequestParam(required = true) String title,
+    public String addBookForm(@Login Member loginMember, Model model, @RequestParam(required = true) String t,
                               @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) {
         log.info("[ GET /books/add ]");
         if (loginMember != null) {

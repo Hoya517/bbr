@@ -155,9 +155,9 @@
                 .done(function (msg) {
                     console.log(msg);
                     for (var i = 0; i < 10; i++){
-                        let path = 'http://localhost:8080/books/add?title='+ msg.documents[i].title;
+                        let path = 'http://localhost:8080/books/add?t='+ msg.documents[i].title;
                         if(msg.documents[i].thumbnail === '') {
-                            path = 'http://localhost:8080/books/add_file?title='+ msg.documents[i].title;
+                            path = 'http://localhost:8080/books/add_file?t='+ msg.documents[i].title;
                         }
                         $(".box").append(" <div class=\"search_list\">\n" +
                             "            <div>\n" +
@@ -198,6 +198,10 @@
                     .done(function (msg) {
                         console.log(msg);
                         for (var i = 0; i < 10; i++){
+                            let path = 'http://localhost:8080/books/add?t='+ msg.documents[i].title;
+                            if(msg.documents[i].thumbnail === '') {
+                                path = 'http://localhost:8080/books/add_file?t='+ msg.documents[i].title;
+                            }
                             $(".box").append(" <div class=\"search_list\">\n" +
                                 "            <div>\n" +
                                 "                <img src='" + msg.documents[i].thumbnail + "'/>" +
@@ -214,7 +218,7 @@
                                 "                </p>\n" +
                                 "            </div>\n" +
                                 "            <div>\n" +
-                                "             <button class=\"search_nextbtn\" onclick=\"location.href='http://localhost:8080/book/add?title="+ msg.documents[i].title +"' \"> 책등록!</button>\n" +
+                                "               <button class=\"search_nextbtn\" onclick=\"location.href='"+path+"' \"> 책 판매</button>\n" +
                                 "            </div>\n" +
                                 "        </div>")
                         }
