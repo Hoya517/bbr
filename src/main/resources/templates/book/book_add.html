@@ -50,11 +50,7 @@
                                 <span>가격</span>
                                 <input class="form-control last" type="text" th:field="*{price}" placeholder="가격" title="가격">
                             </div>
-                            <!-- TODO hidden 필드로 바꿀까?-->
-                            <div class="form-control_div">
-                                <span>ISBN</span>
-                                <input class="form-control last" type="text" th:field="*{isbn}" placeholder="ISBN" title="ISBN">
-                            </div>
+                            <input type="hidden" th:field="*{isbn}" placeholder="ISBN" title="ISBN">
                         </div>
 
                         <div class="as1">
@@ -74,8 +70,6 @@
                             <a class="btn btn-primary mb-2 as3" onclick="remove2()" role="button">이전</a>
                             <button type="submit" class="btn btn-primary mb-3 as3">판매 등록하기</button>
                         </div>
-
-
                     </form>
 
                 </div>

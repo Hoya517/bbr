@@ -21,7 +21,7 @@ public class BookFileSaveRequestDto {
     @NotBlank private String datetime;
     @NotBlank private Integer price;
     @NotNull private MultipartFile attachFile;
-    @NotBlank private String isbn;
+    private String isbn;
     private String clazz;
     private String state;
     private String etc;

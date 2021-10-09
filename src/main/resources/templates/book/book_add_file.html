@@ -52,8 +52,7 @@
                                 <span>가격</span>
                                 <input class="form-control last" type="text" th:field="*{price}" placeholder="가격" title="가격">
                             </div>
-
-
+                            <input type="hidden" th:field="*{isbn}" placeholder="ISBN" title="ISBN">
                         </div>
 
                         <div class="as1">
@@ -107,6 +106,11 @@
             headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
             success : function (msg){
                 let data = msg.documents[0];
+                let isbn = data.isbn;
+                if (isbn.search(/\s/) != -1) {
+                    const arr = isbn.split(" ");
+                    isbn = arr[1];
+                }
                 $("#title").val(data.title);
                 $("#author").val(data.authors);
                 $("#publisher").val(data.publisher);
@@ -114,6 +118,7 @@
                 $("#price").val(data.price);
                 $("#thumbnail-img").append("<img class=\"img_width \" src='" + data.thumbnail + "'/><br>");
                 $("#thumbnail").val(data.thumbnail);
+                $("#isbn").val(isbn);
             }
         });
     }
