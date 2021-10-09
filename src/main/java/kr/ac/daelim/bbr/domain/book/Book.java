@@ -33,14 +33,14 @@ public class Book extends BaseTimeEntity {
     private String publisher;
     private String datetime;
     private Integer price;
-    private Integer stockQuantity;
+    private int stockQuantity;
 
     @Embedded
     private UploadFile attachFile;
     private String thumbnail;
 
     @Builder
-    public Book(String title, String author, String publisher, String datetime, Integer price, Integer stockQuantity, String thumbnail, UploadFile attachFile) {
+    public Book(String title, String author, String publisher, String datetime, Integer price, int stockQuantity, String thumbnail, UploadFile attachFile) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -49,5 +49,9 @@ public class Book extends BaseTimeEntity {
         this.stockQuantity = stockQuantity;
         this.attachFile = attachFile;
         this.thumbnail = thumbnail;
+    }
+
+    public void addStock() {
+        this.stockQuantity += 1;
     }
 }

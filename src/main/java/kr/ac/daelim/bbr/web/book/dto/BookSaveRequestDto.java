@@ -43,6 +43,7 @@ public class BookSaveRequestDto {
                 .datetime(datetime)
                 .price(price)
                 .thumbnail(thumbnail)
+                .stockQuantity(0)
                 .build();
     }
 

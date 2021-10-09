@@ -46,6 +46,7 @@ public class BookFileSaveRequestDto {
                 .datetime(datetime)
                 .price(price)
                 .attachFile(attachFile)
+                .stockQuantity(0)
                 .build();
     }
 
