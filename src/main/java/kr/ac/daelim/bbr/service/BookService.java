@@ -4,6 +4,7 @@ import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.book.BookRepository;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import kr.ac.daelim.bbr.utils.uploadfile.FileStore;
+import kr.ac.daelim.bbr.web.book.dto.BookFileSaveRequestDto;
 import kr.ac.daelim.bbr.web.book.dto.BookListResponseDto;
 import kr.ac.daelim.bbr.web.book.dto.BookResponseDto;
 import kr.ac.daelim.bbr.web.book.dto.BookSaveRequestDto;
@@ -23,9 +24,14 @@ public class BookService {
     private final FileStore fileStore;
 
     @Transactional
-    public Long save(BookSaveRequestDto bookSaveRequestDto) throws IOException {
+    public Long save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
         return bookRepository.save(bookSaveRequestDto.toEntity(uploadFile)).getId();
+    }
+
+    @Transactional
+    public Long save(BookSaveRequestDto bookSaveRequestDto) throws IOException {
+        return bookRepository.save(bookSaveRequestDto.toEntity()).getId();
     }
 
     @Transactional(readOnly = true)

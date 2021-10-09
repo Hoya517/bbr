@@ -26,6 +26,9 @@ public class Book extends BaseTimeEntity {
     private String publisher;
     private String datetime;
     private String thumbnail;
+    private String clazz;
+    private String state;
+    private String etc;
 
     @Embedded
     private UploadFile attachFile;
@@ -37,7 +40,7 @@ public class Book extends BaseTimeEntity {
     private List<Category> categories = new ArrayList<>();
 
     @Builder
-    public Book(String title, String author, String publisher, String datetime, Integer price, String thumbnail, UploadFile attachFile) {
+    public Book(String title, String author, String publisher, String datetime, Integer price, String thumbnail, String clazz, String state, String etc, UploadFile attachFile) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -45,5 +48,8 @@ public class Book extends BaseTimeEntity {
         this.price = price;
         this.thumbnail = thumbnail;
         this.attachFile = attachFile;
+        this.clazz = clazz;
+        this.state = state;
+        this.etc = etc;
     }
 }

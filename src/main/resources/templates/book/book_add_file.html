@@ -26,10 +26,12 @@
                     <div >
                         <span class="add_form_p">자세한 책 정보를 적어주세요.</span>
                     </div>
-                    <form action="" th:action method="post" th:object="${bookSaveRequestDto}">
+                    <form action="" th:action method="post" th:object="${bookFileSaveRequestDto}" enctype="multipart/form-data">
                         <div class="add_form_div">
-                            <div id="thumbnail-img"></div>
-                            <div><input class="form-control" type="hidden" th:field="*{thumbnail}" ></div>
+                            <div class="none_img">
+                                <span>사진등록</span>
+                                <input type="file" th:field="*{attachFile}" title="책사진을 넣어주세요">
+                            </div>
                             <div class="form-control_div">
                                 <span>책이름</span>
                                 <input class="form-control" type="text" th:field="*{title}" placeholder="책이름" title="책이름">
@@ -87,15 +89,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script th:inline="javascript">
-    sch = location.search
-
-    const title = new URLSearchParams(sch);
-    const title2 = title.get('title');
-    //const title3 = title2.toString();
-    console.log(title2);
-    console.log("위에");
-    searchParam(title2); //실행
-
     function next1(){
             $(".as1").hide();
             $(".as2").show();
@@ -112,29 +105,6 @@
         $(".as3").hide();
         $(".as2").show();
     }
-
-    function searchParam(key) {
-
-        console.log(key);
-        $.ajax({
-            type: "GET",
-            url: "https://dapi.kakao.com/v3/search/book?target=title",
-            data: {query: key},
-            headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
-            success : function (msg){
-                console.log(msg);
-                let data = msg.documents[0];
-                $("#title").val(data.title);
-                $("#author").val(data.authors);
-                $("#publisher").val(data.publisher);
-                $("#datetime").val(data.datetime.toString().substring(0,10));
-                $("#price").val(data.price);
-                $("#thumbnail-img").append("<img class=\"img_width \" src='" + data.thumbnail + "'/><br>");
-                $("#thumbnail").val(data.thumbnail);
-            }
-        });
-    }
-
 </script>
 </body>
 </html>

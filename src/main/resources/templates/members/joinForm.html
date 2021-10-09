@@ -25,7 +25,7 @@
 
     <h4 class="mb-3">회원 정보 입력</h4>
 
-    <form action="" th:action th:object="${memberSaveRequestDto}" method="post">
+    <form th:action th:object="${memberSaveRequestDto}" method="post">
 
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
@@ -33,28 +33,29 @@
 
         <div>
             <label for="name">이름</label>
-            <input type="text" id="name" th:field="*{name}" class="form-control" th:errorclass="field-error">
+            <input type="text" id="name" th:field="*{name}" class="form-control" th:errorclass="field-error" placeholder="ex. 홍길동">
             <div class="field-error" th:errors="*{name}" />
-        </div><div>
-        <label for="phone">전화번호</label>
-        <input type="text" id="phone" th:field="*{phone}" class="form-control" th:errorclass="field-error">
-        <div class="field-error" th:errors="*{phone}" />
-    </div>
+        </div>
         <div>
-            <label for="birth">생년월일 (ex. 20211005)</label>
-            <input type="date" id="birth" th:field="*{birth}" class="form-control" th:errorclass="field-error">
+            <label for="phone">전화번호</label>
+            <input type="text" id="phone" th:field="*{phone}" class="form-control" th:errorclass="field-error" placeholder="ex. 01012341234">
+            <div class="field-error" th:errors="*{phone}" />
+        </div>
+        <div>
+            <label for="birth">생년월일</label>
+            <input type="text" id="birth" th:field="*{birth}" class="form-control" th:errorclass="field-error">
             <div class="field-error" th:errors="*{birth}" />
         </div>
-        <div>
-            <!-- TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 -->
-            <label for="email">이메일</label>
-            <input type="text" id="email"  class="form-control" >@email.daelim.ac.kr
-            <button type="button" id="sendMail">인증메일발송</button>
-<!--            <div class="field-error"  />-->
-            <input type="text" id="code" class="form-control" >
-            <button type="button" id="verifyCode">본인인증</button>
-            <input type="hidden" id="emailAuthYn" >
-        </div>
+<!--        <div>-->
+<!--            &lt;!&ndash; TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 &ndash;&gt;-->
+<!--            <label for="email">이메일</label>-->
+<!--            <input type="text" id="email"  class="form-control" >@email.daelim.ac.kr-->
+<!--            <button type="button" id="sendMail">인증메일발송</button>-->
+<!--&lt;!&ndash;            <div class="field-error"  />&ndash;&gt;-->
+<!--            <input type="text" id="code" class="form-control" >-->
+<!--            <button type="button" id="verifyCode">본인인증</button>-->
+<!--            <input type="hidden" id="emailAuthYn" >-->
+<!--        </div>-->
         <div>
             <label for="username">아이디</label>
             <input type="text" id="username" th:field="*{username}" class="form-control" th:errorclass="field-error">
