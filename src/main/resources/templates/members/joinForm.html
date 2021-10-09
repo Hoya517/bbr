@@ -48,10 +48,10 @@
         <div>
             <!-- TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 -->
             <label for="email">이메일</label>
-            <input type="text" id="email"  class="form-control" th:errorclass="field-error">@email.daelim.ac.kr
+            <input type="text" id="email"  class="form-control" >@email.daelim.ac.kr
             <button type="button" id="sendMail">인증메일발송</button>
-            <div class="field-error"  />
-            <input type="text" id="code" class="form-control" th:errorclass="field-error">
+<!--            <div class="field-error"  />-->
+            <input type="text" id="code" class="form-control" >
             <button type="button" id="verifyCode">본인인증</button>
             <input type="hidden" id="emailAuthYn" >
         </div>

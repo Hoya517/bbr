@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header</title>
+  <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+</head>
+<body>
+  <header th:fragment="copy" class="header side_bar">
+    <h1 class="logo">
+      <a href="/" class="link_logo router-link-active">
+        <span class="blind">프로젝트 제목</span>
+      </a>
+    </h1>
+    <a href="#" role="button" aria-expanded="false" class="btn_search">
+      <span class="blind">검색</span>
+    </a>
+    <div class="search_area">
+      <span class="input_area">
+        <input type="search" role="combobox" id="search_keyword" aria-expanded="false" aria-haspopup="listbox" title="검색창" placeholder="VIBE 검색" autocomplete="off" class="input_search">
+      </span>
+      <a href="#" role="button" class="btn_close_search">
+        <span class="blind">검색 닫기</span>
+      </a>
+    </div>
+    <div class="my_menu">
+      <div class="profile_area">
+        <a th:if="${member} == null" href="#" th:href="@{/login}" class="link_login">
+          <span class="text">로그인</span>
+        </a>
+        <div th:if="${member} != null">
+          <div class="link_login">
+            <span class="text" th:text="${member.name}">사용자 이름</span>
+          </div>
+        </div>
+      </div>
+      <div class="ly_menu">
+        <div class="menu_area">
+          <ul role="menu" class="menu_list">
+            <li role="presentation" class="menu_item">
+              <a href="./index.html" role="menuitem" class="link_menu link_today on">
+                <span class="text"> 오늘의 책 <span class="blind">선택됨</span></span>
+              </a>
+            </li>
+            <li role="presentation" class="menu_item">
+              <a href="./department.html" role="menuitem" class="link_menu link_chart">
+                <span class="text"> 학과 </span>
+              </a>
+            </li>
+            <li role="presentation" class="menu_item">
+              <a href="./major.html" role="menuitem" class="link_menu link_newalbum">
+                <span class="text"> 전공 </span>
+              </a>
+            </li>
+            <li role="presentation" class="menu_item">
+              <a href="./non-major.html" role="menuitem" class="link_menu link_dj">
+                <span class="text"> 교양 </span>
+              </a>
+            </li>
+            <li role="presentation" class="menu_item">
+              <a href="./new.html" role="menuitem" class="link_menu link_mag">
+                <span class="text"> 신규 </span>
+              </a>
+            </li>
+            <li role="presentation" class="menu_item">
+              <a href="./rank.html" role="menuitem" class="link_menu link_monthly">
+                <span class="text"> 인기 </span>
+              </a>
+            </li>
+          </ul>
+          <div th:if="${member} != null" role="menu" class="extra_menu">
+            <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text title"># 판매해볼까?</a>
+            <a href="/about" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> ISBN / 책이름으로 검색 </a>
+            <a href="/membership/vibe" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
+            <form th:action="@{/logout}" method="post">
+              <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
+                로그아웃
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</body>
+</html>
