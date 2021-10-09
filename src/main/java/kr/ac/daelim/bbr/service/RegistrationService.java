@@ -6,6 +6,8 @@ import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.registration.RegistrationRepository;
 import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
+import kr.ac.daelim.bbr.web.book.dto.BookFileSaveRequestDto;
+import kr.ac.daelim.bbr.web.book.dto.BookSaveRequestDto;
 import kr.ac.daelim.bbr.web.member.dto.RegistrationResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,13 +24,13 @@ public class RegistrationService {
     private final BookRepository bookRepository;
 
     @Transactional
-    public Long save(Member loginMember, Book book) {
-        Registration registration = Registration.builder()
-                                                 .member(loginMember)
-                                                 .book(book)
-                                                 .status(RegistrationStatus.READY)
-                                                 .build();
-        return registrationRepository.save(registration).getId();
+    public Long save(Member loginMember, Book book, BookSaveRequestDto bookSaveRequestDto) {
+        return registrationRepository.save(bookSaveRequestDto.toRegistration(book, loginMember)).getId();
+    }
+
+    @Transactional
+    public Long save(Member loginMember, Book book, BookFileSaveRequestDto bookFileSaveRequestDto) {
+        return registrationRepository.save(bookFileSaveRequestDto.toRegistration(book, loginMember)).getId();
     }
 
     @Transactional(readOnly = true)

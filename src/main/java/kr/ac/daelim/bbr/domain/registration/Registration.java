@@ -31,11 +31,18 @@ public class Registration extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private RegistrationStatus status;
 
+    private String clazz;
+    private String state;
+    private String etc;
+
     @Builder
-    public Registration(Book book, Member member, RegistrationStatus status) {
+    public Registration(Book book, Member member, RegistrationStatus status, String clazz, String state, String etc) {
         this.book = book;
         this.member = member;
         this.status = status;
+        this.clazz = clazz;
+        this.state = state;
+        this.etc = etc;
     }
 
     //==연관관계 편의 메서드==//

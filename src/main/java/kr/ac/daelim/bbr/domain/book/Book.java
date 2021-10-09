@@ -22,38 +22,32 @@ public class Book extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String author;
-    private String publisher;
-    private String datetime;
-    private String thumbnail;
-    private String clazz;
-    private String state;
-    private String etc;
-
-    @Embedded
-    private UploadFile attachFile;
-
-    private Integer price;
-    private int stockQuantity;
-
     @ManyToMany(mappedBy = "books")
     private List<Category> categories = new ArrayList<>();
 
     @OneToMany(mappedBy = "book")
     private List<Registration> registrations = new ArrayList<>();
 
+    private String title;
+    private String author;
+    private String publisher;
+    private String datetime;
+    private Integer price;
+    private Integer stockQuantity;
+
+    @Embedded
+    private UploadFile attachFile;
+    private String thumbnail;
+
     @Builder
-    public Book(String title, String author, String publisher, String datetime, Integer price, String thumbnail, String clazz, String state, String etc, UploadFile attachFile) {
+    public Book(String title, String author, String publisher, String datetime, Integer price, Integer stockQuantity, String thumbnail, UploadFile attachFile) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.datetime = datetime;
         this.price = price;
-        this.thumbnail = thumbnail;
+        this.stockQuantity = stockQuantity;
         this.attachFile = attachFile;
-        this.clazz = clazz;
-        this.state = state;
-        this.etc = etc;
+        this.thumbnail = thumbnail;
     }
 }

@@ -1,6 +1,9 @@
 package kr.ac.daelim.bbr.web.book.dto;
 
 import kr.ac.daelim.bbr.domain.book.Book;
+import kr.ac.daelim.bbr.domain.member.Member;
+import kr.ac.daelim.bbr.domain.registration.Registration;
+import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +38,7 @@ public class BookFileSaveRequestDto {
         this.etc = etc;
     }
 
-    public Book toEntity(UploadFile attachFile) {
+    public Book toBook(UploadFile attachFile) {
         return Book.builder()
                 .title(title)
                 .author(author)
@@ -43,6 +46,14 @@ public class BookFileSaveRequestDto {
                 .datetime(datetime)
                 .price(price)
                 .attachFile(attachFile)
+                .build();
+    }
+
+    public Registration toRegistration(Book book, Member member) {
+        return Registration.builder()
+                .book(book)
+                .member(member)
+                .status(RegistrationStatus.READY)
                 .clazz(clazz)
                 .state(state)
                 .etc(etc)

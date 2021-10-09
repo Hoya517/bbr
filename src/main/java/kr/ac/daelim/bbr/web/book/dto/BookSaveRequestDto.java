@@ -1,10 +1,11 @@
 package kr.ac.daelim.bbr.web.book.dto;
 
 import kr.ac.daelim.bbr.domain.book.Book;
-import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
+import kr.ac.daelim.bbr.domain.member.Member;
+import kr.ac.daelim.bbr.domain.registration.Registration;
+import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
@@ -34,7 +35,7 @@ public class BookSaveRequestDto {
         this.etc = etc;
     }
 
-    public Book toEntity() {
+    public Book toBook() {
         return Book.builder()
                 .title(title)
                 .author(author)
@@ -42,6 +43,14 @@ public class BookSaveRequestDto {
                 .datetime(datetime)
                 .price(price)
                 .thumbnail(thumbnail)
+                .build();
+    }
+
+    public Registration toRegistration(Book book, Member member) {
+        return Registration.builder()
+                .book(book)
+                .member(member)
+                .status(RegistrationStatus.READY)
                 .clazz(clazz)
                 .state(state)
                 .etc(etc)
