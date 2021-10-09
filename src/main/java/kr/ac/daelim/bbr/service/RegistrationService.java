@@ -45,11 +45,12 @@ public class RegistrationService {
     }
 
     @Transactional
-    public void complete(Long id) {
+    public Long complete(Long id) {
         Registration registration = registrationRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
         );
         registration.updateComp();
+        return registration.getBook().getId();
     }
 
     @Transactional

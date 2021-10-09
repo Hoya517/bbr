@@ -30,8 +30,8 @@ public class AdminController {
 
     @PostMapping("/{id}/comp")
     public String registrationComp(@PathVariable Long id) {
-        registrationService.complete(id);
-        bookService.addStock(id);
+        Long bookId = registrationService.complete(id);
+        bookService.addStock(bookId);
 
         return "redirect:/admin/registrations";
     }
