@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>책 등록 내역</title>
+  <link href="./css/sell_book.css" th:href="@{/css/sell_book.css}" rel="stylesheet">
+  <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu -->
+      <div th:insert="~{fragment/header :: copy}"></div>
+      <!-- contents --> 
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+            <h2 class="end_title"> 책 등록 내역 </h2>
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>지은이</th>
+                  <th>가격</th>
+<!--                  <th>등록 날짜</th>-->
+                  <th>등록 상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="registration : ${list}">
+                  <td th:text="${registration.getId()}">1</td>
+                  <td th:text="${registration.getTitle()}">트렌드 코리아 2022</td>
+                  <td th:text="${registration.getAuthor()}">김난도</td>
+                  <td th:text="${registration.getPrice()}">16,200원</td>
+<!--                  <td th:text="${registration.getCreatedDate}">2021.10.06</td>-->
+                  <td th:text="${registration.getStatus()}">진행중</td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div th:replace="fragment/footer :: copy"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

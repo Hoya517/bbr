@@ -1,6 +1,7 @@
 package kr.ac.daelim.bbr.domain.book;
 
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
+import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +39,9 @@ public class Book extends BaseTimeEntity {
 
     @ManyToMany(mappedBy = "books")
     private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book")
+    private List<Registration> registrations = new ArrayList<>();
 
     @Builder
     public Book(String title, String author, String publisher, String datetime, Integer price, String thumbnail, String clazz, String state, String etc, UploadFile attachFile) {

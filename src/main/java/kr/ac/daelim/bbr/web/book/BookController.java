@@ -1,7 +1,10 @@
 package kr.ac.daelim.bbr.web.book;
 
+import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.member.Member;
+import kr.ac.daelim.bbr.domain.registration.RegistrationRepository;
 import kr.ac.daelim.bbr.service.BookService;
+import kr.ac.daelim.bbr.service.RegistrationService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.book.dto.BookFileSaveRequestDto;
 import kr.ac.daelim.bbr.web.book.dto.BookSaveRequestDto;
@@ -20,6 +23,7 @@ import java.io.IOException;
 public class BookController {
 
     private final BookService bookService;
+    private final RegistrationService registrationService;
 
     @GetMapping("/search")
     public String searchBook(@Login Member loginMember, Model model) {
@@ -51,14 +55,16 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public String addBook(@ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) throws IOException {
-        bookService.save(bookSaveRequestDto);
+    public String addBook(@Login Member loginMember, @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) throws IOException {
+        Book book = bookService.save(bookSaveRequestDto);
+        registrationService.save(loginMember, book);
         return "redirect:/";
     }
 
     @PostMapping("/add_file")
-    public String addBookFileWithFile(@ModelAttribute("bookFileSaveRequestDto") BookFileSaveRequestDto bookFileSaveRequestDto) throws IOException {
-        bookService.save(bookFileSaveRequestDto);
+    public String addBookFileWithFile(@Login Member loginMember, @ModelAttribute("bookFileSaveRequestDto") BookFileSaveRequestDto bookFileSaveRequestDto) throws IOException {
+        Book book = bookService.save(bookFileSaveRequestDto);
+        registrationService.save(loginMember, book);
         return "redirect:/";
     }
 

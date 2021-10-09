@@ -1,7 +1,7 @@
 package kr.ac.daelim.bbr.domain.order;
 
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
-import kr.ac.daelim.bbr.domain.OrderItem.OrderBook;
+import kr.ac.daelim.bbr.domain.orderItem.OrderBook;
 import kr.ac.daelim.bbr.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;

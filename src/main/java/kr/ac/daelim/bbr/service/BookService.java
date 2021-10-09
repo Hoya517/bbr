@@ -24,14 +24,14 @@ public class BookService {
     private final FileStore fileStore;
 
     @Transactional
-    public Long save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
+    public Book save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
-        return bookRepository.save(bookSaveRequestDto.toEntity(uploadFile)).getId();
+        return bookRepository.save(bookSaveRequestDto.toEntity(uploadFile));
     }
 
     @Transactional
-    public Long save(BookSaveRequestDto bookSaveRequestDto) throws IOException {
-        return bookRepository.save(bookSaveRequestDto.toEntity()).getId();
+    public Book save(BookSaveRequestDto bookSaveRequestDto) throws IOException {
+        return bookRepository.save(bookSaveRequestDto.toEntity());
     }
 
     @Transactional(readOnly = true)
