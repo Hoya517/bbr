@@ -25,13 +25,21 @@ public class BookService {
 
     @Transactional
     public Book save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
-        UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
-        return bookRepository.save(bookSaveRequestDto.toBook(uploadFile));
+        if (bookRepository.findByTitle(bookSaveRequestDto.getTitle()).isEmpty()) {
+            UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
+            return bookRepository.save(bookSaveRequestDto.toBook(uploadFile));
+        } else {
+            return bookRepository.findByTitle(bookSaveRequestDto.getTitle()).get();
+        }
     }
 
     @Transactional
-    public Book save(BookSaveRequestDto bookSaveRequestDto) throws IOException {
-        return bookRepository.save(bookSaveRequestDto.toBook());
+    public Book save(BookSaveRequestDto bookSaveRequestDto) {
+        if (bookRepository.findByTitle(bookSaveRequestDto.getTitle()).isEmpty()) {
+            return bookRepository.save(bookSaveRequestDto.toBook());
+        } else {
+            return bookRepository.findByTitle(bookSaveRequestDto.getTitle()).get();
+        }
     }
 
     @Transactional(readOnly = true)

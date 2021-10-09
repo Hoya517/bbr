@@ -155,9 +155,14 @@
                 .done(function (msg) {
                     console.log(msg);
                     for (var i = 0; i < 10; i++){
-                        let path = 'http://localhost:8080/books/add?t='+ msg.documents[i].title;
+                        let isbn = msg.documents[i].isbn;
+                        if (isbn.search(/\s/) != -1) {
+                            const arr = isbn.split(" ");
+                            isbn = arr[1];
+                        }
+                        let path = 'http://localhost:8080/books/add?t='+ isbn;
                         if(msg.documents[i].thumbnail === '') {
-                            path = 'http://localhost:8080/books/add_file?t='+ msg.documents[i].title;
+                            path = 'http://localhost:8080/books/add_file?t='+ isbn;
                         }
                         $(".box").append(" <div class=\"search_list\">\n" +
                             "            <div>\n" +
@@ -198,9 +203,14 @@
                     .done(function (msg) {
                         console.log(msg);
                         for (var i = 0; i < 10; i++){
-                            let path = 'http://localhost:8080/books/add?t='+ msg.documents[i].title;
+                            let isbn = msg.documents[i].isbn;
+                            if (isbn.search(/\s/) != -1) {
+                                const arr = isbn.split(" ");
+                                isbn = arr[1];
+                            }
+                            let path = 'http://localhost:8080/books/add?t='+ isbn;
                             if(msg.documents[i].thumbnail === '') {
-                                path = 'http://localhost:8080/books/add_file?t='+ msg.documents[i].title;
+                                path = 'http://localhost:8080/books/add_file?t='+ isbn;
                             }
                             $(".box").append(" <div class=\"search_list\">\n" +
                                 "            <div>\n" +

@@ -72,7 +72,7 @@
           </ul>
           <div th:if="${member} != null" role="menu" class="extra_menu">
             <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text title"># 판매해볼까?</a>
-            <a href="#" th:href="@{/books/search}" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> ISBN / 책이름으로 검색 </a>
+            <a href="#" th:href="@{/books/search}" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> 책이름으로 검색 </a>
             <a href="#" th:href="@{/books/add_file}" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
             <form th:action="@{/logout}" method="post">
               <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
