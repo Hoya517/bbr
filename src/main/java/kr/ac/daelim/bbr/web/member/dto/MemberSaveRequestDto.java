@@ -1,6 +1,7 @@
 package kr.ac.daelim.bbr.web.member.dto;
 
 import kr.ac.daelim.bbr.domain.member.Member;
+import kr.ac.daelim.bbr.domain.member.MemberType;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -42,6 +43,7 @@ public class MemberSaveRequestDto {
                 .department(department)
                 .personalInfoTermYn(String.valueOf(personalInfoTermYn))
                 .serviceTermYn(String.valueOf(serviceTermYn))
+                .memberType(MemberType.USER)
                 .build();
     }
 }

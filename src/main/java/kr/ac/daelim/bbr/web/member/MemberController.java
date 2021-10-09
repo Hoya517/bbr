@@ -6,7 +6,6 @@ import kr.ac.daelim.bbr.service.MemberService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.member.dto.MemberSaveRequestDto;
-import kr.ac.daelim.bbr.web.member.dto.RegistrationResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -61,11 +60,7 @@ public class MemberController {
 
     @GetMapping("/registrations")
     public String registrationList(@Login Member loginMember, Model model) {
-        List<RegistrationResponseDto> list = registrationService.findAllDesc(loginMember);
-        for (RegistrationResponseDto r : list) {
-            log.info("id={}", r.getId());
-        }
-        model.addAttribute("list", list);
+        model.addAttribute("list", registrationService.findAllDesc(loginMember));
         return "members/registration_list";
     }
 }

@@ -4,6 +4,7 @@ import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.book.BookRepository;
 import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.member.MemberRepository;
+import kr.ac.daelim.bbr.domain.member.MemberType;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,8 +27,18 @@ public class TestDataInit {
                 .username("test")
                 .password("test!")
                 .name("테스터")
+                .department("컴퓨터정보학부")
+                .memberType(MemberType.USER)
                 .build();
         memberRepository.save(member);
+
+        Member admin = Member.builder()
+                .username("admin")
+                .password("test!")
+                .name("관리자")
+                .memberType(MemberType.ADMIN)
+                .build();
+        memberRepository.save(admin);
 
         Book book1 = Book.builder()
                 .attachFile(new UploadFile("",""))
