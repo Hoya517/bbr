@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -25,20 +26,22 @@ public class BookService {
 
     @Transactional
     public Book save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
-        if (bookRepository.findByTitle(bookSaveRequestDto.getTitle()).isEmpty()) {
+        Optional<Book> findBook = bookRepository.findByTitle(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
+        if (findBook.isEmpty()) {
             UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
             return bookRepository.save(bookSaveRequestDto.toBook(uploadFile));
         } else {
-            return bookRepository.findByTitle(bookSaveRequestDto.getTitle()).get();
+            return findBook.get();
         }
     }
 
     @Transactional
     public Book save(BookSaveRequestDto bookSaveRequestDto) {
-        if (bookRepository.findByTitle(bookSaveRequestDto.getTitle()).isEmpty()) {
+        Optional<Book> findBook = bookRepository.findByTitle(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
+        if (findBook.isEmpty()) {
             return bookRepository.save(bookSaveRequestDto.toBook());
         } else {
-            return bookRepository.findByTitle(bookSaveRequestDto.getTitle()).get();
+            return findBook.get();
         }
     }
 

@@ -10,6 +10,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b ORDER BY b.id DESC")
     List<Book> findAllDesc();
 
-    @Query("SELECT b FROM Book b WHERE b.title = :title")
-    Optional<Book> findByTitle(String title);
+    @Query("SELECT b FROM Book b WHERE b.title = :title AND b.author = :author AND b.publisher = :publisher AND b.datetime = :datetime AND b.price = :price")
+    Optional<Book> findByTitle(String title, String author, String publisher, String datetime, Integer price);
 }
