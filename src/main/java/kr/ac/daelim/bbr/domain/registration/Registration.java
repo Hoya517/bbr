@@ -47,4 +47,12 @@ public class Registration extends BaseTimeEntity {
         this.book = book;
         book.getRegistrations().add(this);
     }
+
+    public void updateComp() {
+        this.status = RegistrationStatus.COMP;
+    }
+
+    public void updateCancel() {
+        this.status = RegistrationStatus.CANCEL;
+    }
 }

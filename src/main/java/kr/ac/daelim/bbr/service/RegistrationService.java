@@ -37,4 +37,27 @@ public class RegistrationService {
                 .map(RegistrationResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<RegistrationResponseDto> findAllDesc() {
+        return registrationRepository.findAllDesc().stream()
+                .map(RegistrationResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void complete(Long id) {
+        Registration registration = registrationRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
+        );
+        registration.updateComp();
+    }
+
+    @Transactional
+    public void cancel(Long id) {
+        Registration registration = registrationRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
+        );
+        registration.updateCancel();
+    }
 }

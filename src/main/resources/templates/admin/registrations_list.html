@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/header :: header"/>
+<body>
+<div class="container">
+    <!--header-->
+    <div th:replace="admin/fragments/bodyHeader :: bodyHeader"/>
+    <div>
+<!--        <div>-->
+<!--            <form th:object="${orderSearch}" class="form-inline">-->
+<!--                <div class="form-group mb-2">-->
+<!--                    <input type="text" th:field="*{memberName}" class="form- control" placeholder="회원명"/>-->
+<!--                </div>-->
+<!--                <div class="form-group mx-sm-1 mb-2">-->
+<!--                    <select th:field="*{orderStatus}" class="form-control"> <option value="">주문상태</option>-->
+<!--                        <option th:each="status : ${T(jpabook.jpashop.domain.OrderStatus).values()}"-->
+<!--                                th:value="${status}"-->
+<!--                                th:text="${status}">option-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <button type="submit" class="btn btn-primary mb-2">검색</button>-->
+<!--            </form>-->
+<!--        </div>-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>지은이</th>
+                <th>가격</th>
+                <!--                  <th>등록 날짜</th>-->
+                <th>등록 상태</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="registration : ${list}" >
+                <td th:text="${registration.id}">1</td>
+                <td th:text="${registration.title}">트렌드 코리아 2022</td>
+                <td th:text="${registration.author}">김난도</td>
+                <td th:text="${registration.price}" >16,200원</td>
+                <!--                  <td th:text="${registration.getCreatedDate}">2021.10.06</td>-->
+                <td th:text="${registration.status}">진행중</td>
+                <td>
+                    <a th:if="${registration.status.name() == 'READY'}" href="#"
+                       th:href="'javascript:comp('+${registration.id}+')'"
+                       class="btn btn-primary">COMP</a>
+                </td>
+                <td>
+                    <a th:if="${registration.status.name() == 'READY'}" href="#"
+                       th:href="'javascript:cancel('+${registration.id}+')'"
+                       class="btn btn-danger">CANCEL</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+<script>
+    function comp(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/admin/" + id + "/comp");
+        document.body.appendChild(form);
+        form.submit();
+    }
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/admin/" + id + "/cancel");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</html>

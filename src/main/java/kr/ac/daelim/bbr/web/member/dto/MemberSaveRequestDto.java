@@ -14,8 +14,8 @@ public class MemberSaveRequestDto {
     @NotBlank private String phone;
     @NotBlank private String birth;
 //    @NotBlank private String email;
-//    @NotEmpty private String code;
-//    @NotEmpty private String emailAuthYn;
+//    @NotBlank private String code;
+//    @NotBlank private String emailAuthYn;
     @NotBlank private String username;
     @NotBlank private String password;
     @NotBlank private String department;

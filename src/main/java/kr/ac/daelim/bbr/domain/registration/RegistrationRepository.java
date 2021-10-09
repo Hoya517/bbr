@@ -11,4 +11,7 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
 
     @Query("select r from Registration r join r.member m where r.member = :member")
     List<Registration> findAllDesc(@Login Member member);
+
+    @Query("select r from Registration r join r.member m")
+    List<Registration> findAllDesc();
 }
