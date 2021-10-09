@@ -1,221 +1,370 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="./css/index.css" rel="stylesheet">
-  <link href="./css/major.css" rel="stylesheet" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전공</title>
+    <link href="./css/major.css" th:href="@{/css/major.css}" rel="stylesheet">
+    <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
 </head>
 <body>
-  <div class="wrap">
+<div class="wrap">
     <div class="home">
-      <!-- left menu --> 
-      <header class="header side_bar">
-        <h1 class="logo">
-          <a href="/" class="link_logo router-link-active">
-            <span class="blind">프로젝트 제목</span>
-          </a>
-        </h1>
-        <a href="#" role="button" aria-expanded="false" class="btn_search">
-          <span class="blind">검색</span>
-        </a>
-        <div class="search_area">
-          <span class="input_area">
-            <input type="search" role="combobox" id="search_keyword" aria-expanded="false" aria-haspopup="listbox" title="검색창" placeholder="VIBE 검색" autocomplete="off" class="input_search">
-          </span>
-          <a href="#" role="button" class="btn_close_search">
-            <span class="blind">검색 닫기</span>
-          </a>
-        </div>
-        <div class="my_menu">
-          <div class="profile_area">
-            <a href="#" class="link_login">
-              <span class="text">로그인</span>
-            </a>
-          </div>
-          <div class="ly_menu">
-            <div class="menu_area">
-              <ul role="menu" class="menu_list">
-                <li role="presentation" class="menu_item">
-                  <a href="../../../../../../../Desktop/메인%20페이지/메인%20페이지/index.html" role="menuitem" class="link_menu link_today">
-                    <span class="text"> 오늘의 책 </span>
-                  </a>
-                </li>
-                <li role="presentation" class="menu_item">
-                  <a href="#" role="menuitem" class="link_menu link_chart on">
-                    <span class="text"> 학과 <span class="blind">선택됨</span></span>
-                  </a>
-                </li>
-                <li role="presentation" class="menu_item">
-                  <a href="#" role="menuitem" class="link_menu link_newalbum">
-                    <span class="text"> 전공 </span>
-                  </a>
-                </li>
-                <li role="presentation" class="menu_item">
-                  <a href="#" role="menuitem" class="link_menu link_dj">
-                    <span class="text"> 교양 </span>
-                  </a>
-                </li>
-                <li role="presentation" class="menu_item">
-                  <a href="#" role="menuitem" class="link_menu link_mag">
-                    <span class="text"> VIBE MAG </span>
-                  </a>
-                </li>
-                <li role="presentation" class="menu_item">
-                  <a href="#" role="menuitem" class="link_menu link_monthly">
-                    <span class="text"> 이달의 노래 </span>
-                  </a>
-                </li>
-              </ul>
-              <div role="menu" class="extra_menu">
-                <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text">#내돈내듣</a>
-                <a href="#" class="link_extra link_text">온스테이지</a>
-                <a href="/about" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> 서비스 소개 </a>
-                <a href="/membership/vibe" class="link_extra link_text" role="menuitem"> 멤버십 구독 </a>
-                <a href="/vibereview" class="link_extra link_text" role="menuitem"> VIBE 사용자 리뷰 </a>
-                <a to="/comingsoonvibe" role="menuitem" class="link_extra link_text comingsoonvibe"> 커밍쑨VIBE </a>
-              </div>
+        <!-- left menu -->
+        <div th:insert="~{fragment/header :: copy}"></div>
+        <!-- contents -->
+        <div class="container">
+            <div class="content">
+                <div class="subend_section">
+                    <h2 class="subend_title for_ellipsis">전공</h2>
+                    <div class="select_box">
+                        <select class="select select_one" name="" id="">
+                            <option value="0">선택하여 검색</option>
+                            <option value="1">공학계열</option>
+                            <option value="2">인문사회계열</option>
+                            <option value="3">자연과학계열</option>
+                            <option value="4">예체능</option>
+                        </select>
+                        <span class="major_arrow">></span>
+                        <select class="select select_two" name="" id="">
+                            <option value="0">-------</option>
+                        </select>
+                    </div>
+                    <div class="sub_list">
+                        <ul>
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list_item">
+                                <div class="">
+                                    <div class="thumb_area">
+                                        <a href="#" class="link">
+                                            <img src="https://s3.ap-northeast-2.amazonaws.com/libro.image/Libro_V6/product/2021/1001/0100023077994-BN.jpg" alt="니가 골라준 시계 앨범 커버">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <a href="/album/6450657" class="title">
+                                            <span class="text">10일 만에 끝내는 영단어 1000 (상급)</span>
+                                            <span class="blind">페이지로 이동</span>
+                                        </a>
+                                        <div class="artist">
+                        <span>
+                          <span>
+                            <a href="/artist/298505" class="link_artist">
+                              <span class="text">김진호 | 리더북스</span>
+                            </a>
+                          </span>
+                        </span>
+                                            <span class="blind">지은이/출판사</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn_more_list">
+                            <a href="#" role="button" class="link">
+                                <span class="text">더 보기</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </header>
-      <!-- contents --> 
-      <div class="contents">
-        <div>
-          <div class="major">
-              <h2><span>전공서적</span></h2>
-              <div class="major_selectbox">
-                  <span class="major_select">
-                      <select name="" id="">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                      </select>
-                  </span>
-                  <span class="mojor_arrow">></span>
-                  <span class="major_select">
-                      <select name="" id="" disabled>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                      </select>
-                  </span>
-              </div>
-          </div>
-          <div class="new_body">
-              <div class="new_body_in">
-                  
-                  <div class="new_contents">
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                      <div class="new_contents_in">
-                          <div class="new_contents_in_in">
-                              <a href=""><img src="http://image.kyobobook.co.kr/images/book/xlarge/596/x9791187192596.jpg" alt=""></a>
-                              <a href="">책이름</a>
-                              <a href="">저자</a>
-                          </div>
-                      </div>
-      
-                  </div>
-      
-                  <div>
-                      <div class="more">
-                          
-                          <div class="more_a"><a href="" class="">더보기</a></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-  
-  
-  
-      </div>
-        
-      </div>
-      <!-- footer --> 
-      <footer class="footer">
-        <div class="terms">
-          <a href="https://policy.naver.com/policy/privacy.html" target="_blank" rel="noopener noreferrer" class="item">
-            <strong>개인정보처리방침</strong>
-          </a>
-          <a href="#" target="_blank" class="item">BBR 이용약관</a>
-          <a href="https://help.naver.com/support/alias/contents1/vibe/vibe_7.naver" target="_blank" rel="noopener noreferrer" class="item">고객센터</a>
-          <a href="https://help.naver.com/support/alias/contents1/vibe/vibe_6.naver" target="_blank" rel="noopener noreferrer" class="item">결제/환불 안내</a>
-          <a href="https://www.navercorp.com" target="_blank" rel="noopener noreferrer" class="item">© BBR. ALL RIGHT RESERVED.</a>
-        </div>
-        <div class="naver_info">
-          <span class="item">BBR Project</span>
-          <div>
-            <span class="item">
-              <span class="item_head">대표</span>김남경, 김주호, 전소진</span>
-              <span class="item"><span class="item_head">호스팅 서비스 제공</span>BBR</span>
-            </div>
-            <address>
-              <span class="item">
-                <span class="item_head">주소</span>경기도 안양시 동안구 비산동 임곡로 29, 대림대학교</span>
-                <span class="item"><span class="item_head">대표전화</span>031-467-4700</span>
-                <span class="item"><span class="item_head">이메일</span>
-                <a href="mailto:ccnaver@naver.com" class="link_email">Book@book.com</a>
-              </span>
-            </address>
-          </div>
-      </footer>
+        <!-- footer -->
+        <div th:replace="fragment/footer :: copy"></div>
     </div>
-  </div> 
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+
+    window.addEventListener('load', function() {
+        var allElements = document.getElementsByTagName('*');
+        Array.prototype.forEach.call(allElements, function(el) {
+            var includePath = el.dataset.includePath;
+            if (includePath) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        el.outerHTML = this.responseText;
+                    }
+                };
+                xhttp.open('GET', includePath, true);
+                xhttp.send();
+            }
+        });
+        const Engineering = ['건축학부', '기계과', '컴퓨터소프트웨어','실내디자인','전기과','미래자동차과'];
+        const Humanities = ['경영과', '사무행정과', '유아교육과','항공서비스과','호텔관광과'];
+        const Department = ['언어치료과', '호텔조리전공', '제과제빵커피전공'];
+
+        $(".select_one").on('change',function (){
+            if ($(".select_one option:selected").val() == 0) {
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="0">-------</option>')
+            }else if($(".select_one option:selected").val() == 1){ //공학
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="0">-------</option>')
+                for (let i = 0; i < Engineering.length; i++) {
+
+                    $(".select_two").append("<option value='"+Engineering[i]+"'>"+Engineering[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 2){ //인문사회계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="0">-------</option>')
+                for (let i = 0; i < Humanities.length; i++) {
+
+                    $(".select_two").append("<option value='"+Humanities[i]+"'>"+Humanities[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 3){ //자연과학계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="0">-------</option>')
+                for (let i = 0; i < Department.length; i++) {
+
+                    $(".select_two").append("<option value='"+Department[i]+"'>"+Department[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 4){ //예체능
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="스포츠지도과">스포츠지도과</option>')
+            }
+        })
+
+
+
+
+    });
+</script>
 </body>
 </html>
