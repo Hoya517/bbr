@@ -2,7 +2,6 @@ package kr.ac.daelim.bbr.web.book;
 
 import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.member.Member;
-import kr.ac.daelim.bbr.domain.registration.RegistrationRepository;
 import kr.ac.daelim.bbr.service.BookService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
@@ -55,7 +54,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public String addBook(@Login Member loginMember, @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) throws IOException {
+    public String addBook(@Login Member loginMember, @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) {
         Book book = bookService.save(bookSaveRequestDto);
         registrationService.save(loginMember, book, bookSaveRequestDto);
         return "redirect:/";
@@ -69,8 +68,8 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String findById(@PathVariable Long id, Model model) {
-        model.addAttribute("book", bookService.findById(id));
+    public String findByIdAddViews(@PathVariable Long id, Model model) {
+        model.addAttribute("book", bookService.findByIdAddViews(id));
         return "book/book_info";
     }
 }

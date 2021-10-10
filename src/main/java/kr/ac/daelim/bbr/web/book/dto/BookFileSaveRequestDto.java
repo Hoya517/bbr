@@ -52,6 +52,7 @@ public class BookFileSaveRequestDto {
                 .attachFile(attachFile)
                 .isbn(isbn)
                 .stockQuantity(0)
+                .views(0)
                 .build();
     }
 

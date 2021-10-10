@@ -49,6 +49,7 @@ public class BookSaveRequestDto {
                 .thumbnail(thumbnail)
                 .isbn(isbn)
                 .stockQuantity(0)
+                .views(0)
                 .build();
     }
 

@@ -52,9 +52,10 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
-    public BookResponseDto findById(Long id) {
+    @Transactional
+    public BookResponseDto findByIdAddViews(Long id) {
         Book entity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
+        entity.addViews(); // views증가
         return new BookResponseDto(entity);
     }
 
@@ -62,5 +63,11 @@ public class BookService {
     public void addStock(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
         book.addStock();
+    }
+
+    @Transactional
+    public void addViews(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
+        book.addViews();
     }
 }
