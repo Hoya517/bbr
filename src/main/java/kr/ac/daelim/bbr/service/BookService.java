@@ -2,6 +2,7 @@ package kr.ac.daelim.bbr.service;
 
 import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.book.BookRepository;
+import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import kr.ac.daelim.bbr.utils.uploadfile.FileStore;
 import kr.ac.daelim.bbr.web.book.dto.BookFileSaveRequestDto;
@@ -45,13 +46,6 @@ public class BookService {
         }
     }
 
-    @Transactional(readOnly = true)
-    public List<BookListResponseDto> findAllDesc() {
-        return bookRepository.findAllDesc().stream()
-                .map(BookListResponseDto::new)
-                .collect(Collectors.toList());
-    }
-
     @Transactional
     public BookResponseDto findByIdAddViews(Long id) {
         Book entity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
@@ -69,5 +63,33 @@ public class BookService {
     public void addViews(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
         book.addViews();
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookListResponseDto> findAllModDesc() {
+        return bookRepository.findAllModDesc().stream()
+                .map(BookListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookListResponseDto> findAllViewsDesc() {
+        return bookRepository.findAllViewsDesc().stream()
+                .map(BookListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookListResponseDto> findByMyDept(Member member) {
+        return bookRepository.findByMyDept(member).stream()
+                .map(BookListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookListResponseDto> findByDept(String department) {
+        return bookRepository.findByDept(department).stream()
+                .map(BookListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
