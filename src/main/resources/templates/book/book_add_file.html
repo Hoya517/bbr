@@ -55,6 +55,22 @@
                             <input type="hidden" th:field="*{isbn}" placeholder="ISBN" title="ISBN">
                         </div>
 
+                        <!--TODO CSS 입혀야 됨-->
+                        <div class="select_box">
+                            <select class="select select_one">
+                                <option value="0">선택하여 검색</option>
+                                <option value="1">공학계열</option>
+                                <option value="2">인문사회계열</option>
+                                <option value="3">자연과학계열</option>
+                                <option value="4">예체능</option>
+                                <option value="5">교양과목</option>
+                            </select>
+                            <span class="major_arrow">></span>
+                            <select class="select select_two" th:field="*{department}">
+                                <option value="">-------</option>
+                            </select>
+                        </div>
+
                         <div class="as1">
                             <span class="as_span">어떤 수업에서 사용한 책인가요?</span>
                             <input class="aad_tw_ect1 form-control ect1" type="text" th:field="*{clazz}" placeholder="없으면 다음을 눌러주세요">
@@ -138,6 +154,60 @@
         $(".as3").hide();
         $(".as2").show();
     }
+
+    window.addEventListener('load', function() {
+        var allElements = document.getElementsByTagName('*');
+        Array.prototype.forEach.call(allElements, function(el) {
+            var includePath = el.dataset.includePath;
+            if (includePath) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        el.outerHTML = this.responseText;
+                    }
+                };
+                xhttp.open('GET', includePath, true);
+                xhttp.send();
+            }
+        });
+        const Engineering = ['건축학부', '기계과', '컴퓨터소프트웨어','실내디자인','전기과','미래자동차과'];
+        const Humanities = ['경영과', '사무행정과', '유아교육과','항공서비스과','호텔관광과'];
+        const Department = ['언어치료과', '호텔조리전공', '제과제빵커피전공'];
+
+        $(".select_one").on('change',function (){
+            if ($(".select_one option:selected").val() == 0) {
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+            }else if($(".select_one option:selected").val() == 1){ //공학
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Engineering.length; i++) {
+
+                    $(".select_two").append("<option value='"+Engineering[i]+"'>"+Engineering[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 2){ //인문사회계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Humanities.length; i++) {
+
+                    $(".select_two").append("<option value='"+Humanities[i]+"'>"+Humanities[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 3){ //자연과학계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Department.length; i++) {
+
+                    $(".select_two").append("<option value='"+Department[i]+"'>"+Department[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 4){ //예체능
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="스포츠지도과">스포츠지도과</option>')
+            }else if($(".select_one option:selected").val() == 5){ //교양
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="교양과목">교양과목</option>')
+            }
+        })
+    });
 </script>
 </body>
 </html>

@@ -21,19 +21,21 @@ public class BookFileSaveRequestDto {
     @NotBlank private String datetime;
     @NotBlank private Integer price;
     @NotNull private MultipartFile attachFile;
+    private String department;
     private String isbn;
     private String clazz;
     private String state;
     private String etc;
 
     @Builder
-    public BookFileSaveRequestDto(String title, String author, String publisher, String datetime, Integer price, MultipartFile attachFile, String isbn, String clazz, String state, String etc) {
+    public BookFileSaveRequestDto(String title, String author, String publisher, String datetime, Integer price, MultipartFile attachFile, String department, String isbn, String clazz, String state, String etc) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.datetime = datetime;
         this.price = price;
         this.attachFile = attachFile;
+        this.department = department;
         this.isbn = isbn;
         this.clazz = clazz;
         this.state = state;
@@ -58,6 +60,7 @@ public class BookFileSaveRequestDto {
                 .book(book)
                 .member(member)
                 .status(RegistrationStatus.READY)
+                .department(department)
                 .clazz(clazz)
                 .state(state)
                 .etc(etc)
