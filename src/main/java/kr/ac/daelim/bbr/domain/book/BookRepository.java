@@ -9,24 +9,28 @@ import java.util.*;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    @Query("SELECT b FROM Book b WHERE b.title = :title AND b.author = :author AND b.publisher = :publisher AND b.datetime = :datetime AND b.price = :price")
+    @Query("SELECT b FROM Book b " +
+           "WHERE b.title = :title AND b.author = :author AND b.publisher = :publisher AND b.datetime = :datetime AND b.price = :price")
     Optional<Book> findByTitle(String title, String author, String publisher, String datetime, Integer price);
 
-    @Query("SELECT b FROM Book b JOIN b.registrations r ON r.book.id = b.id WHERE r.status = 'COMP' ORDER BY b.modifiedDate DESC")
+    @Query("SELECT b FROM Book b " +
+           "JOIN b.registrations r ON r.book.id = b.id " +
+           "WHERE r.status = 'COMP' ORDER BY r.createdDate DESC")
     List<Book> findAllModDesc();
 
-    @Query("SELECT b FROM Book b JOIN b.registrations r ON r.book.id = b.id WHERE r.status = 'COMP' ORDER BY b.views DESC")
+    @Query("SELECT b FROM Book b " +
+           "JOIN b.registrations r ON r.book.id = b.id WHERE r.status = 'COMP' " +
+           "ORDER BY b.views DESC, r.createdDate DESC")
     List<Book> findAllViewsDesc();
 
-    @Query("select b from Book b " +
-           "join b.registrations r ON r.book.id = b.id " +
-           "join r.member where r.member = :member AND r.department = r.member.department AND r.status = 'COMP' " +
-           "ORDER BY b.modifiedDate desc")
+    @Query("SELECT b FROM Book b " +
+           "JOIN b.registrations r ON r.book.id = b.id " +
+           "JOIN r.member WHERE r.member = :member AND r.department = r.member.department AND r.status = 'COMP' " +
+           "ORDER BY r.createdDate DESC ")
     List<Book> findByMyDept(@Login Member member);
 
-    @Query("select b from Book b " +
-           "join b.registrations r ON r.book.id = b.id " +
-           "where r.department = :department AND r.status = 'COMP' " +
-           "ORDER BY b.modifiedDate desc")
+    @Query("SELECT b FROM Book b " +
+           "JOIN b.registrations r ON r.book.id = b.id WHERE r.department = :department AND r.status = 'COMP' " +
+           "ORDER BY r.createdDate DESC ")
     List<Book> findByDept(String department);
 }
