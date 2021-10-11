@@ -8,6 +8,9 @@
     padding-left: 0!important;
     margin-top: 25px;
 }
+.add_sh{
+    margin-bottom: 50px;
+}
 
 .img_width{
     width: 160px;
@@ -48,4 +51,9 @@
 .as_span{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 19px;
+}
+.select_box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
