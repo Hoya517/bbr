@@ -22,7 +22,7 @@
             <div class="mag_list_section">
               <ul class="mag_list">
               </ul>
-              <div class="btn_more_list">
+              <div class="btn_more_list display_no">
                 <a  style="cursor:pointer" role="button" class="link aaaaaaa">
                   <span class="text">인기 더 보기</span>
                 </a>
@@ -100,7 +100,7 @@
         newsc()
       })
       function newsc() {
-
+        $(".display_no").hide();
         $.ajax({
           type: "GET",
           url: "/api/books/popular",
