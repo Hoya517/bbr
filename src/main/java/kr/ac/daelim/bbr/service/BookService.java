@@ -59,12 +59,6 @@ public class BookService {
         book.addStock();
     }
 
-    @Transactional
-    public void addViews(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
-        book.addViews();
-    }
-
     @Transactional(readOnly = true)
     public List<BookListResponseDto> findAllModDesc() {
         return bookRepository.findAllModDesc().stream()
