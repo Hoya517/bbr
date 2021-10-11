@@ -1,6 +1,7 @@
 package kr.ac.daelim.bbr.web.admin;
 
 import kr.ac.daelim.bbr.service.BookService;
+import kr.ac.daelim.bbr.service.MemberService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final RegistrationService registrationService;
-    private final BookService bookService;
 
     @GetMapping("/registrations")
     public String registrations(Model model) {
@@ -30,8 +30,7 @@ public class AdminController {
 
     @PostMapping("/{id}/comp")
     public String registrationComp(@PathVariable Long id) {
-        Long bookId = registrationService.complete(id);
-        bookService.addStock(bookId);
+        registrationService.complete(id);
 
         return "redirect:/admin/registrations";
     }

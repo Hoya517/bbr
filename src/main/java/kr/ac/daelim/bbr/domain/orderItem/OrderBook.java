@@ -65,4 +65,8 @@ public class OrderBook extends BaseTimeEntity {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public void cancel() {
+        getBook().addStock(count);
+    }
 }

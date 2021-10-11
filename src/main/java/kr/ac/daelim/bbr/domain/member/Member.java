@@ -31,6 +31,7 @@ public class Member extends BaseTimeEntity {
     private String emailAuthYn;
     private String personalInfoTermYn;
     private String serviceTermYn;
+    private int point;
 
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
@@ -42,7 +43,7 @@ public class Member extends BaseTimeEntity {
     private List<Registration> registrations = new ArrayList<>();
 
     @Builder
-    public Member(String name, String phone, String birth, String email, String code, String username, String password, String department, String emailAuthYn, String personalInfoTermYn, String serviceTermYn, MemberType memberType) {
+    public Member(String name, String phone, String birth, String email, String code, String username, String password, String department, String emailAuthYn, String personalInfoTermYn, String serviceTermYn, MemberType memberType, int point) {
         this.name = name;
         this.phone = phone;
         this.birth = birth;
@@ -55,5 +56,14 @@ public class Member extends BaseTimeEntity {
         this.personalInfoTermYn = personalInfoTermYn;
         this.serviceTermYn = serviceTermYn;
         this.memberType = memberType;
+        this.point = point;
+    }
+
+    public void addPoint(Integer price) {
+        this.point += price;
+    }
+
+    public void removePoint(int orderPrice) {
+        this.point -= orderPrice;
     }
 }

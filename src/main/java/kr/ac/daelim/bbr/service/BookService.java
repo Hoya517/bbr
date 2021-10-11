@@ -53,12 +53,6 @@ public class BookService {
         return new BookResponseDto(entity);
     }
 
-    @Transactional
-    public void addStock(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 책이 없습니다. id=" + id));
-        book.addStock();
-    }
-
     @Transactional(readOnly = true)
     public List<BookListResponseDto> findAllModDesc() {
         return bookRepository.findAllModDesc().stream()

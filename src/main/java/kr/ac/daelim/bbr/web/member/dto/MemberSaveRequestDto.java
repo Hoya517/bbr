@@ -44,6 +44,7 @@ public class MemberSaveRequestDto {
                 .personalInfoTermYn(String.valueOf(personalInfoTermYn))
                 .serviceTermYn(String.valueOf(serviceTermYn))
                 .memberType(MemberType.USER)
+                .point(0)
                 .build();
     }
 }
