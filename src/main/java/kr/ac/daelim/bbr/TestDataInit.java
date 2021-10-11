@@ -46,47 +46,46 @@ public class TestDataInit {
                 .build();
         memberRepository.save(admin);
 
-        //Book with AttachFile
-        Book attachFile = Book.builder()
-                .title("JAVA")
-                .author("Savitch")
-                .publisher("Pearson")
-                .datetime("2016-02-01")
-                .price(10000)
-                .attachFile(new UploadFile("1.png", "7d811386-890f-48ae-8c3e-be51948b2cb5.png"))
-                .stockQuantity(0)
-                .views(0)
-                .build();
-        bookRepository.save(attachFile);
+        for (int i = 1; i <= 101; i++) {
+            //Book with AttachFile
+            Book attachFile = Book.builder()
+                    .title("title_f_"+i)
+                    .author("author_f_"+i)
+                    .publisher("publisher_f_"+i)
+                    .datetime("2021-10-11")
+                    .price(10000+i)
+                    .attachFile(new UploadFile("1.png", "7d811386-890f-48ae-8c3e-be51948b2cb5.png"))
+                    .stockQuantity(0)
+                    .views(0)
+                    .build();
+            bookRepository.save(attachFile);
+            Registration attichFileRegi = Registration.builder()
+                    .book(attachFile)
+                    .member(member)
+                    .status(RegistrationStatus.COMP)
+                    .department(member.getDepartment())
+                    .build();
+            registrationRepository.save(attichFileRegi);
 
-        Registration attichFileRegi = Registration.builder()
-                .book(attachFile)
-                .member(member)
-                .status(RegistrationStatus.READY)
-                .department(member.getDepartment())
-                .build();
-        registrationRepository.save(attichFileRegi);
-
-        //Book with Thumbnail
-        Book thumbnail = Book.builder()
-                .title("Java1")
-                .author("Savitch")
-                .publisher("Pearson")
-                .datetime("2016-02-01")
-                .price(20000)
-                .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
-                .stockQuantity(0)
-                .views(0)
-                .build();
-        bookRepository.save(thumbnail);
-        Registration thumnailRegi = Registration.builder()
-                .book(thumbnail)
-                .member(member)
-                .status(RegistrationStatus.READY)
-                .department(member.getDepartment())
-                .build();
-        registrationRepository.save(thumnailRegi);
-
+            //Book with Thumbnail
+            Book thumbnail = Book.builder()
+                    .title("title_t_"+i)
+                    .author("author_a_"+i)
+                    .publisher("publisher_a_"+i)
+                    .datetime("2012-01-11")
+                    .price(20000+i)
+                    .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
+                    .stockQuantity(0)
+                    .views(0)
+                    .build();
+            bookRepository.save(thumbnail);
+            Registration thumnailRegi = Registration.builder()
+                    .book(thumbnail)
+                    .member(member)
+                    .status(RegistrationStatus.COMP)
+                    .department(member.getDepartment())
+                    .build();
+            registrationRepository.save(thumnailRegi);
+        }
     }
-
 }
