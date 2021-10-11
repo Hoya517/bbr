@@ -9,9 +9,13 @@ import java.util.List;
 
 public interface RegistrationRepository extends JpaRepository<Registration, Long> {
 
-    @Query("select r from Registration r join r.member m where r.member = :member")
+    @Query("SELECT r FROM Registration r " +
+           "JOIN r.member m WHERE r.member = :member " +
+           "ORDER BY r.createdDate DESC")
     List<Registration> findAllDesc(@Login Member member);
 
-    @Query("select r from Registration r join r.member m")
+    @Query("SELECT r FROM Registration r " +
+           "JOIN r.member m " +
+           "ORDER BY r.createdDate DESC")
     List<Registration> findAllDesc();
 }
