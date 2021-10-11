@@ -40,17 +40,7 @@ public class OrderServiceTest {
     public void 상품주문() throws Exception {
         //given
         Member member = createMember();
-        Book b =  Book.builder()
-                .title("title_t_")
-                .author("author_a_")
-                .publisher("publisher_a_")
-                .datetime("2012-01-11")
-                .price(20000)
-                .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
-                .stockQuantity(10)
-                .views(0)
-                .build();
-        Book book = bookRepository.save(b);
+        Book book = createBook();
 
         int orderCount = 2;
 
@@ -62,8 +52,28 @@ public class OrderServiceTest {
 
         assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER, getOrder.getStatus());
         assertEquals("주문한 상품 종류 수가 정확해야 한다.", 1, getOrder.getOrderBooks().size());
-//        assertEquals("주문 가격은 가격 * 수량이다.", 10000 * orderCount, getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야 한다.", 8, book.getStockQuantity());
+    }
+
+    @Test
+    public void 주문취소() throws Exception {
+        //given
+        Member member = createMember();
+        Book book = createBook();
+
+        int orderCount = 2;
+
+        Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
+
+        //when
+        orderService.cancelOrder(orderId);
+
+        //then
+        Order getOrder = orderRepository.findById(orderId).get();
+
+        assertEquals("주문 취소시 상태는 CANCEL 이다.", OrderStatus.CANCEL, getOrder.getStatus());
+        assertEquals("주문이 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, book.getStockQuantity());
+        assertEquals("주문 취소시 포인트가 증가", 100000, member.getPoint());
     }
 
     private Member createMember() {
@@ -73,7 +83,22 @@ public class OrderServiceTest {
                 .name("테스터")
                 .department("컴퓨터정보학부")
                 .memberType(MemberType.USER)
+                .point(100000)
                 .build();
         return memberRepository.save(member);
+    }
+
+    private Book createBook() {
+        Book book =  Book.builder()
+                .title("title")
+                .author("author")
+                .publisher("publisher")
+                .datetime("2012-01-11")
+                .price(20000)
+                .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
+                .stockQuantity(10)
+                .views(0)
+                .build();
+        return bookRepository.save(book);
     }
 }

@@ -39,7 +39,6 @@ public class Order extends BaseTimeEntity {
 
     //==연관관계 편의 메서드==//
     public void setMember(Member member) {
-        log.info("setMember.member={}",member.getName());
         this.member = member;
         member.getOrders().add(this);
     }
@@ -52,10 +51,10 @@ public class Order extends BaseTimeEntity {
     //==생성 메서드==//
     public static Order createOrder(Member member, OrderBook... orderBooks) {
         Order order = new Order();
-        log.info("createOrder.member={}",member.getName());
         order.setMember(member);
         for (OrderBook orderBook : orderBooks) {
             order.addOrderBook(orderBook);
+            member.removePoint(orderBook.getOrderPrice());
         }
         order.setStatus(OrderStatus.ORDER);
         return order;
@@ -63,5 +62,13 @@ public class Order extends BaseTimeEntity {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public void cancel() {
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderBook orderBook : orderBooks) {
+            orderBook.cancel();
+            member.addPoint(orderBook.getOrderPrice());
+        }
     }
 }
