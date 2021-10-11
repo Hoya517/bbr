@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Header</title>
   <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <header th:fragment="copy" class="header side_bar">
@@ -45,27 +47,27 @@
               </a>
             </li>
             <li role="presentation" class="menu_item">
-              <a href="./department.html" role="menuitem" class="link_menu link_chart">
+              <a href="./department.html" th:href="@{/department}" role="menuitem" class="link_menu link_chart">
                 <span class="text"> 학과 </span>
               </a>
             </li>
             <li role="presentation" class="menu_item">
-              <a href="./major.html" role="menuitem" class="link_menu link_newalbum">
+              <a href="./major.html" th:href="@{/major}" role="menuitem" class="link_menu link_newalbum">
                 <span class="text"> 전공 </span>
               </a>
             </li>
             <li role="presentation" class="menu_item">
-              <a href="./non-major.html" role="menuitem" class="link_menu link_dj">
+              <a href="./non-major.html" th:href="@{/non-major}" role="menuitem" class="link_menu link_dj">
                 <span class="text"> 교양 </span>
               </a>
             </li>
             <li role="presentation" class="menu_item">
-              <a href="./new.html" role="menuitem" class="link_menu link_mag">
+              <a href="./new.html" th:href="@{/new}" role="menuitem" class="link_menu link_mag">
                 <span class="text"> 신규 </span>
               </a>
             </li>
             <li role="presentation" class="menu_item">
-              <a href="./rank.html" role="menuitem" class="link_menu link_monthly">
+              <a href="./rank.html" th:href="@{/rank}" role="menuitem" class="link_menu link_monthly">
                 <span class="text"> 인기 </span>
               </a>
             </li>

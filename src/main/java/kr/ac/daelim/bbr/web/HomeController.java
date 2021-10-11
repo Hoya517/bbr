@@ -25,11 +25,31 @@ public class HomeController {
 //        log.info("thumbnail: {} & storeFileName: {}", bookService.findAllDesc().get(0).getThumbnail(), bookService.findAllDesc().get(0).getAttachFile().getStoreFileName());
 //        model.addAttribute("books", bookService.findAllDesc());
 
-        return "index";
+        return "home/index";
     }
 
     @GetMapping("/major")
     public String major() {
-        return "major/major";
+        return "home/major";
+    }
+
+    @GetMapping("/department")
+    public String department() {
+        return "home/department";
+    }
+
+    @GetMapping("/non-major")
+    public String nonMajor() {
+        return "home/non-major";
+    }
+
+    @GetMapping("/new")
+    public String nevv() {
+        return "home/new";
+    }
+
+    @GetMapping("/rank")
+    public String rank() {
+        return "home/rank";
     }
 }
