@@ -2,6 +2,8 @@ package kr.ac.daelim.bbr.domain.member;
 
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
 import kr.ac.daelim.bbr.domain.order.Order;
+import kr.ac.daelim.bbr.domain.registration.Registration;
+import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,11 +32,17 @@ public class Member extends BaseTimeEntity {
     private String personalInfoTermYn;
     private String serviceTermYn;
 
+    @Enumerated(EnumType.STRING)
+    private MemberType memberType;
+
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Registration> registrations = new ArrayList<>();
+
     @Builder
-    public Member(String name, String phone, String birth, String email, String code, String username, String password, String department, String emailAuthYn, String personalInfoTermYn, String serviceTermYn) {
+    public Member(String name, String phone, String birth, String email, String code, String username, String password, String department, String emailAuthYn, String personalInfoTermYn, String serviceTermYn, MemberType memberType) {
         this.name = name;
         this.phone = phone;
         this.birth = birth;
@@ -46,5 +54,6 @@ public class Member extends BaseTimeEntity {
         this.emailAuthYn = emailAuthYn;
         this.personalInfoTermYn = personalInfoTermYn;
         this.serviceTermYn = serviceTermYn;
+        this.memberType = memberType;
     }
 }

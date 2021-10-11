@@ -32,7 +32,7 @@ header .link_logo:after {
   height: 38px;
   display: block;
   content: "";
-  background-image: url(../images/BBR_logo.png);
+  background-image: url(../img/BBR_logo.png);
   background-size: 70%;
   background-repeat : no-repeat;
 }
@@ -53,7 +53,7 @@ header .link_logo:after {
   width: 20px;
   height: 20px;
   margin: 26px 19px;
-  background-image: url(../btn_search.png);
+  background-image: url(../icons/btn_search.png);
   /* background-size: 1118px 1108px; */
 }
 
@@ -87,7 +87,7 @@ header .link_logo:after {
   left: 46px;
   text-align: center;
   content: "";
-  background-image: url(../btn_search.png);
+  background-image: url(../icons/btn_search.png);
   background-size: 1118px 1108px;
 }
 

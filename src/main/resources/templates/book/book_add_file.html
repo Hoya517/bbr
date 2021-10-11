@@ -26,10 +26,12 @@
                     <div >
                         <span class="add_form_p">자세한 책 정보를 적어주세요.</span>
                     </div>
-                    <form action="" th:action method="post" th:object="${bookSaveRequestDto}">
+                    <form action="" th:action method="post" th:object="${bookFileSaveRequestDto}" enctype="multipart/form-data">
                         <div class="add_form_div">
-                            <div id="thumbnail-img"></div>
-                            <div><input class="form-control" type="hidden" th:field="*{thumbnail}" ></div>
+                            <div class="none_img">
+                                <span>사진등록</span>
+                                <input type="file" th:field="*{attachFile}" title="책사진을 넣어주세요">
+                            </div>
                             <div class="form-control_div">
                                 <span>책이름</span>
                                 <input class="form-control" type="text" th:field="*{title}" placeholder="책이름" title="책이름">
@@ -86,6 +88,8 @@
                             <a class="btn btn-primary mb-2 as3" onclick="remove2()" role="button">이전</a>
                             <button type="submit" class="btn btn-primary mb-3 as3">판매 등록하기</button>
                         </div>
+
+
                     </form>
 
                 </div>
@@ -103,13 +107,17 @@
     sch = location.search
 
     const queryParam = new URLSearchParams(sch);
-    const isbn = queryParam.get('t');
-    searchParam(isbn); //실행
+    const title = queryParam.get('t');
+
+    if (title != null)
+        searchParam(title); //실행
 
     function searchParam(key) {
+
+        console.log(key);
         $.ajax({
             type: "GET",
-            url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+            url: "https://dapi.kakao.com/v3/search/book?target=title",
             data: {query: key},
             headers: {Authorization: "KakaoAK c7e609c9ebe6c1d5acfa01b6a031db96"},
             success : function (msg){

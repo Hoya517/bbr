@@ -25,7 +25,7 @@
 
     <h4 class="mb-3">회원 정보 입력</h4>
 
-    <form action="" th:action th:object="${memberSaveRequestDto}" method="post">
+    <form th:action th:object="${memberSaveRequestDto}" method="post">
 
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
@@ -33,28 +33,29 @@
 
         <div>
             <label for="name">이름</label>
-            <input type="text" id="name" th:field="*{name}" class="form-control" th:errorclass="field-error">
+            <input type="text" id="name" th:field="*{name}" class="form-control" th:errorclass="field-error" placeholder="ex. 홍길동">
             <div class="field-error" th:errors="*{name}" />
-        </div><div>
-        <label for="phone">전화번호</label>
-        <input type="text" id="phone" th:field="*{phone}" class="form-control" th:errorclass="field-error">
-        <div class="field-error" th:errors="*{phone}" />
-    </div>
+        </div>
         <div>
-            <label for="birth">생년월일 (ex. 20211005)</label>
-            <input type="date" id="birth" th:field="*{birth}" class="form-control" th:errorclass="field-error">
+            <label for="phone">전화번호</label>
+            <input type="text" id="phone" th:field="*{phone}" class="form-control" th:errorclass="field-error" placeholder="ex. 01012341234">
+            <div class="field-error" th:errors="*{phone}" />
+        </div>
+        <div>
+            <label for="birth">생년월일</label>
+            <input type="text" id="birth" th:field="*{birth}" class="form-control" th:errorclass="field-error">
             <div class="field-error" th:errors="*{birth}" />
         </div>
-        <div>
-            <!-- TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 -->
-            <label for="email">이메일</label>
-            <input type="text" id="email"  class="form-control" th:errorclass="field-error">@email.daelim.ac.kr
-            <button type="button" id="sendMail">인증메일발송</button>
-            <div class="field-error"  />
-            <input type="text" id="code" class="form-control" th:errorclass="field-error">
-            <button type="button" id="verifyCode">본인인증</button>
-            <input type="hidden" id="emailAuthYn" >
-        </div>
+<!--        <div>-->
+<!--            &lt;!&ndash; TODO 이메일 홀딩 & 인증번호 불일치 & 인증번호 재발송 & 인증번호 타임아웃 &ndash;&gt;-->
+<!--            <label for="email">이메일</label>-->
+<!--            <input type="text" id="email"  class="form-control" >@email.daelim.ac.kr-->
+<!--            <button type="button" id="sendMail">인증메일발송</button>-->
+<!--&lt;!&ndash;            <div class="field-error"  />&ndash;&gt;-->
+<!--            <input type="text" id="code" class="form-control" >-->
+<!--            <button type="button" id="verifyCode">본인인증</button>-->
+<!--            <input type="hidden" id="emailAuthYn" >-->
+<!--        </div>-->
         <div>
             <label for="username">아이디</label>
             <input type="text" id="username" th:field="*{username}" class="form-control" th:errorclass="field-error">
@@ -66,14 +67,23 @@
             <div class="field-error" th:errors="*{password}" />
         </div>
         <div>
-            <label for="department">학과</label>
-            <input type="text" id="department" th:field="*{department}" class="form-control" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{department}" />
+            <!--TODO CSS 입혀야 됨-->
+            <div class="select_box">
+                <select class="select select_one">
+                    <option value="0">선택하여 검색</option>
+                    <option value="1">공학계열</option>
+                    <option value="2">인문사회계열</option>
+                    <option value="3">자연과학계열</option>
+                    <option value="4">예체능</option>
+                </select>
+                <span class="major_arrow">></span>
+                <select class="select select_two" th:field="*{department}">
+                    <option value="">-------</option>
+                </select>
+            </div>
         </div>
-        <!-- select box (학부-학과) 추가 -->
-
         <!-- 모두 동의 버튼 추가? -->
-        <!-- 체크박스 유효성 검사 추가 -->
+        <!-- TODO 체크박스 유효성 검사 추가 -->
         <div>
             <div class="form-check">
                 <input type="checkbox" id="personalInfoTermYn" th:field="*{personalInfoTermYn}" class="form-check-input" >
@@ -102,7 +112,7 @@
 </div> <!-- /container -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script>
+<script th:inline="javascript">
     // 메일발송
     // $(document).ready(function () {
     //     $("#sendMail").click(function () {
@@ -130,6 +140,57 @@
     //             });
     //     });
     // });
+
+    window.addEventListener('load', function() {
+        var allElements = document.getElementsByTagName('*');
+        Array.prototype.forEach.call(allElements, function(el) {
+            var includePath = el.dataset.includePath;
+            if (includePath) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        el.outerHTML = this.responseText;
+                    }
+                };
+                xhttp.open('GET', includePath, true);
+                xhttp.send();
+            }
+        });
+        const Engineering = ['건축학부', '기계과', '컴퓨터소프트웨어','실내디자인','전기과','미래자동차과'];
+        const Humanities = ['경영과', '사무행정과', '유아교육과','항공서비스과','호텔관광과'];
+        const Department = ['언어치료과', '호텔조리전공', '제과제빵커피전공'];
+
+        $(".select_one").on('change',function (){
+            if ($(".select_one option:selected").val() == 0) {
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+            }else if($(".select_one option:selected").val() == 1){ //공학
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Engineering.length; i++) {
+
+                    $(".select_two").append("<option value='"+Engineering[i]+"'>"+Engineering[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 2){ //인문사회계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Humanities.length; i++) {
+
+                    $(".select_two").append("<option value='"+Humanities[i]+"'>"+Humanities[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 3){ //자연과학계열
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="">-------</option>')
+                for (let i = 0; i < Department.length; i++) {
+
+                    $(".select_two").append("<option value='"+Department[i]+"'>"+Department[i]+"</option>")
+                }
+            }else if($(".select_one option:selected").val() == 4){ //예체능
+                $(".select_two option").remove();
+                $(".select_two").append('<option value="스포츠지도과">스포츠지도과</option>')
+            }
+        })
+    });
 </script>
 </body>
 </html>

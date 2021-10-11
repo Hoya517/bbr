@@ -4,20 +4,23 @@ import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
+import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
-public class BookSaveRequestDto {
+public class BookFileSaveRequestDto {
 
     @NotBlank private String title;
     @NotBlank private String author;
     @NotBlank private String publisher;
     @NotBlank private String datetime;
     @NotBlank private Integer price;
-    @NotBlank private String thumbnail;
+    @NotNull private MultipartFile attachFile;
     private String department;
     private String isbn;
     private String clazz;
@@ -25,13 +28,13 @@ public class BookSaveRequestDto {
     private String etc;
 
     @Builder
-    public BookSaveRequestDto(String title, String author, String publisher, String datetime, Integer price, String thumbnail, String department, String isbn, String clazz, String state, String etc) {
+    public BookFileSaveRequestDto(String title, String author, String publisher, String datetime, Integer price, MultipartFile attachFile, String department, String isbn, String clazz, String state, String etc) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.datetime = datetime;
         this.price = price;
-        this.thumbnail = thumbnail;
+        this.attachFile = attachFile;
         this.department = department;
         this.isbn = isbn;
         this.clazz = clazz;
@@ -39,14 +42,14 @@ public class BookSaveRequestDto {
         this.etc = etc;
     }
 
-    public Book toBook() {
+    public Book toBook(UploadFile attachFile) {
         return Book.builder()
                 .title(title)
                 .author(author)
                 .publisher(publisher)
                 .datetime(datetime)
                 .price(price)
-                .thumbnail(thumbnail)
+                .attachFile(attachFile)
                 .isbn(isbn)
                 .stockQuantity(0)
                 .views(0)

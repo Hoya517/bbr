@@ -1,15 +1,22 @@
 package kr.ac.daelim.bbr.web.member;
 
 //import kr.ac.daelim.bbr.service.EmailService;
+import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.service.MemberService;
+import kr.ac.daelim.bbr.service.RegistrationService;
+import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.member.dto.MemberSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
@@ -17,6 +24,7 @@ public class MemberController {
 
     private final MemberService memberService;
 //    private final EmailService emailService;
+    private final RegistrationService registrationService;
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute("memberSaveRequestDto") MemberSaveRequestDto memberSaveRequestDto) {
@@ -49,4 +57,10 @@ public class MemberController {
 //        }
 //        return result;
 //    }
+
+    @GetMapping("/registrations")
+    public String registrationList(@Login Member loginMember, Model model) {
+        model.addAttribute("list", registrationService.findAllDesc(loginMember));
+        return "members/registration_list";
+    }
 }

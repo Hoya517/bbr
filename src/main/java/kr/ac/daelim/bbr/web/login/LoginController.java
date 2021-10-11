@@ -1,6 +1,7 @@
 package kr.ac.daelim.bbr.web.login;
 
 import kr.ac.daelim.bbr.domain.member.Member;
+import kr.ac.daelim.bbr.domain.member.MemberType;
 import kr.ac.daelim.bbr.utils.session.SessionConst;
 import kr.ac.daelim.bbr.service.LoginService;
 import kr.ac.daelim.bbr.web.login.dto.LoginRequestDto;
@@ -46,6 +47,10 @@ public class LoginController {
         HttpSession session = request.getSession();
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        if (loginMember.getMemberType() == MemberType.ADMIN) {
+            return "redirect:/admin/registrations";
+        }
 
         return "redirect:/";
     }
