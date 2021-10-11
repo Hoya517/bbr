@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -26,6 +25,8 @@ public class MemberController {
 //    private final EmailService emailService;
     private final RegistrationService registrationService;
 
+
+    /* 회원가입 */
     @GetMapping("/add")
     public String addForm(@ModelAttribute("memberSaveRequestDto") MemberSaveRequestDto memberSaveRequestDto) {
         return "members/joinForm";
@@ -35,13 +36,14 @@ public class MemberController {
     public String save(@Valid @ModelAttribute MemberSaveRequestDto memberSaveRequestDto, BindingResult bindingResult) {
         //TODO 이메일인증 false
         if (bindingResult.hasErrors() || !memberSaveRequestDto.getPersonalInfoTermYn().booleanValue() || !memberSaveRequestDto.getServiceTermYn().booleanValue()) {
-            return "members/joinForm";
+            return "members/joinForm\"";
         }
 
         memberService.save(memberSaveRequestDto);
         return "redirect:/login";
     }
 
+    /* 이메일 인증 */
 //    @PostMapping("/sendMail")
 //    @ResponseBody
 //    public void emailConfirm(String email) throws Exception {
@@ -58,9 +60,30 @@ public class MemberController {
 //        return result;
 //    }
 
-    @GetMapping("/registrations")
+    /* 마이페이지 */
+    @GetMapping("/myPage")
+    public String myPage() {
+        return "members/myPage";
+    }
+
+    @GetMapping("/myPage/privacy")
+    public String privacy() {
+        return "members/privacy";
+    }
+
+    @GetMapping("/myPage/profile")
+    public String profile() {
+        return "members/profile";
+    }
+
+    @GetMapping("/myPage/registerList")
     public String registrationList(@Login Member loginMember, Model model) {
         model.addAttribute("list", registrationService.findAllDesc(loginMember));
-        return "members/registration_list";
+        return "members/register-list";
+    }
+
+    @GetMapping("/myPage/buyList")
+    public String buyList() {
+        return "members/buy-list";
     }
 }

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연락처 및 개인정보</title>
+  <link href="./css/personal_info.css" th:href="@{/css/personal_info.css}" rel="stylesheet">
+  <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu -->
+      <div th:insert="~{fragment/header :: copy}"></div>
+      <!-- contents -->
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+            <div class="c_header">
+              <h2>연락처 및 개인정보</h2>
+            </div>
+            <form id="personalForm" method="post" enctype="multipart/form-data">
+              <input type="hidden" id="" name="" value="">
+              <input type="hidden" id="" name="" value="">
+              <input type="hidden" id="" name="" value="">
+              <fieldset>
+                <legend>연락처 및 개인정보</legend>
+                <table class="tbl_model">
+                  <caption><span class="blind">연락처 및 개인정보</span></caption>
+                  <colgroup>
+                    <col style="width:22%"><col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpForm">이름</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <p class="contxt_webctrl form">
+                            <input type="text" name="form" id="" value="회원" onclick="">
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpForm">휴대전화</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <p class="contxt_webctrl form">
+                            <input type="text" name="form" id="" value="010-1234-5678" onclick="">
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpForm">이메일</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <p class="contxt_webctrl form">
+                            <input type="text" name="form" id="" value="bbr@email.daelim.ac.kr" onclick="">
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpForm">성별</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <select id="gender" name="gender" class="sel" aria-label="성별">
+                            <option value="M" selected="">남자</option>
+                            <option value="F">여자</option>
+                            <option value="U">선택 안함</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="thcell">
+                          <label for="inpForm">주소</label>
+                        </div>
+                      </th>
+                      <td>
+                        <div class="tdcell">
+                          <p class="contxt_webctrl form">
+                            <input type="text" name="form" id="" value="경기도 안양시 동안구 비산동 임곡로 29" onclick="">
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="btn_wrap">
+                  <a href="" class="btn_model">
+                    <b id="btnConfirm" class="btn2 txt_disable" onclick="">적용</b>
+                  </a>
+                  <a href="" class="btn_model">
+                    <b id="btnCancel" class="btn2" onclick="">취소</b>
+                  </a>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div th:replace="fragment/footer :: copy"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
