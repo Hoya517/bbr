@@ -38,4 +38,31 @@ public class OrderBook extends BaseTimeEntity {
         this.orderPrice = orderPrice;
         this.count = count;
     }
+
+    //==생성 메서드==//
+    public static OrderBook createOrderBook(Book book, Integer orderPrice, int count) {
+        OrderBook orderBook = new OrderBook();
+        orderBook.setBook(book);
+        orderBook.setOrderPrice(orderPrice);
+        orderBook.setCount(count);
+
+        book.removeStock(count);
+        return orderBook;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

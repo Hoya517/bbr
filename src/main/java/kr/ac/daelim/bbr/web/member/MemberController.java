@@ -3,6 +3,7 @@ package kr.ac.daelim.bbr.web.member;
 //import kr.ac.daelim.bbr.service.EmailService;
 import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.service.MemberService;
+import kr.ac.daelim.bbr.service.OrderService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.member.dto.MemberSaveRequestDto;
@@ -24,6 +25,7 @@ public class MemberController {
     private final MemberService memberService;
 //    private final EmailService emailService;
     private final RegistrationService registrationService;
+    private final OrderService orderService;
 
 
     /* 회원가입 */
@@ -59,6 +61,14 @@ public class MemberController {
 //        }
 //        return result;
 //    }
+
+    /* 주문 */
+    @PostMapping("/order/{id}")
+    public String order(@Login Member loginMember, @PathVariable Long id, @RequestParam("count") int count) {
+        log.info("loginMember={}",loginMember.getName());
+        orderService.order(loginMember.getId(), id, count);
+        return "redirect:/members/myPage/buyList";
+    }
 
     /* 마이페이지 */
     @GetMapping("/myPage")

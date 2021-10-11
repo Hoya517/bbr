@@ -3,20 +3,22 @@ package kr.ac.daelim.bbr.domain.order;
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
 import kr.ac.daelim.bbr.domain.orderItem.OrderBook;
 import kr.ac.daelim.bbr.domain.member.Member;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
+@Slf4j
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "orders")
 @Entity
 public class Order extends BaseTimeEntity {
@@ -32,15 +34,34 @@ public class Order extends BaseTimeEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL )
     private List<OrderBook> orderBooks = new ArrayList<>();
 
-    private LocalDateTime orderDate;
-
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @Builder
-    public Order(Member member, LocalDateTime orderDate, OrderStatus status) {
+    //==연관관계 편의 메서드==//
+    public void setMember(Member member) {
+        log.info("setMember.member={}",member.getName());
         this.member = member;
-        this.orderDate = orderDate;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderBook(OrderBook orderBook) {
+        orderBooks.add(orderBook);
+        orderBook.setOrder(this);
+    }
+
+    //==생성 메서드==//
+    public static Order createOrder(Member member, OrderBook... orderBooks) {
+        Order order = new Order();
+        log.info("createOrder.member={}",member.getName());
+        order.setMember(member);
+        for (OrderBook orderBook : orderBooks) {
+            order.addOrderBook(orderBook);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        return order;
+    }
+
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 }

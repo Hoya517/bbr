@@ -55,7 +55,7 @@ public class TestDataInit {
                     .datetime("2021-10-11")
                     .price(10000+i)
                     .attachFile(new UploadFile("1.png", "7d811386-890f-48ae-8c3e-be51948b2cb5.png"))
-                    .stockQuantity(0)
+                    .stockQuantity(i)
                     .views(0)
                     .build();
             bookRepository.save(attachFile);
@@ -75,7 +75,7 @@ public class TestDataInit {
                     .datetime("2012-01-11")
                     .price(20000+i)
                     .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
-                    .stockQuantity(0)
+                    .stockQuantity(i)
                     .views(0)
                     .build();
             bookRepository.save(thumbnail);
