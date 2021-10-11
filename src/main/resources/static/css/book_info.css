@@ -340,7 +340,15 @@ em {
   color: #212121;
   margin-left: 8px;
 }
-
+.buy_price{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.total{
+  margin: 0 10px 0 10px;
+  font-weight: bold;
+}
 
 /* buy btn */
 .wrap_detail_info .buy_btn_wrap .cb_gray_line {
