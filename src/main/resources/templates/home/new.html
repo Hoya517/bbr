@@ -22,14 +22,6 @@
             <div class="mag_list_section">
               <ul class="mag_list">
 
-
-
-
-
-
-
-
-
               </ul>
               <div class="btn_more_list">
                 <a  style="cursor:pointer" role="button" class="link aaaaaaa">
@@ -98,10 +90,9 @@
                       "                </li>")
               if (data1.thumbnail == null){
                 $('.imgif'+i).empty();
-                $(".imgif"+i).append("<img src='" + data1.attachFile.storeFileName + "' >\n")
+                $(".imgif" + i).append("<img src='http://localhost:8080/images/" + data1.attachFile.storeFileName + "' >\n")
               }
             }
-
           }
         });
       }
@@ -111,50 +102,44 @@
       })
       function newsc() {
 
-            $.ajax({
-              type: "GET",
-              url: "/api/books/latest",
-              success: function (data) {
+        $.ajax({
+          type: "GET",
+          url: "/api/books/latest",
+          success: function (data) {
 
-                console.log(data);
+            console.log(data);
 
-                for (let i = 7; i < data.length; i++) {
-                  let data1 = data[i];
+            for (let i = 7; i < data.length; i++) {
+              let data1 = data[i];
 
-                  $(".mag_list").append(" <li class=\"list_item\">\n" +
-                          "                  <div class=\"thumb_area\">\n" +
-                          "                    <a href=\"/magazines/53625\" class=\"link\">\n" +
-                          "                      <div class=\"thumb imgif" + i + "\">\n" +
-                          "                        <img src='" + data1.thumbnail + "' >\n" +
-                          "                      </div>\n" +
-                          "                    </a>\n" +
-                          "                  </div>\n" +
-                          "                  <div class=\"info\">\n" +
-                          "                    <a href=\"/magazines/53625\" class=\"title\">\n" +
-                          "                     " + data1.title + " " +
-                          "                    </a>\n" +
-                          "                    <div class=\"sub\">\n" +
-                          "                      <span class=\"item\">\n" +
-                          "                        <span class=\"blind\">저자</span> \n" +
-                          "                     " + data1.author + " | " + data1.publisher + "\n" +
-                          "                      </span>\n" +
-                          "                    </div>\n" +
-                          "                  </div>\n" +
-                          "                </li>")
-                  if (data1.thumbnail == null) {
-                    $('.imgif' + i).empty();
-                    $(".imgif" + i).append("<img src='" + data1.attachFile.storeFileName + "' >\n")
-                  }
-                }
-
+              $(".mag_list").append(" <li class=\"list_item\">\n" +
+                      "                  <div class=\"thumb_area\">\n" +
+                      "                    <a href=\"/magazines/53625\" class=\"link\">\n" +
+                      "                      <div class=\"thumb imgif" + i + "\">\n" +
+                      "                        <img src='" + data1.thumbnail + "' >\n" +
+                      "                      </div>\n" +
+                      "                    </a>\n" +
+                      "                  </div>\n" +
+                      "                  <div class=\"info\">\n" +
+                      "                    <a href=\"/magazines/53625\" class=\"title\">\n" +
+                      "                     " + data1.title + " " +
+                      "                    </a>\n" +
+                      "                    <div class=\"sub\">\n" +
+                      "                      <span class=\"item\">\n" +
+                      "                        <span class=\"blind\">저자</span> \n" +
+                      "                     " + data1.author + " | " + data1.publisher + "\n" +
+                      "                      </span>\n" +
+                      "                    </div>\n" +
+                      "                  </div>\n" +
+                      "                </li>")
+              if (data1.thumbnail == null) {
+                $('.imgif' + i).empty();
+                $(".imgif" + i).append("<img src='http://localhost:8080/images/" + data1.attachFile.storeFileName + "' >\n")
               }
-            });
-
+            }
+          }
+        });
       }
-
-
-
-
     });
   </script>
 </body>
