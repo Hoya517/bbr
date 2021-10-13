@@ -305,7 +305,7 @@ header.side_bar .link_extra.link_text.title {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 ul, li {
