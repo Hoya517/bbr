@@ -35,6 +35,7 @@
         <div th:if="${member} != null">
           <a class="link_login" href="mypage.html" th:href="@{/members/myPage}">
             <span class="text" th:text="${member.name}">사용자 이름</span>
+            <span class="text" th:text="${member.point}">포인트</span>
           </a>
         </div>
       </div>
