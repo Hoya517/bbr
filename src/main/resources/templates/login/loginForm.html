@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>로그인 페이지</title>
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .container {
+        .container {인
             max-width: 560px;
         }
         .field-error {
@@ -19,8 +19,8 @@
 
 <div class="container">
 
-    <div class="py-5 text-center">
-        <h2>로그인</h2>
+    <div class="text-center" style="padding-top: 86px; padding-bottom: 43px">
+        <h2 style="font-size: 60px; color:#5ca6e3; font-weight: 650;">BBR</h2>
     </div>
 
     <form th:action th:object="${loginRequestDto}" method="post">
@@ -30,13 +30,13 @@
         </div>
 
         <div>
-            <label for="loginId">아이디</label>
-            <input type="text" id="loginId" th:field="*{username}" class="form-control" th:errorclass="field-error">
+            <label for="loginId" style="display: none;">아이디</label>
+            <input type="text" id="loginId" th:field="*{username}" class="form-control" th:errorclass="field-error" placeholder="아이디" style="margin-bottom: 8px;">
             <div class="field-error" th:errors="*{username}" />
         </div>
         <div>
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error">
+            <label for="password" style="display: none;">비밀번호</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호" th:errorclass="field-error">
             <div class="field-error" th:errors="*{password}" />
         </div>
 
@@ -44,17 +44,19 @@
 
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">로그인</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit" style="background-color: #6f86d6; border: #6f86d6 1px solid; font-weight: 500;
+                font-size: 17px;">로그인</button>
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='index.html'"
-                        th:onclick="|location.href='@{/}'|" type="button">취소</button>
+                        th:onclick="|location.href='@{/}'|" type="button" style="font-weight: 500;
+                        font-size: 17px;">취소</button>
             </div>
         </div>
-        <br>
         <div class="col">
             <button class="w-100 btn btn-info btn-lg" onclick="location.href='joinForm.html'"
-                    th:onclick="|location.href='@{/members/add}'|" type="button">회원가입</button>
+                    th:onclick="|location.href='@{/members/add}'|" type="button" style="background-color: #5ca6e3; border: #5ca6e3 1px solid; font-weight: 500;
+                    font-size: 17px; color: #fff; margin-top: 12px;">회원가입</button>
         </div>
 
     </form>
