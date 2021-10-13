@@ -13,6 +13,9 @@
   overflow-x: hidden;
   background-color: #fbfbfb;
 }
+.init_home{
+  overflow-x: clip!important;
+}
 
 ul, li, a {
   text-decoration: none;
