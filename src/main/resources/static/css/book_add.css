@@ -129,6 +129,7 @@ div {
   color: #fff;
   background-color: #5ca6e3;
   border-color: #5ca6e3;
+    margin-bottom: 1rem!important;
 }
 
 .add_form_p{
@@ -159,9 +160,10 @@ div {
   top: -2px;
   right: 0;
   margin-right: -8px;
-  width: 400px;
+
   height: 38px;
   display: flex;
+    align-items: center;
   margin-top: 7px;
   margin-bottom: 22px;
 }
@@ -190,10 +192,6 @@ div {
 
 .select:focus {
   color: black;
-}
-
-.major_arrow {
-  margin-top: 10px;
 }
 
 #thumbnail-img {
