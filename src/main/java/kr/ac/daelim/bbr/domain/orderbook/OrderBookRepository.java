@@ -15,7 +15,7 @@ public interface OrderBookRepository extends JpaRepository<OrderBook, Long> {
     List<OrderBook> findByDesc(@Login Member member);
 
     @Query("SELECT ob FROM OrderBook  ob " +
-            "JOIN ob.order o " +
-            "ORDER BY ob.createdDate DESC")
+           "JOIN FETCH ob.order " +
+           "ORDER BY ob.createdDate DESC")
     List<OrderBook> findByDesc();
 }
