@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>검색</title>
+  <link href="./css/new.css" th:href="@{/css/new.css}" rel="stylesheet">
+  <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu -->
+      <div th:insert="~{fragment/header :: copy}"></div>
+      <!-- contents --> 
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+                    <!--  입력!   -->
+            <h2 class="end_title"> 검색결과 </h2>
+            <div class="mag_list_section">
+              <ul class="mag_list">
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div th:replace="fragment/footer :: copy"></div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+
+      sch = location.search
+
+      const queryParam = new URLSearchParams(sch);
+      const isbn = queryParam.get('t');
+      newPage(isbn); //실행
+
+
+      function newPage(word) {
+
+        $.ajax({
+          type: "GET",
+          url: "/api/books/searchWord",
+          data: {word: word},
+          success : function (data){
+
+            console.log(data);
+
+            for (let i =0;i < data.length; i++){
+              let data1 = data[i];
+
+              $(".mag_list").append(" <li class=\"list_item\">\n" +
+                      "                  <div class=\"thumb_area\">\n" +
+                      "                    <a href=\"/books/"+ data1.id +"\" class=\"link\">\n" +
+                      "                      <div class=\"thumb imgif"+i+"\">\n" +
+                      "                        <img src='" + data1.thumbnail + "' >\n" +
+                      "                      </div>\n" +
+                      "                    </a>\n" +
+                      "                  </div>\n" +
+                      "                  <div class=\"info\">\n" +
+                      "                    <a href=\"/books/"+ data1.id +"\" class=\"title\">\n" +
+                      "                     "+ data1.title + " "+
+                      "                    </a>\n" +
+                      "                    <div class=\"sub\">\n" +
+                      "                      <span class=\"item\">\n" +
+                      "                        <span class=\"blind\">저자</span> \n" +
+                      "                     "+ data1.author + " | "+ data1.publisher + "\n" +
+                      "                      </span>\n" +
+                      "                    </div>\n" +
+                      "                  </div>\n" +
+                      "                </li>")
+              if (data1.thumbnail == null){
+                $('.imgif'+i).empty();
+                $(".imgif" + i).append("<img src='http://localhost:8080/images/" + data1.attachFile.storeFileName + "' >\n")
+              }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
