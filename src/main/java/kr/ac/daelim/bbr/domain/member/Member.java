@@ -3,7 +3,7 @@ package kr.ac.daelim.bbr.domain.member;
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
 import kr.ac.daelim.bbr.domain.order.Order;
 import kr.ac.daelim.bbr.domain.registration.Registration;
-import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
+import kr.ac.daelim.bbr.exception.NotEnoughPointException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +39,7 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Registration> registrations = new ArrayList<>();
 
     @Builder
@@ -64,6 +64,10 @@ public class Member extends BaseTimeEntity {
     }
 
     public void removePoint(int orderPrice) {
+        int restPoint = this.point - orderPrice;
+        if (restPoint < 0) {
+            throw new NotEnoughPointException("need more point");
+        }
         this.point -= orderPrice;
     }
 }
