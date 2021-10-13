@@ -10,7 +10,7 @@
 .home {
   position: relative;
   min-height: 100%;
-
+  overflow-x: hidden;
   background-color: #fbfbfb;
 }
 

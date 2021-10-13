@@ -312,3 +312,12 @@ ul, li {
   text-decoration: none;
   list-style-type : none;
 }
+.menu_area a{
+    text-decoration: none!important;
+}
+.menu_list{
+    padding-left: 0!important;
+}
+.logo{
+    margin-bottom: 0px!important;
+}
