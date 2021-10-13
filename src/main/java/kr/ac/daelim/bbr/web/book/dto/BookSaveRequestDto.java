@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Getter
 public class BookSaveRequestDto {
@@ -50,6 +51,7 @@ public class BookSaveRequestDto {
                 .isbn(isbn)
                 .stockQuantity(0)
                 .views(0)
+                .registDt(LocalDateTime.now())
                 .build();
     }
 

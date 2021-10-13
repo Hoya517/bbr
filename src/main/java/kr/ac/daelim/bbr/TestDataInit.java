@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -58,6 +59,7 @@ public class TestDataInit {
                     .attachFile(new UploadFile("1.png", "7d811386-890f-48ae-8c3e-be51948b2cb5.png"))
                     .stockQuantity(i)
                     .views(0)
+                    .registDt(LocalDateTime.now())
                     .build();
             bookRepository.save(attachFile);
             Registration attichFileRegi = Registration.builder()
@@ -78,6 +80,7 @@ public class TestDataInit {
                     .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
                     .stockQuantity(i)
                     .views(0)
+                    .registDt(LocalDateTime.now())
                     .build();
             bookRepository.save(thumbnail);
             Registration thumnailRegi = Registration.builder()
@@ -100,6 +103,7 @@ public class TestDataInit {
                     .attachFile(new UploadFile("1.png", "7d811386-890f-48ae-8c3e-be51948b2cb5.png"))
                     .stockQuantity(i)
                     .views(0)
+                    .registDt(LocalDateTime.now())
                     .build();
             bookRepository.save(attachFile);
             Registration attichFileRegi = Registration.builder()
@@ -120,6 +124,7 @@ public class TestDataInit {
                     .thumbnail("https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F3383739%3Ftimestamp%3D20190220072908")
                     .stockQuantity(i)
                     .views(0)
+                    .registDt(LocalDateTime.now())
                     .build();
             bookRepository.save(thumbnail);
             Registration thumnailRegi = Registration.builder()

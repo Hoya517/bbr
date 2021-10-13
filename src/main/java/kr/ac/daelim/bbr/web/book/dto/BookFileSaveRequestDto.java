@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 public class BookFileSaveRequestDto {
@@ -53,6 +54,7 @@ public class BookFileSaveRequestDto {
                 .isbn(isbn)
                 .stockQuantity(0)
                 .views(0)
+                .registDt(LocalDateTime.now())
                 .build();
     }
 
