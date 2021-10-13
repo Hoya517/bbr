@@ -19,7 +19,7 @@
         <div class="container">
           <div class="content">
                     <!--  입력!   -->
-            <h2 class="end_title"> 검색결과 </h2>
+            <h2 class="end_title"> </h2>
             <div class="mag_list_section">
               <ul class="mag_list">
 
@@ -66,9 +66,11 @@
           url: "/api/books/searchWord",
           data: {word: word},
           success : function (data){
-
+            if (data.length == 0 ){
+              $(".mag_list").append('<div style="font-size: 20px;margin: 10px 0 20px 0;">데이터가 없습니다.</div>')
+            }
             console.log(data);
-
+            $(".end_title").append('<span>"'+ word +'" 검색결과 입니다.</span> ')
             for (let i =0;i < data.length; i++){
               let data1 = data[i];
 
