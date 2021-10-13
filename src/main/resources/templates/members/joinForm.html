@@ -66,10 +66,11 @@
             <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error">
             <div class="field-error" th:errors="*{password}" />
         </div>
-        <div>
+        <div class="form-control_div">
+            <span>학과선택</span>
             <!--TODO CSS 입혀야 됨-->
-            <div class="select_box">
-                <select class="select select_one">
+            <div class="select_box" style="display: flex;align-items: center; margin-bottom: 20px;">
+                <select class="select select_one form-select">
                     <option value="0">선택하여 검색</option>
                     <option value="1">공학계열</option>
                     <option value="2">인문사회계열</option>
@@ -77,7 +78,7 @@
                     <option value="4">예체능</option>
                 </select>
                 <span class="major_arrow">></span>
-                <select class="select select_two" th:field="*{department}">
+                <select class="select select_two form-select" th:field="*{department}">
                     <option value="">-------</option>
                 </select>
             </div>
@@ -110,6 +111,7 @@
     </form>
 
 </div> <!-- /container -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script th:inline="javascript">
