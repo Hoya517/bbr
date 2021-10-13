@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,28 +29,57 @@ public class HomeController {
         return "home/index";
     }
 
+    @GetMapping("/search")
+    public String search(@Login Member loginMember, Model model, @RequestParam String word) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
+        return "home/search";
+    }
+
     @GetMapping("/major")
-    public String major() {
+    public String major(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
         return "home/major";
     }
 
     @GetMapping("/department")
-    public String department() {
+    public String department(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
         return "home/department";
     }
 
     @GetMapping("/non-major")
-    public String nonMajor() {
+    public String nonMajor(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
         return "home/non-major";
     }
 
     @GetMapping("/new")
-    public String nevv() {
+    public String nevv(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
         return "home/new";
     }
 
     @GetMapping("/rank")
-    public String rank() {
+    public String rank(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
+
         return "home/rank";
     }
 }

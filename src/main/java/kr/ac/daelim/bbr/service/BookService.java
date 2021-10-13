@@ -27,7 +27,7 @@ public class BookService {
 
     @Transactional
     public Book save(BookFileSaveRequestDto bookSaveRequestDto) throws IOException {
-        Optional<Book> findBook = bookRepository.findByTitle(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
+        Optional<Book> findBook = bookRepository.findSameBook(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
         if (findBook.isEmpty()) {
             UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
             return bookRepository.save(bookSaveRequestDto.toBook(uploadFile));
@@ -38,7 +38,7 @@ public class BookService {
 
     @Transactional
     public Book save(BookSaveRequestDto bookSaveRequestDto) {
-        Optional<Book> findBook = bookRepository.findByTitle(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
+        Optional<Book> findBook = bookRepository.findSameBook(bookSaveRequestDto.getTitle(), bookSaveRequestDto.getAuthor(), bookSaveRequestDto.getPublisher(), bookSaveRequestDto.getDatetime(), bookSaveRequestDto.getPrice());
         if (findBook.isEmpty()) {
             return bookRepository.save(bookSaveRequestDto.toBook());
         } else {
@@ -77,6 +77,13 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookListResponseDto> findByDept(String department) {
         return bookRepository.findByDept(department).stream()
+                .map(BookListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookListResponseDto> findBySearchWord(String word) {
+        return bookRepository.findBySearchWord(word).stream()
                 .map(BookListResponseDto::new)
                 .collect(Collectors.toList());
     }

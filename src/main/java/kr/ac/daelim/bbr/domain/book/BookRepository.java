@@ -10,8 +10,13 @@ import java.util.*;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b " +
-           "WHERE b.title = :title AND b.author = :author AND b.publisher = :publisher AND b.datetime = :datetime AND b.price = :price")
-    Optional<Book> findByTitle(String title, String author, String publisher, String datetime, Integer price);
+           "JOIN b.registrations r WHERE b.title = :title AND b.author = :author AND b.publisher = :publisher AND b.datetime = :datetime AND b.price = :price " +
+           "ORDER BY r.createdDate DESC")
+    Optional<Book> findSameBook(String title, String author, String publisher, String datetime, Integer price);
+
+    @Query("SELECT  b FROM  Book b " +
+           "WHERE b.title LIKE %:word% OR b.author LIKE %:word% OR b.publisher LIKE %:word%")
+    List<Book> findBySearchWord(String word);
 
     @Query("SELECT b FROM Book b " +
            "JOIN b.registrations r ON r.book.id = b.id " +
@@ -26,11 +31,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b " +
            "JOIN b.registrations r ON r.book.id = b.id " +
            "JOIN r.member WHERE r.member = :member AND r.department = r.member.department AND r.status = 'COMP' " +
-           "ORDER BY r.createdDate DESC ")
+           "ORDER BY r.createdDate DESC")
     List<Book> findByMyDept(@Login Member member);
 
     @Query("SELECT b FROM Book b " +
            "JOIN b.registrations r ON r.book.id = b.id WHERE r.department = :department AND r.status = 'COMP' " +
-           "ORDER BY r.createdDate DESC ")
+           "ORDER BY r.createdDate DESC")
     List<Book> findByDept(String department);
 }

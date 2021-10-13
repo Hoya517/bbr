@@ -16,6 +16,15 @@ public class BookApiController {
 
     private final BookService bookService;
 
+    /**
+     * 검색 API - GET /api/books/searchWord
+     * @param word
+     */
+    @GetMapping("/api/books/searchWord")
+    public List<BookListResponseDto> searchWord(String word) {
+        return bookService.findBySearchWord(word);
+    }
+
     @GetMapping("/api/books/latest")
     public List<BookListResponseDto> searchLatestOrder() {
         return bookService.findAllModDesc();
