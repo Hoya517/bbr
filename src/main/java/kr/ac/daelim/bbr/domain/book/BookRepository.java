@@ -14,28 +14,27 @@ public interface BookRepository extends JpaRepository<Book, Long> {
            "ORDER BY r.createdDate DESC")
     Optional<Book> findSameBook(String title, String author, String publisher, String datetime, Integer price);
 
-    @Query("SELECT  b FROM  Book b " +
-           "WHERE b.title LIKE %:word% OR b.author LIKE %:word% OR b.publisher LIKE %:word%")
+    @Query("SELECT b FROM  Book b " +
+           "WHERE (b.title LIKE %:word% OR b.author LIKE %:word% OR b.publisher LIKE %:word%) AND b.stockQuantity > 0")
     List<Book> findBySearchWord(String word);
 
-    @Query("SELECT b FROM Book b " +
-           "JOIN b.registrations r ON r.book.id = b.id " +
-           "WHERE r.status = 'COMP' ORDER BY r.createdDate DESC")
+    @Query("SELECT DISTINCT b FROM Book b " +
+           "WHERE b.stockQuantity > 0 ORDER BY b.registDt DESC")
     List<Book> findAllModDesc();
 
-    @Query("SELECT b FROM Book b " +
-           "JOIN b.registrations r ON r.book.id = b.id WHERE r.status = 'COMP' " +
-           "ORDER BY b.views DESC, r.createdDate DESC")
+    @Query("SELECT DISTINCT b FROM Book b " +
+           "WHERE b.stockQuantity > 0 " +
+           "ORDER BY b.views DESC, b.registDt DESC")
     List<Book> findAllViewsDesc();
 
-    @Query("SELECT b FROM Book b " +
+    @Query("SELECT DISTINCT b FROM Book b " +
            "JOIN b.registrations r ON r.book.id = b.id " +
-           "JOIN r.member WHERE r.member = :member AND r.department = r.member.department AND r.status = 'COMP' " +
-           "ORDER BY r.createdDate DESC")
+           "JOIN r.member WHERE r.member = :member AND r.department = r.member.department AND b.stockQuantity > 0 " +
+           "ORDER BY b.registDt DESC")
     List<Book> findByMyDept(@Login Member member);
 
-    @Query("SELECT b FROM Book b " +
-           "JOIN b.registrations r ON r.book.id = b.id WHERE r.department = :department AND r.status = 'COMP' " +
-           "ORDER BY r.createdDate DESC")
+    @Query("SELECT DISTINCT b FROM Book b " +
+           "JOIN b.registrations r ON r.book.id = b.id WHERE r.department = :department AND b.stockQuantity > 0 " +
+           "ORDER BY b.registDt DESC")
     List<Book> findByDept(String department);
 }

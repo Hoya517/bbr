@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +38,14 @@ public class Book extends BaseTimeEntity {
     private String isbn;
     private int stockQuantity;
     private int views;
+    private LocalDateTime registDt;
 
     @Embedded
     private UploadFile attachFile;
     private String thumbnail;
 
     @Builder
-    public Book(String title, String author, String publisher, String datetime, Integer price, String isbn, int stockQuantity, int views, String thumbnail, UploadFile attachFile) {
+    public Book(String title, String author, String publisher, String datetime, Integer price, String isbn, int stockQuantity, int views, LocalDateTime registDt, String thumbnail, UploadFile attachFile) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -52,6 +54,7 @@ public class Book extends BaseTimeEntity {
         this.isbn = isbn;
         this.stockQuantity = stockQuantity;
         this.views = views;
+        this.registDt = registDt;
         this.attachFile = attachFile;
         this.thumbnail = thumbnail;
     }
@@ -74,5 +77,9 @@ public class Book extends BaseTimeEntity {
 
     public void addViews() {
         this.views += 1;
+    }
+
+    public void updateRegistDt(LocalDateTime now) {
+        this.registDt = now;
     }
 }

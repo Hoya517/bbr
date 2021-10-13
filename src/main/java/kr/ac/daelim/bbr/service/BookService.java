@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,6 +33,8 @@ public class BookService {
             UploadFile uploadFile = fileStore.storeFile(bookSaveRequestDto.getAttachFile());
             return bookRepository.save(bookSaveRequestDto.toBook(uploadFile));
         } else {
+            LocalDateTime now = LocalDateTime.now();
+            findBook.get().updateRegistDt(now);
             return findBook.get();
         }
     }
@@ -42,6 +45,8 @@ public class BookService {
         if (findBook.isEmpty()) {
             return bookRepository.save(bookSaveRequestDto.toBook());
         } else {
+            LocalDateTime now = LocalDateTime.now();
+            findBook.get().updateRegistDt(now);
             return findBook.get();
         }
     }
