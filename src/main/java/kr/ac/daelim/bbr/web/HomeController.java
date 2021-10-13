@@ -23,14 +23,12 @@ public class HomeController {
         if (loginMember != null) {
             model.addAttribute("member", loginMember);
         }
-//        log.info("thumbnail: {} & storeFileName: {}", bookService.findAllDesc().get(0).getThumbnail(), bookService.findAllDesc().get(0).getAttachFile().getStoreFileName());
-//        model.addAttribute("books", bookService.findAllDesc());
 
         return "home/index";
     }
 
     @GetMapping("/search")
-    public String search(@Login Member loginMember, Model model, @RequestParam String word) {
+    public String search(@Login Member loginMember, Model model) {
         if (loginMember != null) {
             model.addAttribute("member", loginMember);
         }

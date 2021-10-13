@@ -55,8 +55,8 @@
       sch = location.search
 
       const queryParam = new URLSearchParams(sch);
-      const isbn = queryParam.get('t');
-      newPage(isbn); //실행
+      const word = queryParam.get('word');
+      newPage(word); //실행
 
 
       function newPage(word) {
