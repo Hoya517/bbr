@@ -1,21 +1,17 @@
 package kr.ac.daelim.bbr.web;
 
 import kr.ac.daelim.bbr.domain.member.Member;
-import kr.ac.daelim.bbr.service.BookService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
-
-    private final BookService bookService;
 
     @GetMapping("/")
     public String home(@Login Member loginMember, Model model) {
