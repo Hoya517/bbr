@@ -1,7 +1,6 @@
 package kr.ac.daelim.bbr.web.admin;
 
-import kr.ac.daelim.bbr.service.BookService;
-import kr.ac.daelim.bbr.service.MemberService;
+import kr.ac.daelim.bbr.service.OrderService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,26 +18,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final RegistrationService registrationService;
+    private final OrderService orderService;
 
     @GetMapping("/registrations")
     public String registrations(Model model) {
         log.info("[GET /admin/registrations]");
         model.addAttribute("list", registrationService.findAllDesc());
 
-        return "admin/registrations_list";
+        return "admin/registrations";
     }
 
-    @PostMapping("/{id}/comp")
+    @PostMapping("/registrations/{id}/comp")
     public String registrationComp(@PathVariable Long id) {
         registrationService.complete(id);
 
         return "redirect:/admin/registrations";
     }
 
-    @PostMapping("/{id}/cancel")
+    @PostMapping("/registrations/{id}/cancel")
     public String registrationCancel(@PathVariable Long id) {
         registrationService.cancel(id);
 
         return "redirect:/admin/registrations";
+    }
+
+    @GetMapping("/orders")
+    public String orders(Model model) {
+        log.info("[GET /admin/orders]");
+        model.addAttribute("list", orderService.findAllDesc());
+
+        return "admin/orders";
+    }
+
+    @PostMapping("/orders/{id}/comp")
+    public String ordersComp(@PathVariable Long id) {
+        orderService.completeOrder(id);
+
+        return "redirect:/admin/orders";
+    }
+
+    @PostMapping("/orders/{id}/cancel")
+    public String ordersCancel(@PathVariable Long id) {
+        orderService.cancelOrder(id);
+
+        return "redirect:/admin/orders";
     }
 }

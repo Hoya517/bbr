@@ -57,14 +57,14 @@ public class BookController {
     public String addBook(@Login Member loginMember, @ModelAttribute("bookSaveRequestDto") BookSaveRequestDto bookSaveRequestDto) {
         Book book = bookService.save(bookSaveRequestDto);
         registrationService.save(loginMember, book, bookSaveRequestDto);
-        return "redirect:/";
+        return "redirect:/members/myPage/registrations";
     }
 
     @PostMapping("/add_file")
     public String addBookFileWithFile(@Login Member loginMember, @ModelAttribute("bookFileSaveRequestDto") BookFileSaveRequestDto bookFileSaveRequestDto) throws IOException {
         Book book = bookService.save(bookFileSaveRequestDto);
         registrationService.save(loginMember, book, bookFileSaveRequestDto);
-        return "redirect:/";
+        return "redirect:/members/myPage/registrations";
     }
 
     @GetMapping("/{id}")

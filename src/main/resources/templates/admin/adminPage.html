@@ -42,33 +42,13 @@
             <div class="menu_area">
                 <ul role="menu" class="menu_list">
                     <li role="presentation" class="menu_item">
-                        <a href="./index.html" th:href="@{/}" role="menuitem" class="link_menu link_today on">
-                            <span class="text"> 오늘의 책 <span class="blind">선택됨</span></span>
+                        <a th:href="@{/admin/registrations}" role="menuitem" class="link_menu link_today on">
+                            <span class="text"> 책 등록 내역 <span class="blind">선택됨</span></span>
                         </a>
                     </li>
                     <li role="presentation" class="menu_item">
-                        <a href="./department.html" role="menuitem" class="link_menu link_chart">
-                            <span class="text"> 학과 </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="menu_item">
-                        <a href="./major.html" role="menuitem" class="link_menu link_newalbum">
-                            <span class="text"> 전공 </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="menu_item">
-                        <a href="./non-major.html" role="menuitem" class="link_menu link_dj">
-                            <span class="text"> 교양 </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="menu_item">
-                        <a href="./new.html" role="menuitem" class="link_menu link_mag">
-                            <span class="text"> 신규 </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="menu_item">
-                        <a href="./rank.html" role="menuitem" class="link_menu link_monthly">
-                            <span class="text"> 인기 </span>
+                        <a th:href="@{/admin/orders}" role="menuitem" class="link_menu link_chart">
+                            <span class="text"> 책 구매 내역 </span>
                         </a>
                     </li>
                 </ul>

@@ -33,9 +33,9 @@
           <span class="text">로그인</span>
         </a>
         <div th:if="${member} != null">
-          <div class="link_login">
+          <a class="link_login" href="mypage.html" th:href="@{/members/myPage}">
             <span class="text" th:text="${member.name}">사용자 이름</span>
-          </div>
+          </a>
         </div>
       </div>
       <div class="ly_menu">
@@ -73,9 +73,9 @@
             </li>
           </ul>
           <div th:if="${member} != null" role="menu" class="extra_menu">
-            <a href="/wheresmymoney/" target="_blank" rel="noopener noreferrer" class="link_extra link_text title"># 판매해볼까?</a>
-            <a href="#" th:href="@{/books/search}" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> 책이름으로 검색 </a>
-            <a href="#" th:href="@{/books/add_file}" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
+            <a href="#" target="_blank" class="link_extra link_text title"># 판매해볼까?</a>
+            <a href="#" th:href="@{/books/search}" class="link_extra link_text"> 책이름으로 검색 </a>
+            <a href="#" th:href="@{/books/add_file}" class="link_extra link_text"> 수동으로 입력 </a>
             <form th:action="@{/logout}" method="post">
               <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
                 로그아웃

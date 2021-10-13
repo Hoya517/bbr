@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>책 구매 내역</title>
+  <link href="./css/buy_book.css" th:href="@{/css/buy_book.css}" rel="stylesheet">
+  <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="home">
+      <!-- left menu -->
+      <div th:insert="~{fragment/header :: copy}"></div>
+      <!-- contents -->
+      <div class="contents">
+        <div class="container">
+          <div class="content">
+            <h2 class="end_title"> 책 구매 내역 </h2>
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>지은이</th>
+                  <th>가격</th>
+                  <th>구매 날짜</th>
+                  <th>구매 상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="order : ${list}">
+                  <td th:text="${order.getId()}">1</td>
+                  <td th:text="${order.getTitle()}">비전공자를 위한 이해할 수 있는 IT 지식</td>
+                  <td th:text="${order.getAuthor()}">최원영</td>
+                  <td th:text="${order.getPrice()}">15,120원</td>
+                  <td th:text="${order.getBuyDatetime()}">2021.10.08</td>
+                  <td th:text="${order.getStatus()}">완료</td>
+                  <td>
+                    <a th:if="${order.status.name() == 'ORDER'}" href="#"
+                       th:href="'javascript:cancel('+${order.id}+')'"
+                       class="btn btn-primary">취소</a>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <div th:replace="fragment/footer :: copy"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      var allElements = document.getElementsByTagName('*');
+      Array.prototype.forEach.call(allElements, function(el) {
+        var includePath = el.dataset.includePath;
+        if (includePath) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              el.outerHTML = this.responseText;
+            }
+          };
+          xhttp.open('GET', includePath, true);
+          xhttp.send();
+        }
+      });
+    });
+
+    function cancel(id) {
+      var form = document.createElement("form");
+      form.setAttribute("method", "post");
+      form.setAttribute("action", "/members/myPage/orders/" + id + "/cancel");
+      document.body.appendChild(form);
+      form.submit();
+    }
+  </script>
+</body>
+</html>

@@ -38,7 +38,7 @@ public class MemberController {
     public String save(@Valid @ModelAttribute MemberSaveRequestDto memberSaveRequestDto, BindingResult bindingResult) {
         //TODO 이메일인증 false
         if (bindingResult.hasErrors() || !memberSaveRequestDto.getPersonalInfoTermYn().booleanValue() || !memberSaveRequestDto.getServiceTermYn().booleanValue()) {
-            return "members/joinForm\"";
+            return "members/joinForm";
         }
 
         memberService.save(memberSaveRequestDto);
@@ -67,7 +67,7 @@ public class MemberController {
     public String order(@Login Member loginMember, @PathVariable Long id, @RequestParam("count") int count) {
         log.info("loginMember={}",loginMember.getName());
         orderService.order(loginMember.getId(), id, count);
-        return "redirect:/members/myPage/buyList";
+        return "redirect:/members/myPage/orders";
     }
 
     /* 마이페이지 */
@@ -86,14 +86,29 @@ public class MemberController {
         return "members/profile";
     }
 
-    @GetMapping("/myPage/registerList")
-    public String registrationList(@Login Member loginMember, Model model) {
+    @GetMapping("/myPage/registrations")
+    public String registrations(@Login Member loginMember, Model model) {
         model.addAttribute("list", registrationService.findAllDesc(loginMember));
-        return "members/register-list";
+        return "members/registrations";
     }
 
-    @GetMapping("/myPage/buyList")
-    public String buyList() {
-        return "members/buy-list";
+    @PostMapping("/myPage/registrations/{id}/cancel")
+    public String cancelRegistration(@PathVariable Long id) {
+        registrationService.cancel(id);
+
+        return "redirect:/members/myPage/registrations";
+    }
+
+    @GetMapping("/myPage/orders")
+    public String orders(@Login Member loginMember, Model model) {
+        model.addAttribute("list", orderService.findAllDesc(loginMember));
+        return "members/orders";
+    }
+
+    @PostMapping("/myPage/orders/{id}/cancel")
+    public String cancelOrder(@PathVariable Long id) {
+        orderService.cancelOrder(id);
+
+        return "redirect:/members/myPage/orders";
     }
 }

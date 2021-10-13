@@ -40,7 +40,7 @@
                 </dl>
               </div>
               <p class="btn_area_btm">
-                <a href="./profile.html" onclick="" class="btn_model">
+                <a href="./profile.html" th:href="@{/members/myPage/profile}" onclick="" class="btn_model">
                   <b class="btn2">수정</b>
                 </a>
               </p>
@@ -54,7 +54,7 @@
                 <p class="contxt">그동안 등록했던 책들을 확인해보세요!</p>
               </div>
               <p class="btn_area_btm">
-                <a href="./sell_book.html" class="btn_model" onclick="">
+                <a href="./sell_book.html" th:href="@{/members/myPage/registrations}" class="btn_model" onclick="">
                   <b class="btn2">등록 내역 확인</b>
                 </a>
               </p>
@@ -75,7 +75,7 @@
                   </dl>
                 </div>
                 <p class="btn_area_btm">
-                  <a href="/./personal_info.html" onclick="" class="btn_model">
+                  <a href="/./personal_info.html" th:href="@{/members/myPage/privacy}" onclick="" class="btn_model">
                     <b class="btn2">수정</b>
                   </a>
                 </p>
@@ -89,7 +89,7 @@
                 <p class="contxt">그동안 구매했던 책들을 확인해보세요!</p>
               </div>
               <p class="btn_area_btm">
-                <a href="buy-list.html" class="btn_model" onclick="">
+                <a href="orders.html" th:href="@{/members/myPage/orders}" class="btn_model" onclick="">
                   <b class="btn2">구매 내역 확인</b>
                 </a>
               </p>

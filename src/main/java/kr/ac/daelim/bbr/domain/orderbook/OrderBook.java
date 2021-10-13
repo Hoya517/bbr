@@ -1,4 +1,4 @@
-package kr.ac.daelim.bbr.domain.orderItem;
+package kr.ac.daelim.bbr.domain.orderbook;
 
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
 import kr.ac.daelim.bbr.domain.book.Book;

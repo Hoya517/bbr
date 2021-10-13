@@ -1,10 +1,9 @@
 package kr.ac.daelim.bbr.domain.order;
 
 import kr.ac.daelim.bbr.domain.BaseTimeEntity;
-import kr.ac.daelim.bbr.domain.orderItem.OrderBook;
+import kr.ac.daelim.bbr.domain.orderbook.OrderBook;
 import kr.ac.daelim.bbr.domain.member.Member;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -70,5 +69,9 @@ public class Order extends BaseTimeEntity {
             orderBook.cancel();
             member.addPoint(orderBook.getOrderPrice());
         }
+    }
+
+    public void updateComp() {
+        this.status = OrderStatus.COMP;
     }
 }

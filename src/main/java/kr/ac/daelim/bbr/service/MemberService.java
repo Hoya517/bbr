@@ -1,6 +1,5 @@
 package kr.ac.daelim.bbr.service;
 
-import kr.ac.daelim.bbr.domain.book.BookRepository;
 import kr.ac.daelim.bbr.domain.member.MemberRepository;
 import kr.ac.daelim.bbr.web.member.dto.MemberSaveRequestDto;
 import lombok.RequiredArgsConstructor;

@@ -6,11 +6,16 @@ import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.member.MemberRepository;
 import kr.ac.daelim.bbr.domain.order.Order;
 import kr.ac.daelim.bbr.domain.order.OrderRepository;
-import kr.ac.daelim.bbr.domain.orderItem.OrderBook;
+import kr.ac.daelim.bbr.domain.orderbook.OrderBook;
+import kr.ac.daelim.bbr.domain.orderbook.OrderBookRepository;
+import kr.ac.daelim.bbr.web.member.dto.OrderResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,6 +25,7 @@ public class OrderService {
     private final MemberRepository memberRepository;
     private final BookRepository bookRepository;
     private final OrderRepository orderRepository;
+    private final OrderBookRepository orderBookRepository;
 
     @Transactional
     public Long order(Long memberId, Long bookId, int count) {
@@ -40,5 +46,27 @@ public class OrderService {
     public void cancelOrder(Long orderId) {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("해당 주문이 존재하지 않습니다." + orderId));
         order.cancel();
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderResponseDto> findAllDesc(Member member) {
+        return orderBookRepository.findByDesc(member).stream()
+                .map(OrderResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderResponseDto> findAllDesc() {
+        return orderBookRepository.findByDesc().stream()
+                .map(OrderResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void completeOrder(Long id) {
+        Order order = orderRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 주문이 존재하지 않습니다. id=" + id)
+        );
+        order.updateComp();
     }
 }

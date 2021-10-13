@@ -1,8 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" th:fragment="bodyHeader">
-    <ul class="nav nav-pills pull-right">
-        <li><a href="#">HOME</a></li>
-    </ul>
-    <a href="#"><h3 class="text-muted">관리자 페이지</h3></a>
+    <header class="header side_bar">
+        <h1 class="logo">
+            <a href="/" class="link_logo router-link-active">
+                <span class="blind">프로젝트 제목</span>
+            </a>
+        </h1>
+        <a href="#" role="button" aria-expanded="false" class="btn_search">
+            <span class="blind">검색</span>
+        </a>
+        <div class="search_area">
+      <span class="input_area">
+        <input type="search" role="combobox" id="search_keyword" aria-expanded="false" aria-haspopup="listbox" title="검색창" placeholder="VIBE 검색" autocomplete="off" class="input_search">
+      </span>
+            <a href="#" role="button" class="btn_close_search">
+                <span class="blind">검색 닫기</span>
+            </a>
+        </div>
+        <div class="my_menu">
+            <div class="profile_area">
+                <a th:if="${member} == null" href="#" th:href="@{/login}" class="link_login">
+                    <span class="text">로그인</span>
+                </a>
+                <div th:if="${member} != null">
+                    <div class="link_login">
+                        <span class="text" th:text="${member.name}">사용자 이름</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ly_menu">
+                <div class="menu_area">
+                    <ul role="menu" class="menu_list">
+                        <li role="presentation" class="menu_item">
+                            <a th:href="@{/admin/registrations}" role="menuitem" class="link_menu link_today on">
+                                <span class="text"> 책 등록 내역 <span class="blind">선택됨</span></span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="menu_item">
+                            <a th:href="@{/admin/orders}" role="menuitem" class="link_menu link_chart">
+                                <span class="text"> 책 구매 내역 </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div th:if="${member} != null" role="menu" class="extra_menu">
+                        <form th:action="@{/logout}" method="post">
+                            <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
+                                로그아웃
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 </div>

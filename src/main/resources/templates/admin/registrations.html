@@ -5,6 +5,7 @@
 <div class="container">
     <!--header-->
     <div th:replace="admin/fragments/bodyHeader :: bodyHeader"/>
+    <h3 class="text-muted">책 등록 내역</h3>
     <div>
 <!--        <div>-->
 <!--            <form th:object="${orderSearch}" class="form-inline">-->
@@ -57,20 +58,21 @@
             </tbody>
         </table>
     </div>
+    <div th:replace="fragment/footer :: copy"></div>
 </div> <!-- /container -->
 </body>
 <script>
     function comp(id) {
         var form = document.createElement("form");
         form.setAttribute("method", "post");
-        form.setAttribute("action", "/admin/" + id + "/comp");
+        form.setAttribute("action", "/admin/registrations/" + id + "/comp");
         document.body.appendChild(form);
         form.submit();
     }
     function cancel(id) {
         var form = document.createElement("form");
         form.setAttribute("method", "post");
-        form.setAttribute("action", "/admin/" + id + "/cancel");
+        form.setAttribute("action", "/admin/registrations/" + id + "/cancel");
         document.body.appendChild(form);
         form.submit();
     }
