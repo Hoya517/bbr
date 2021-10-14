@@ -34,7 +34,7 @@ public class OrderService {
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("해당 책이 존재하지 않습니다." + bookId));
 
         // 책정보, 주문금액, 수량 넣고 || 책 재고수량 차감
-        OrderBook orderBook = OrderBook.createOrderBook(book, book.getPrice(), count);
+        OrderBook orderBook = OrderBook.createOrderBook(book, book.getPrice()*count, count);
 
         // 주문자, 주문상품, 주문자 포인트 차감, 주문상태(ORDER)
         Order order = Order.createOrder(member, orderBook);

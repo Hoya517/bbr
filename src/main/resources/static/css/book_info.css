@@ -194,8 +194,8 @@ em {
 /* book condition */
 .wrap_detail_info .box_detail_info .common_box {
   border-top: 1px solid #EFEFEF;
-  padding: 30px 0;
-  height: 180px;
+  /*padding: 30px 0;*/
+  height: 100px;
   position: relative;
 }
 
@@ -387,6 +387,7 @@ em {
 }
 
 .wrap_detail_info .buy_btn_wrap .cb_violet {
+  height: 32px;
   width: 50%;
   float: right;
   box-shadow: 0px 4px 10px rgb(160 162 171 / 53%);

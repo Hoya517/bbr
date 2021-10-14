@@ -1,8 +1,11 @@
 package kr.ac.daelim.bbr.web.book.dto;
 
 import kr.ac.daelim.bbr.domain.book.Book;
+import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 public class BookResponseDto {
@@ -15,6 +18,8 @@ public class BookResponseDto {
     private String publisher;
     private String datetime;
     private Integer price;
+    private int views;
+    private List<Registration> registrations;
 
     public BookResponseDto(Book entity) {
         this.id = entity.getId();
@@ -25,5 +30,7 @@ public class BookResponseDto {
         this.publisher = entity.getPublisher();
         this.datetime = entity.getDatetime();
         this.price = entity.getPrice();
+        this.views = entity.getViews();
+        this.registrations = entity.getRegistrations();
     }
 }
