@@ -68,7 +68,10 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String findByIdAddViews(@PathVariable Long id, Model model) {
+    public String findByIdAddViews(@PathVariable Long id, @Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
         model.addAttribute("book", bookService.findByIdAddViews(id));
         return "book/book_info";
     }

@@ -33,7 +33,10 @@ public class MemberController {
 
     /* 회원가입 */
     @GetMapping("/add")
-    public String addForm(@ModelAttribute("memberSaveRequestDto") MemberSaveRequestDto memberSaveRequestDto) {
+    public String addForm(@Login Member loginMember, @ModelAttribute("memberSaveRequestDto") MemberSaveRequestDto memberSaveRequestDto) {
+        if (loginMember != null) {
+            return "redirect:/";
+        }
         return "members/joinForm";
     }
 
@@ -79,23 +82,35 @@ public class MemberController {
 
     /* 마이페이지 */
     @GetMapping("/myPage")
-    public String myPage() {
+    public String myPage(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
         return "members/myPage";
     }
 
     @GetMapping("/myPage/privacy")
-    public String privacy() {
+    public String privacy(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
         return "members/privacy";
     }
 
     @GetMapping("/myPage/profile")
-    public String profile() {
+    public String profile(@Login Member loginMember, Model model) {
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+        }
         return "members/profile";
     }
 
     @GetMapping("/myPage/registrations")
     public String registrations(@Login Member loginMember, Model model) {
-        model.addAttribute("list", registrationService.findAllDesc(loginMember));
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+            model.addAttribute("list", registrationService.findAllDesc(loginMember));
+        }
         return "members/registrations";
     }
 
@@ -108,7 +123,10 @@ public class MemberController {
 
     @GetMapping("/myPage/orders")
     public String orders(@Login Member loginMember, Model model) {
-        model.addAttribute("list", orderService.findAllDesc(loginMember));
+        if (loginMember != null) {
+            model.addAttribute("member", loginMember);
+            model.addAttribute("list", orderService.findAllDesc(loginMember));
+        }
         return "members/orders";
     }
 
