@@ -323,11 +323,11 @@ ul, li {
 }
 
 form {
-  position: absolute;
+  /*position: absolute;*/
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 40px 20px 16px;
+  /*padding: 40px 20px 16px;*/
 }
 .logout {
   display: block;
