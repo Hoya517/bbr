@@ -39,10 +39,10 @@
         <div class="box_detail_info">
           <!-- title-->
           <h3 th:text="${book.title}">2022 선재국어 강의노트 문법·어휘 편 (스프링)</h3>
-<!--          <span class="title_sub">-->
-<!--              <span class="book_subtitle"> 전공 - 컴퓨터정보학부</span>-->
-<!--              <span class="book_grp_name">웹프로그래밍실무실습  </span>-->
-<!--          </span>-->
+          <!--          <span class="title_sub">-->
+          <!--              <span class="book_subtitle"> 전공 - 컴퓨터정보학부</span>-->
+          <!--              <span class="book_grp_name">웹프로그래밍실무실습  </span>-->
+          <!--          </span>-->
           <!-- book info -->
           <div class="info_book">
             <div class="info_more">
@@ -75,7 +75,7 @@
                     th:text="${registration.clazz}" class="text text_black">
                 수업 관련 내용
               </span>
-              </div>
+            </div>
           </div>
           <!-- book condition -->
           <div class="book_slipt_apply common_box">
@@ -90,37 +90,37 @@
             </div>
           </div>
           <!-- book count -->
-            <div class="buy_number common_box">
-              <form th:action="@{/members/order/{bookId}(bookId=${book.id})}" method="post">
+          <div class="buy_number common_box">
+            <form th:action="@{/members/order/{bookId}(bookId=${book.id})}" method="post">
               <strong class="left_box">구매수량</strong>
-            <div class="right_box">
-              <div class="buy_count">
-                <a href="javascript:void(0);" class="btn_minus" id="btn_minus">빼기</a>
-                <input type="text" th:name="count" th:value="1" id="ordcnt">
-                <a href="javascript:void(0);" class="btn_plus" id="btn_plus">더하기</a>
+              <div class="right_box">
+                <div class="buy_count">
+                  <a href="javascript:void(0);" class="btn_minus" id="btn_minus">빼기</a>
+                  <input type="text" th:name="count" th:value="1" id="ordcnt">
+                  <a href="javascript:void(0);" class="btn_plus" id="btn_plus">더하기</a>
+                </div>
+                <!-- price -->
+                <div class="buy_price">
+                  <!--                  <span class="discount_price">-->
+                  <!--                    <strong>11,000<span>원</span></strong>-->
+                  <!--                  </span>-->
+                  <strong>합계</strong><span class="total" th:text="${book.price}">9,900</span><span style="font-weight: bold"> P</span>
+                  <!--                <em class="saving">-->
+                  <!--                  <span class="badges_red">적립</span>-->
+                  <!--                  <span>포인트 </span>-->
+                  <!--                  110<span>P</span>-->
+                  <!--                </em>-->
+                </div>
               </div>
-              <!-- price -->
-              <div class="buy_price">
-<!--                  <span class="discount_price">-->
-<!--                    <strong>11,000<span>원</span></strong>-->
-<!--                  </span>-->
-                <strong>합계</strong><span class="total" th:text="${book.price}">9,900</span><span style="font-weight: bold"> P</span>
-<!--                <em class="saving">-->
-<!--                  <span class="badges_red">적립</span>-->
-<!--                  <span>포인트 </span>-->
-<!--                  110<span>P</span>-->
-<!--                </em>-->
+              <!-- buy button -->
+              <div class="buy_btn_wrap">
+                <!--              <a href="" class="btn_cb cb_gray_line go_cart" id="cartBtn">장바구니</a>-->
+                <!--                    <input type="hidden" th:name="count" th:value="1"/>-->
+                <button type="submit" class="btn_cb cb_violet go_buy" id="btnBuy">바로구매</button>
               </div>
-            </div>
-            <!-- buy button -->
-            <div class="buy_btn_wrap">
-<!--              <a href="" class="btn_cb cb_gray_line go_cart" id="cartBtn">장바구니</a>-->
-<!--                    <input type="hidden" th:name="count" th:value="1"/>-->
-                    <button type="submit" class="btn_cb cb_violet go_buy" id="btnBuy">바로구매</button>
-            </div>
-              </form>
-            </div>
-            <!-- reference -->
+            </form>
+          </div>
+          <!-- reference -->
           <div class="detail_info_notice">
             <table>
               <tbody>
@@ -144,17 +144,30 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    let count = $("#ordcnt").val();
-    $("#btn_plus").on("click",function (){
-        count++;
-        $("#ordcnt").val(count);
-    })
-    $("#btn_minus").on("click",function (){
-        if (count > 1) {
-            count--;
-            $("#ordcnt").val(count);
-        }
-    })
+  let count = $("#ordcnt").val();
+  const price = $(".total").text();
+  $("#btn_plus").on("click",function (){
+    count++;
+    countpr(price,count);
+    $("#ordcnt").val(count);
+  })
+  $("#btn_minus").on("click",function (){
+    if (count > 1) {
+      count--;
+      let price1 = $(".total").text();
+      countmi(price,price1);
+      $("#ordcnt").val(count);
+    }
+  })
+
+  function countpr(price, count) {
+    let result = count * price;
+    $(".total").text(result);
+  }
+  function countmi(price, price1) {
+    let result = price1 - price;
+    $(".total").text(result);
+  }
 
   window.addEventListener('load', function() {
     var allElements = document.getElementsByTagName('*');
