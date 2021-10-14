@@ -1,0 +1,107 @@
+.title {
+  font-size: 60px; 
+  color:#5ca6e3; 
+  font-weight: 650;
+}
+ p {
+  font-size: 14px;
+  color: #808893;
+  line-height: 18px;
+ }
+
+.label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+input {
+  margin-top: 5px;
+  margin-bottom: 22px;
+  font-size: 16px;
+}
+
+.form-control.email {
+  width: 50%;
+}
+
+.email_box, .field-error {
+  display: flex;
+}
+
+.email_box span {
+  margin-left: 7px;
+  margin-top: 10px;
+}
+
+.email_box button, .field-error button {
+  width: 20%;
+  height: 38px;
+  padding: 0;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #5ca6e3;
+  background-color: #5ca6e3;
+  appearance: none;
+}
+
+.form-control.auth {
+  width: 80%;
+}
+
+.field-error input, .field-error button  {
+  margin-top: -12px;
+}
+
+.form-control_div span {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding-left: 3px;
+}
+
+.select_box {
+  margin-top: 5px;
+}
+
+.major_arrow {
+  margin: 5px 10px;
+}
+
+.col button.join {
+  background-color: #5ca6e3;
+  border: #5ca6e3 1px solid;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.col button.cancel {
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.row {
+  margin-bottom:80px;
+}
+
+.essential {
+  overflow: hidden;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 2px 0 0 2px;
+  text-indent: 101%;
+  white-space: nowrap;
+  vertical-align: top;
+  background: url(../icons/asterisk.png) center center no-repeat;
+  background-size: cover;
+}
+
+sup {
+  top: 3px;
+}

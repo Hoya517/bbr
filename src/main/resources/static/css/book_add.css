@@ -129,7 +129,7 @@ div {
   color: #fff;
   background-color: #5ca6e3;
   border-color: #5ca6e3;
-    margin-bottom: 1rem!important;
+  margin-bottom: 1rem!important;
 }
 
 .add_form_p{
@@ -159,11 +159,8 @@ div {
 .select_box {
   top: -2px;
   right: 0;
-  margin-right: -8px;
-
   height: 38px;
   display: flex;
-    align-items: center;
   margin-top: 7px;
   margin-bottom: 22px;
 }
@@ -173,7 +170,6 @@ div {
   -moz-appearance: none;
   cursor: pointer;
   padding: 5px 10px;
-  margin: 0px 10px;
   width: 100%;
   font-size: 1rem;
   font-weight: 400;
@@ -192,6 +188,10 @@ div {
 
 .select:focus {
   color: black;
+}
+
+.major_arrow {
+  margin: 5px 10px;
 }
 
 #thumbnail-img {
