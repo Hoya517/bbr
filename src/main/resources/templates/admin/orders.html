@@ -5,8 +5,6 @@
 <div class="container">
     <!--header-->
     <div th:replace="admin/fragments/bodyHeader :: bodyHeader"/>
-    <h3 class="text-muted">책 구매 내역</h3>
-    <div>
 <!--        <div>-->
 <!--            <form th:object="${orderSearch}" class="form-inline">-->
 <!--                <div class="form-group mb-2">-->
@@ -23,44 +21,56 @@
 <!--                <button type="submit" class="btn btn-primary mb-2">검색</button>-->
 <!--            </form>-->
 <!--        </div>-->
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>저자</th>
-                <th>수량</th>
-                <th>주문 가격</th>
-                <th>등록 날짜</th>
-                <th>구매 상태</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="orderBook : ${list}" >
-                <td th:text="${orderBook.id}">1</td>
-                <td th:text="${orderBook.title}">트렌드 코리아 2022</td>
-                <td th:text="${orderBook.author}">김난도</td>
-                <td th:text="${{orderBook.price}}" >16,200원</td>
-                <td th:text="${orderBook.count}" >1</td>
-                <td th:text="${{orderBook.buyDatetime}}">2021.10.06</td>
-                <td th:text="${orderBook.status}">ORDER</td>
-                <td>
-                    <a th:if="${orderBook.status.name() == 'ORDER'}" href="#"
-                       th:href="'javascript:comp('+${orderBook.id}+')'"
-                       class="btn btn-primary">COMP</a>
-                </td>
-                <td>
-                    <a th:if="${orderBook.status.name() == 'ORDER'}" href="#"
-                       th:href="'javascript:cancel('+${orderBook.id}+')'"
-                       class="btn btn-danger">CANCEL</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="wrap">
+        <div class="home">
+            <!-- contents -->
+            <div class="contents">
+                <div class="container">
+                    <div class="content">
+                        <h2 class="end_title"> 책 구매 내역 </h2>
+                        <table class="styled-table">
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>저자</th>
+                                <th>수량</th>
+                                <th>주문 가격</th>
+                                <th>주문 날짜</th>
+                                <th>주문 상태</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order : ${list}">
+                                <td th:text="${order.id}">1</td>
+                                <td th:text="${order.title}">비전공자를 위한 이해할 수 있는 IT 지식</td>
+                                <td th:text="${order.author}">최원영</td>
+                                <td th:text="${{order.count}}">1</td>
+                                <td th:text="${{order.price}}">15,120원</td>
+                                <td th:text="${{order.buyDatetime}}">2021.10.08</td>
+                                <td th:text="${order.status}">ORDER</td>
+                                <td>
+                                    <a th:if="${order.status.name() == 'ORDER'}" href="#"
+                                       th:href="'javascript:comp('+${order.id}+')'"
+                                       class="btn btn-primary">COMP</a>
+                                </td>
+                                <td>
+                                    <a th:if="${order.status.name() == 'ORDER'}" href="#"
+                                       th:href="'javascript:cancel('+${order.id}+')'"
+                                       class="btn btn-danger">CANCEL</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div th:replace="fragment/footer :: copy"></div>
+        </div>
     </div>
-    <div th:replace="fragment/footer :: copy"></div>
 </div> <!-- /container -->
 </body>
 <script>

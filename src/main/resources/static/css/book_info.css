@@ -216,8 +216,8 @@ em {
 
 .wrap_detail_info .book_slipt_apply .text.text_black {
   color: #666666;
-  /* text-indent: -8px;
-  padding-left: 10px; */
+  /* text-indent: -8px;*/
+  padding-left: 10px;
 }
 
 .wrap_detail_info .book_slipt_apply .text {

@@ -45,7 +45,7 @@
                     </ul>
                     <div th:if="${member} != null" role="menu" class="extra_menu">
                         <form th:action="@{/logout}" method="post">
-                            <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
+                            <button class="logout" type="submit" onclick="location.href='index.html'">
                                 로그아웃
                             </button>
                         </form>
