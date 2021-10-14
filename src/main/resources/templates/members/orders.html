@@ -35,8 +35,8 @@
                   <td th:text="${order.getId()}">1</td>
                   <td th:text="${order.getTitle()}">비전공자를 위한 이해할 수 있는 IT 지식</td>
                   <td th:text="${order.getAuthor()}">최원영</td>
-                  <td th:text="${order.getPrice()}">15,120원</td>
-                  <td th:text="${order.getBuyDatetime()}">2021.10.08</td>
+                  <td th:text="${{order.getPrice()}}">15,120원</td>
+                  <td th:text="${{order.getBuyDatetime()}}">2021.10.08</td>
                   <td th:text="${order.getStatus()}">완료</td>
                   <td>
                     <a th:if="${order.status.name() == 'ORDER'}" href="#"

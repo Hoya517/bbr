@@ -4,6 +4,8 @@ import kr.ac.daelim.bbr.domain.order.OrderStatus;
 import kr.ac.daelim.bbr.domain.orderbook.OrderBook;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +15,8 @@ public class OrderResponseDto {
     private Long id;
     private String title;
     private String author;
-    private Integer price;
-    private LocalDateTime buyDatetime;
+    @NumberFormat(pattern = "###,###") private Integer price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") private LocalDateTime buyDatetime;
     private OrderStatus status;
 
     public OrderResponseDto(OrderBook entity) {

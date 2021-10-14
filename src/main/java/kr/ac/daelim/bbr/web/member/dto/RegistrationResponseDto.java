@@ -4,6 +4,7 @@ import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.registration.RegistrationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 @NoArgsConstructor
 @Getter
@@ -11,7 +12,7 @@ public class RegistrationResponseDto {
     private Long id;
     private String title;
     private String author;
-    private Integer price;
+    @NumberFormat(pattern = "###,###") private Integer price;
     private RegistrationStatus status;
 
     public RegistrationResponseDto(Registration entity) {

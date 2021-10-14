@@ -35,7 +35,7 @@
                   <td th:text="${registration.getId()}">1</td>
                   <td th:text="${registration.getTitle()}">트렌드 코리아 2022</td>
                   <td th:text="${registration.getAuthor()}">김난도</td>
-                  <td th:text="${registration.getPrice()}">16,200원</td>
+                  <td th:text="${{registration.getPrice()}}">16,200원</td>
 <!--                  <td th:text="${registration.getCreatedDate}">2021.10.06</td>-->
                   <td th:text="${registration.getStatus()}">진행중</td>
                   <td>

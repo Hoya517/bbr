@@ -4,6 +4,7 @@ import kr.ac.daelim.bbr.domain.book.Book;
 import kr.ac.daelim.bbr.domain.registration.Registration;
 import kr.ac.daelim.bbr.domain.uploadfile.UploadFile;
 import lombok.Getter;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class BookResponseDto {
     private String author;
     private String publisher;
     private String datetime;
-    private Integer price;
-    private int views;
+    @NumberFormat(pattern = "###,###") private Integer price;
+    @NumberFormat(pattern = "###,###") private int views;
     private List<Registration> registrations;
 
     public BookResponseDto(Book entity) {

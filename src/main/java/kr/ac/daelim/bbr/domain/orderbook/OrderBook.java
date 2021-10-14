@@ -6,6 +6,7 @@ import kr.ac.daelim.bbr.domain.order.Order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 
@@ -28,8 +29,8 @@ public class OrderBook extends BaseTimeEntity {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private int orderPrice;
-    private int count;
+    @NumberFormat(pattern = "###,###") private int orderPrice;
+    @NumberFormat(pattern = "###,###") private int count;
 
     @Builder
     public OrderBook(Book book, Order order, int orderPrice, int count) {

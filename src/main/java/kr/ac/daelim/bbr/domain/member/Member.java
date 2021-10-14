@@ -7,6 +7,7 @@ import kr.ac.daelim.bbr.exception.NotEnoughPointException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Member extends BaseTimeEntity {
     private String emailAuthYn;
     private String personalInfoTermYn;
     private String serviceTermYn;
-    private int point;
+    @NumberFormat(pattern = "###,###") private int point;
 
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
