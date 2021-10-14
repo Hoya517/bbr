@@ -7,6 +7,12 @@
     <title>관리자 페이지</title>
     <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
     <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="./css/adminPage.css" th:href="@{/css/adminPage.css}" rel="stylesheet">
+    <style>
+      ol, ul {
+        padding-left: 0px;
+      }
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -30,10 +36,12 @@
     <div class="my_menu">
         <div class="profile_area">
             <a th:if="${member} == null" href="#" th:href="@{/login}" class="link_login">
+                <img src="./icons/user.png" alt="프로필 이미지">
                 <span class="text">로그인</span>
             </a>
             <div th:if="${member} != null">
                 <div class="link_login">
+                    <img src="./icons/user.png" alt="프로필 이미지">
                     <span class="text" th:text="${member.name}">사용자 이름</span>
                 </div>
             </div>
@@ -42,12 +50,12 @@
             <div class="menu_area">
                 <ul role="menu" class="menu_list">
                     <li role="presentation" class="menu_item">
-                        <a th:href="@{/admin/registrations}" role="menuitem" class="link_menu link_today on">
+                        <a th:href="@{/admin/registrations}" role="menuitem" class="link_menu link_regist on">
                             <span class="text"> 책 등록 내역 <span class="blind">선택됨</span></span>
                         </a>
                     </li>
                     <li role="presentation" class="menu_item">
-                        <a th:href="@{/admin/orders}" role="menuitem" class="link_menu link_chart">
+                        <a th:href="@{/admin/orders}" role="menuitem" class="link_menu link_buy">
                             <span class="text"> 책 구매 내역 </span>
                         </a>
                     </li>
@@ -57,7 +65,7 @@
                     <a href="#" th:href="@{/books/search}" class="link_extra link_text" target="_blank" rel="noopener noreferrer"> ISBN / 책이름으로 검색 </a>
                     <a href="#" th:href="@{/books/add_file}" class="link_extra link_text" role="menuitem"> 수동으로 입력 </a>
                     <form th:action="@{/logout}" method="post">
-                        <button class="w-100 btn btn-dark btn-lg" type="submit" onclick="location.href='index.html'">
+                        <button class="logout" type="submit" onclick="location.href='index.html'">
                             로그아웃
                         </button>
                     </form>

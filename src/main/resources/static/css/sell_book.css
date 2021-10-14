@@ -85,7 +85,7 @@ div {
 }
 
 .styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #6f86d6
+  border-bottom: 2px solid #6f86d6;
 }
 
 .styled-table tbody tr:hover {

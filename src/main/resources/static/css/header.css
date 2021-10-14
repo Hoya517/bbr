@@ -156,7 +156,7 @@ header .profile_area .link_login {
   font-size: 15px;
 }
 
-header.side_bar .profile_area .link_login:before {
+header.side_bar .profile_area .link_login img {
   /* background-position: -805px -956px; */
   width: 32px;
   height: 32px;
@@ -165,7 +165,7 @@ header.side_bar .profile_area .link_login:before {
   vertical-align: middle;
   border-radius: 50%;
   content: "";
-  background-image: url(../icons/user.png);
+  /* background-image: url(../icons/user.png); */
   background-size: 100%;
 }
 
@@ -204,7 +204,7 @@ header .link_today.on:before {
 	height: 25px;
   background-image: url(../icons/home-r.png);
   background-size: 25px 25px;
-  
+
 }
 
 header .link_menu.on .text {
@@ -320,4 +320,29 @@ ul, li {
 }
 .logo{
     margin-bottom: 0px!important;
+}
+
+form {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 40px 20px 16px;
+}
+.logout {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  color: #fff;
+  background-color: #48c6ef;
+}
+
+.text.point {
+  margin-left: 55px;
+  color: #fff;
+  opacity: .8;
 }
