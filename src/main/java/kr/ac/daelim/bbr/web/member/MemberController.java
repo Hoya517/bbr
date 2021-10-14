@@ -5,6 +5,7 @@ import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.service.MemberService;
 import kr.ac.daelim.bbr.service.OrderService;
 import kr.ac.daelim.bbr.service.RegistrationService;
+import kr.ac.daelim.bbr.utils.session.SessionConst;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.member.dto.MemberSaveRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Slf4j
@@ -64,9 +67,13 @@ public class MemberController {
 
     /* 주문 */
     @PostMapping("/order/{id}")
-    public String order(@Login Member loginMember, @PathVariable Long id, @RequestParam("count") int count) {
+    public String order(@Login Member loginMember, @PathVariable Long id, @RequestParam("count") int count, HttpServletRequest request) {
         log.info("loginMember={}",loginMember.getName());
         orderService.order(loginMember.getId(), id, count);
+
+        Member member = memberService.findById(loginMember.getId());
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, member);
         return "redirect:/members/myPage/orders";
     }
 
@@ -106,9 +113,12 @@ public class MemberController {
     }
 
     @PostMapping("/myPage/orders/{id}/cancel")
-    public String cancelOrder(@PathVariable Long id) {
+    public String cancelOrder(@PathVariable Long id, @Login Member loginMember, HttpServletRequest request) {
         orderService.cancelOrder(id);
 
+        Member member = memberService.findById(loginMember.getId());
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, member);
         return "redirect:/members/myPage/orders";
     }
 }
