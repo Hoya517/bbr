@@ -28,9 +28,10 @@
             <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>지은이</th>
+                <th>저자</th>
+                <th>출판사</th>
                 <th>가격</th>
-                <!--                  <th>등록 날짜</th>-->
+                <th>등록 날짜</th>
                 <th>등록 상태</th>
                 <th></th>
                 <th></th>
@@ -39,11 +40,12 @@
             <tbody>
             <tr th:each="registration : ${list}" >
                 <td th:text="${registration.id}">1</td>
-                <td th:text="${registration.title}">트렌드 코리아 2022</td>
-                <td th:text="${registration.author}">김난도</td>
-                <td th:text="${registration.price}" >16,200원</td>
-                <!--                  <td th:text="${registration.getCreatedDate}">2021.10.06</td>-->
-                <td th:text="${registration.status}">진행중</td>
+                <td th:text="${registration.title}">책 제목</td>
+                <td th:text="${registration.author}">저자</td>
+                <td th:text="${registration.publisher}">출판사</td>
+                <td th:text="${{registration.price}}" >16,200원</td>
+                <td th:text="${{registration.createdDate}}">등록 일시</td>
+                <td th:text="${registration.status}">COMP</td>
                 <td>
                     <a th:if="${registration.status.name() == 'READY'}" href="#"
                        th:href="'javascript:comp('+${registration.id}+')'"

@@ -28,10 +28,11 @@
             <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>지은이</th>
-                <th>가격</th>
-                <!--                  <th>등록 날짜</th>-->
-                <th>등록 상태</th>
+                <th>저자</th>
+                <th>수량</th>
+                <th>주문 가격</th>
+                <th>등록 날짜</th>
+                <th>구매 상태</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -41,9 +42,10 @@
                 <td th:text="${orderBook.id}">1</td>
                 <td th:text="${orderBook.title}">트렌드 코리아 2022</td>
                 <td th:text="${orderBook.author}">김난도</td>
-                <td th:text="${orderBook.price}" >16,200원</td>
-                <!--                  <td th:text="${registration.getCreatedDate}">2021.10.06</td>-->
-                <td th:text="${orderBook.status}">진행중</td>
+                <td th:text="${{orderBook.price}}" >16,200원</td>
+                <td th:text="${orderBook.count}" >1</td>
+                <td th:text="${{orderBook.buyDatetime}}">2021.10.06</td>
+                <td th:text="${orderBook.status}">ORDER</td>
                 <td>
                     <a th:if="${orderBook.status.name() == 'ORDER'}" href="#"
                        th:href="'javascript:comp('+${orderBook.id}+')'"

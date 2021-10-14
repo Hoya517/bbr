@@ -24,24 +24,27 @@
                 <tr>
                   <th>번호</th>
                   <th>제목</th>
-                  <th>지은이</th>
-                  <th>가격</th>
-                  <th>구매 날짜</th>
-                  <th>구매 상태</th>
+                  <th>저자</th>
+                  <th>수량</th>
+                  <th>주문 가격</th>
+                  <th>주문 날짜</th>
+                  <th>주문 상태</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="order : ${list}">
-                  <td th:text="${order.getId()}">1</td>
-                  <td th:text="${order.getTitle()}">비전공자를 위한 이해할 수 있는 IT 지식</td>
-                  <td th:text="${order.getAuthor()}">최원영</td>
-                  <td th:text="${{order.getPrice()}}">15,120원</td>
-                  <td th:text="${{order.getBuyDatetime()}}">2021.10.08</td>
-                  <td th:text="${order.getStatus()}">완료</td>
+                  <td th:text="${order.id}">1</td>
+                  <td th:text="${order.title}">비전공자를 위한 이해할 수 있는 IT 지식</td>
+                  <td th:text="${order.author}">최원영</td>
+                  <td th:text="${{order.count}}">1</td>
+                  <td th:text="${{order.price}}">15,120원</td>
+                  <td th:text="${{order.buyDatetime}}">2021.10.08</td>
+                  <td th:text="${order.status}">ORDER</td>
                   <td>
                     <a th:if="${order.status.name() == 'ORDER'}" href="#"
                        th:href="'javascript:cancel('+${order.id}+')'"
-                       class="btn btn-primary">취소</a>
+                       class="btn btn-primary">CANCEL</a>
                   </td>
                 </tr>
               </tbody>

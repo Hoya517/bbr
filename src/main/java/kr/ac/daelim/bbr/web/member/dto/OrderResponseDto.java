@@ -15,8 +15,11 @@ public class OrderResponseDto {
     private Long id;
     private String title;
     private String author;
-    @NumberFormat(pattern = "###,###") private Integer price;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") private LocalDateTime buyDatetime;
+    @NumberFormat(pattern = "###,###")
+    private Integer price;
+    @NumberFormat(pattern = "###,###")
+    private Integer count;
+    private LocalDateTime buyDatetime;
     private OrderStatus status;
 
     public OrderResponseDto(OrderBook entity) {
@@ -24,6 +27,7 @@ public class OrderResponseDto {
         this.title = entity.getBook().getTitle();
         this.author = entity.getBook().getAuthor();
         this.price = entity.getOrderPrice();
+        this.count = entity.getCount();
         this.status = entity.getOrder().getStatus();
         this.buyDatetime = entity.getCreatedDate();
     }
