@@ -124,10 +124,10 @@
           <div class="detail_info_notice">
             <table>
               <tbody>
+              <tr scope="row">기타사항</tr>
               <tr th:each="registration : ${book.registrations}">
-                <th scope="row">기타사항</th>
-                <td th:unless="${registration.clazz==null || registration.clazz==''}"
-                    th:text="${registration.clazz}">
+                <th scope="row"></th>
+                <td th:unless="${registration.clazz==null || registration.clazz==''}" th:text="${registration.clazz}">
                   기타사항 내용
                 </td>
               </tr>
