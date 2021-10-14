@@ -43,9 +43,9 @@
       </a>
       <div th:if="${member} != null">
         <a class="link_login" href="mypage.html" th:href="@{/members/myPage}">
-          <img src="./icons/user.png" alt="프로필 이미지">
+          <img src="./icons/user.png" th:src="@{/icons/user.png}" alt="프로필 이미지">
           <span class="text" th:text="${member.name}">사용자 이름</span><br>
-          <span class="text point" th:text="${member.point}">포인트</span>
+          <span class="text point" th:text="${member.point}">포인트</span> P
         </a>
       </div>
     </div>
