@@ -4,6 +4,7 @@ import kr.ac.daelim.bbr.domain.member.Member;
 import kr.ac.daelim.bbr.domain.member.MemberType;
 import kr.ac.daelim.bbr.utils.session.SessionConst;
 import kr.ac.daelim.bbr.service.LoginService;
+import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.login.dto.LoginRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,10 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute("loginRequestDto") LoginRequestDto loginRequestDto) {
+    public String loginForm(@Login Member loginMember, @ModelAttribute("loginRequestDto") LoginRequestDto loginRequestDto) {
+        if (loginMember != null) {
+            return "redirect:/";
+        }
         return "login/loginForm";
     }
 
