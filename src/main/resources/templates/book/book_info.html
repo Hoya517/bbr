@@ -20,9 +20,9 @@
         <!-- image -->
         <div class="box_image">
           <div class="slide_detail_img">
-            <ul style="visibility:visible">
+            <ul class="img217" style="visibility:visible">
               <li th:unless="${book.attachFile==null || book.attachFile.storeFileName==''}">
-                <img th:src="@{/images/{fileName}(fileName=${book.attachFile.storeFileName})}" alt="책">
+                <img th:src="@{/images/{fileName}(fileName=${book.attachFile.storeFileName})}" style="width: 217px!important; max-height: 315px" alt="책">
               </li>
               <li th:unless="${book.thumbnail==null || book.thumbnail==''}">
                 <img th:src="${book.thumbnail}" alt="책">
