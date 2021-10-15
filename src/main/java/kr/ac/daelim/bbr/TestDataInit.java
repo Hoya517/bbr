@@ -35,7 +35,7 @@ public class TestDataInit {
                 .name("테스터")
                 .department("컴퓨터정보학부")
                 .memberType(MemberType.USER)
-                .point(1000000)
+                .point(50000)
                 .build();
         memberRepository.save(member);
 
