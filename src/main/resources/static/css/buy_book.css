@@ -27,7 +27,7 @@ div {
 /* contents */
 .contents {
   min-height: 650px;
-  /*padding-left: 225px;*/
+  padding-left: 225px;
   background-color: #fff;
 }
 
@@ -91,4 +91,33 @@ div {
 .styled-table tbody tr:hover {
   font-weight: bold;
   color: #5ca6e3;
+}
+
+.comp-btn {
+	font-weight: 400;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	padding: .375rem 1.25rem;
+	border-radius: .25rem;
+  color: #fff;
+  background-color: #5ca6e3;
+  border-color: #5ca6e3;
+}
+
+
+.cancel-btn {
+  font-weight: 400;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	border-radius: .25rem;
+  color: #fff;
+  background-color: #ff4e59;
+  border-color: #ff4e59;
 }

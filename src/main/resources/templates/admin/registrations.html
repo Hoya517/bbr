@@ -56,12 +56,12 @@
                                 <td>
                                     <a th:if="${registration.status.name() == 'READY'}" href="#"
                                        th:href="'javascript:comp('+${registration.id}+')'"
-                                       class="btn btn-primary">COMP</a>
+                                       class="comp-btn">COMP</a>
                                 </td>
                                 <td>
                                     <a th:if="${registration.status.name() == 'READY'}" href="#"
                                        th:href="'javascript:cancel('+${registration.id}+')'"
-                                       class="btn btn-danger">CANCEL</a>
+                                       class="cancel-btn">CANCEL</a>
                                 </td>
                             </tr>
                             </tbody>

@@ -54,12 +54,12 @@
                                 <td>
                                     <a th:if="${order.status.name() == 'ORDER'}" href="#"
                                        th:href="'javascript:comp('+${order.id}+')'"
-                                       class="btn btn-primary">COMP</a>
+                                       class="comp-btn">COMP</a>
                                 </td>
                                 <td>
                                     <a th:if="${order.status.name() == 'ORDER'}" href="#"
                                        th:href="'javascript:cancel('+${order.id}+')'"
-                                       class="btn btn-danger">CANCEL</a>
+                                       class="cancel-btn">CANCEL</a>
                                 </td>
                             </tr>
                             </tbody>
