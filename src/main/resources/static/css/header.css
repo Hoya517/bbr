@@ -346,3 +346,31 @@ form {
   color: #fff;
   opacity: .8;
 }
+
+header .link_regist.on:before {
+    width: 25px;
+    height: 25px;
+    background-image: url(../icons/edit-r.png);
+    background-size: 25px 25px;
+}
+
+header .link_regist:before {
+    width: 25px;
+    height: 25px;
+    background-image: url(../icons/edit-r.png);
+    background-size: 25px 25px;
+}
+
+header .link_buy:before {
+    width: 25px;
+    height: 25px;
+    background-image: url(../icons/cart-w.png);
+    background-size: 25px 25px;
+}
+
+header .link_buy.on:before {
+    width: 25px;
+    height: 25px;
+    background-image: url(../icons/cart-r.png);
+    background-size: 25px 25px;
+}

@@ -27,7 +27,7 @@ div {
 /* contents */
 .contents {
   min-height: 650px;
-  padding-left: 225px;
+  /*padding-left: 225px;*/
   background-color: #fff;
 }
 
