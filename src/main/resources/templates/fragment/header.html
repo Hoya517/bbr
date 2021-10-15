@@ -84,7 +84,7 @@
           </li>
         </ul>
         <div th:if="${member} != null" role="menu" class="extra_menu">
-          <a href="#" target="_blank" class="link_extra link_text title"># 판매해볼까?</a>
+          <a class="link_extra link_text title"># 판매해볼까?</a>
           <a href="#" th:href="@{/books/search}" class="link_extra link_text"> 책이름으로 검색 </a>
           <a href="#" th:href="@{/books/add_file}" class="link_extra link_text"> 수동으로 입력 </a>
           <form th:action="@{/logout}" method="post">
