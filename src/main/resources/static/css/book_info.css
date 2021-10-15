@@ -190,7 +190,7 @@ em {
   font-style: normal;
 }
 .common_box{
-  overflow-x: scroll;
+  overflow-y: auto;
 }
 
 
