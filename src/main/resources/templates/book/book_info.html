@@ -91,7 +91,7 @@
           </div>
           <!-- book count -->
           <div class="buy_number common_box">
-            <form th:action="@{/members/order/{bookId}(bookId=${book.id})}" method="post">
+            <form id="form_buy" th:action="@{/members/order/{bookId}(bookId=${book.id})}" method="post">
               <strong class="left_box">구매수량</strong>
               <div class="right_box">
                 <div class="buy_count">
@@ -116,7 +116,7 @@
               <div class="buy_btn_wrap">
                 <!--              <a href="" class="btn_cb cb_gray_line go_cart" id="cartBtn">장바구니</a>-->
                 <!--                    <input type="hidden" th:name="count" th:value="1"/>-->
-                <button type="submit" class="btn_cb cb_violet go_buy" id="btnBuy">바로구매</button>
+                <button type="button"  class="btn_cb cb_violet go_buy" id="btnBuy">바로구매</button>
               </div>
             </form>
           </div>
@@ -146,14 +146,16 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-  console.log()
-
   let count = $("#ordcnt").val();
   const price = $(".total").text();
   $("#btn_plus").on("click",function (){
-    count++;
-    countpr(price,count);
-    $("#ordcnt").val(count);
+    if (count < $('#stockQuantity').val()){
+      count++;
+      countpr(price,count);
+      $("#ordcnt").val(count);
+    }else {
+      alert("재고가 부족합니다.")
+    }
   })
   $("#btn_minus").on("click",function (){
     if (count > 1) {
@@ -172,6 +174,15 @@
     let result = price1 - price;
     $(".total").text(result);
   }
+
+  $("#btnBuy").on("click",function (){
+    if ($(".total").text() > $('#myPoint').val()){
+      $("#form_buy").submit();
+    }else {
+      alert("포인트가 부족합니다.")
+    }
+
+  })
 
   window.addEventListener('load', function() {
     var allElements = document.getElementsByTagName('*');
