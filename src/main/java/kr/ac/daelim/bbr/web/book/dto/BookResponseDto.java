@@ -21,6 +21,7 @@ public class BookResponseDto {
     @NumberFormat(pattern = "###,###") private Integer price;
     @NumberFormat(pattern = "###,###") private int views;
     private List<Registration> registrations;
+    private int stockQuantity;
 
     public BookResponseDto(Book entity) {
         this.id = entity.getId();
@@ -33,5 +34,6 @@ public class BookResponseDto {
         this.price = entity.getPrice();
         this.views = entity.getViews();
         this.registrations = entity.getRegistrations();
+        this.stockQuantity = entity.getStockQuantity();
     }
 }

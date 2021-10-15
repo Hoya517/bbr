@@ -6,6 +6,7 @@ import kr.ac.daelim.bbr.service.BookService;
 import kr.ac.daelim.bbr.service.RegistrationService;
 import kr.ac.daelim.bbr.web.argumentresolver.Login;
 import kr.ac.daelim.bbr.web.book.dto.BookFileSaveRequestDto;
+import kr.ac.daelim.bbr.web.book.dto.BookResponseDto;
 import kr.ac.daelim.bbr.web.book.dto.BookSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,10 @@ public class BookController {
         if (loginMember != null) {
             model.addAttribute("member", loginMember);
         }
-        model.addAttribute("book", bookService.findByIdAddViews(id));
+        BookResponseDto findBook = bookService.findByIdAddViews(id);
+        model.addAttribute("book", findBook);
+        model.addAttribute("stockQuantity", findBook.getStockQuantity());
+        model.addAttribute("myPoint", loginMember.getPoint());
         return "book/book_info";
     }
 }
