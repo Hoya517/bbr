@@ -322,12 +322,12 @@ ul, li {
     margin-bottom: 0px!important;
 }
 
-form {
-  /*position: absolute;*/
+.logout-btn  {
+  position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
-  /*padding: 40px 20px 16px;*/
+  padding: 40px 20px 16px;
 }
 .logout {
   display: block;
