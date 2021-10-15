@@ -189,6 +189,9 @@ a {
 em {
   font-style: normal;
 }
+.common_box{
+  overflow-x: scroll;
+}
 
 
 /* book condition */
