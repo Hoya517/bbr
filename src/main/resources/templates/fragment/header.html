@@ -38,7 +38,7 @@
   <div class="my_menu">
     <div class="profile_area">
       <a th:if="${member} == null" href="#" th:href="@{/login}" class="link_login">
-        <img src="./icons/user.png" th:href="@{/members/myPage}" alt="프로필 이미지">
+        <img src="./icons/user.png" th:src="@{/icons/user.png}" th:href="@{/members/myPage}" alt="프로필 이미지">
         <span class="text">로그인</span>
       </a>
       <div th:if="${member} != null">
