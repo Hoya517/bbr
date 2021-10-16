@@ -133,11 +133,17 @@
             $.ajax({
                 method: "POST",
                 url: "/members/sendMail",
-                data: {email: $("#email").val()}
+                data: {email: $("#email").val()},
+                success: (function(msg) {
+                    console.log(msg)
+                    if (msg=='fail')
+                        alert("메일 발송에 실패하였습니다.");
+                    else if ($("#email").val()!=null)
+                        alert(msg+"로 메일이 발송 되었습니다.");
+                    else
+                        alert("잠시 후 다시 시도해주세요.");
+                })
             })
-                .done(function () {
-                    console.log('이메일 발송')
-                });
         });
     });
 
@@ -147,11 +153,19 @@
             $.ajax({
                 method: "POST",
                 url: "/members/verifyCode",
-                data: {code: $("#code").val()}
+                data: {code: $("#code").val()},
+                success: (function(msg) {
+                    console.log(msg)
+                    if (msg=='fail') {
+                        alert("인증 실패");
+                    } else if (msg=='success') {
+                        alert("인증 성공");
+                        $("#emailAuthYn").val(msg);
+                    } else {
+                        alert("잠시 후 다시 시도해주세요.");
+                    }
+                })
             })
-                .done(function (msg) {
-                    $("#emailAuthYn").val(msg);
-                });
         });
     });
 

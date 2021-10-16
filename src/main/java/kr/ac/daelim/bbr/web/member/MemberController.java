@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -54,16 +55,21 @@ public class MemberController {
     /* 이메일 인증 */
     @PostMapping("/sendMail")
     @ResponseBody
-    public void emailConfirm(String email) throws Exception {
-        emailService.sendSimpleMessage(email+"@email.daelim.ac.kr");
+    public String emailConfirm(String email) throws Exception {
+        try {
+            emailService.sendSimpleMessage(email + "@email.daelim.ac.kr");
+        } catch (AddressException e) {
+            return "fail";
+        }
+        return email+"@email.daelim.ac.kr";
     }
 
     @PostMapping("/verifyCode")
     @ResponseBody
     public String verifyCode(String code) {
-        String result = "false";
+        String result = "fail";
         if(EmailService.ePw.equals(code)) {
-            result = "true";
+            result = "success";
         }
         return result;
     }

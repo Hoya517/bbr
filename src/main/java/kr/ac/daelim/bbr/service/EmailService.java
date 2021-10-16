@@ -19,10 +19,10 @@ public class EmailService {
 
     public static final String ePw = createKey();
 
-    private MimeMessage createMessage(String to)throws Exception{
+    private MimeMessage createMessage(String to) throws Exception{
         System.out.println("보내는 대상 : "+ to);
-        System.out.println("인증 번호 : "+ePw);
-        MimeMessage  message = emailSender.createMimeMessage();
+        System.out.println("인증 번호 : "+ ePw);
+        MimeMessage message = emailSender.createMimeMessage();
 
         message.addRecipients(RecipientType.TO, to);//보내는 대상
         message.setSubject("BBR 인증번호가 도착했습니다.");//제목
@@ -42,7 +42,7 @@ public class EmailService {
         msgg+= ePw+"</strong><div><br/> ";
         msgg+= "</div>";
         message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("juhogim569@gmail.com","Hoya K"));//보내는 사람
+        message.setFrom(new InternetAddress("juhogim569@gmail.com","BBR"));//보내는 사람
 
         return message;
     }
