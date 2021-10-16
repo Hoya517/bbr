@@ -199,10 +199,10 @@ header .link_menu.on {
   content: "";
 }
 
-header .link_today.on:before {
+header .link_today:before {
   width: 25px;
 	height: 25px;
-  background-image: url(../icons/home-r.png);
+  background-image: url(../icons/home-w.png);
   background-size: 25px 25px;
 
 }
@@ -357,7 +357,7 @@ header .link_regist.on:before {
 header .link_regist:before {
     width: 25px;
     height: 25px;
-    background-image: url(../icons/edit-r.png);
+    background-image: url(../icons/edit-w.png);
     background-size: 25px 25px;
 }
 
