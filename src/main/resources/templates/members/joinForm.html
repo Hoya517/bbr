@@ -55,15 +55,16 @@
             <label for="email" class="label">이메일</label>
             <sup class="essential">필수</sup>
             <div class="email_box">
-                <input type="text" id="email"  class="form-control email">
+                <input type="text" id="email" th:field="*{email}" class="form-control email" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{email}" />
                 <span>@email.daelim.ac.kr</span>
                 <button type="button" id="sendMail">인증메일발송</button>
             </div>
 
             <div class="field-error"  />
-            <input type="text" id="code" class="form-control auth" >
+            <input type="text" id="code" th:field="*{code}" class="form-control auth" th:errorclass="field-error">
             <button type="button" id="verifyCode">본인인증</button>
-            <input type="hidden" id="emailAuthYn" >
+            <input type="hidden" id="emailAuthYn" th:field="*{emailAuthYn}">
         </div>
         <div>
             <label for="username" class="label">아이디</label>
@@ -127,32 +128,32 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script th:inline="javascript">
     // 메일발송
-    // $(document).ready(function () {
-    //     $("#sendMail").click(function () {
-    //         $.ajax({
-    //             method: "POST",
-    //             url: "/members/sendMail",
-    //             data: {email: $("#email").val()}
-    //         })
-    //             .done(function () {
-    //                 console.log('이메일 발송')
-    //             });
-    //     });
-    // });
-    //
+    $(document).ready(function () {
+        $("#sendMail").click(function () {
+            $.ajax({
+                method: "POST",
+                url: "/members/sendMail",
+                data: {email: $("#email").val()}
+            })
+                .done(function () {
+                    console.log('이메일 발송')
+                });
+        });
+    });
+
     // 본인인증
-    // $(document).ready(function () {
-    //     $("#verifyCode").click(function () {
-    //         $.ajax({
-    //             method: "POST",
-    //             url: "/members/verifyCode",
-    //             data: {code: $("#code").val()}
-    //         })
-    //             .done(function (msg) {
-    //                 $("#emailAuthYn").val(msg);
-    //             });
-    //     });
-    // });
+    $(document).ready(function () {
+        $("#verifyCode").click(function () {
+            $.ajax({
+                method: "POST",
+                url: "/members/verifyCode",
+                data: {code: $("#code").val()}
+            })
+                .done(function (msg) {
+                    $("#emailAuthYn").val(msg);
+                });
+        });
+    });
 
     window.addEventListener('load', function() {
         var allElements = document.getElementsByTagName('*');
