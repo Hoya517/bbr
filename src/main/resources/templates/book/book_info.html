@@ -175,7 +175,10 @@
   }
 
   $("#btnBuy").on("click",function (){
-    if ($(".total").text() > $('#myPoint').val()){
+    console.log($(".total").text());
+    console.log($('#myPoint').val());
+
+    if ($(".total").text() < $('#myPoint').val()){
       $("#form_buy").submit();
     }else {
       alert("포인트가 부족합니다.")
