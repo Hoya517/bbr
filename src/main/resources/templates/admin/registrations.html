@@ -1,80 +1,84 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/fragments/header :: header"/>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 등록 내역</title>
+    <link href="./css/sell_book.css" th:href="@{/css/sell_book.css}" rel="stylesheet">
+    <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+</head>
 <body>
-<div class="container">
-    <!--header-->
-    <div th:replace="admin/fragments/bodyHeader :: bodyHeader"/>
-
-    <!--        <div>-->
-    <!--            <form th:object="${orderSearch}" class="form-inline">-->
-    <!--                <div class="form-group mb-2">-->
-    <!--                    <input type="text" th:field="*{memberName}" class="form- control" placeholder="회원명"/>-->
-    <!--                </div>-->
-    <!--                <div class="form-group mx-sm-1 mb-2">-->
-    <!--                    <select th:field="*{orderStatus}" class="form-control"> <option value="">주문상태</option>-->
-    <!--                        <option th:each="status : ${T(jpabook.jpashop.domain.OrderStatus).values()}"-->
-    <!--                                th:value="${status}"-->
-    <!--                                th:text="${status}">option-->
-    <!--                        </option>-->
-    <!--                    </select>-->
-    <!--                </div>-->
-    <!--                <button type="submit" class="btn btn-primary mb-2">검색</button>-->
-    <!--            </form>-->
-    <!--        </div>-->
-
-    <div class="wrap">
-        <div class="home">
-            <!-- contents -->
-            <div class="contents">
-                <div class="container">
-                    <div class="content">
-                        <h2 class="end_title"> 전체 책 등록 내역 </h2>
-                        <table class="styled-table">
-                            <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>저자</th>
-                                <th>출판사</th>
-                                <th>가격</th>
-                                <th>등록 날짜</th>
-                                <th>등록 상태</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="registration : ${list}" >
-                                <td th:text="${registration.id}">1</td>
-                                <td th:text="${registration.title}">책 제목</td>
-                                <td th:text="${registration.author}">저자</td>
-                                <td th:text="${registration.publisher}">출판사</td>
-                                <td th:text="${{registration.price}}" >16,200원</td>
-                                <td th:text="${{registration.createdDate}}">등록 일시</td>
-                                <td th:text="${registration.status}">COMP</td>
-                                <td>
-                                    <a th:if="${registration.status.name() == 'READY'}" href="#"
-                                       th:href="'javascript:comp('+${registration.id}+')'"
-                                       class="comp-btn">COMP</a>
-                                </td>
-                                <td>
-                                    <a th:if="${registration.status.name() == 'READY'}" href="#"
-                                       th:href="'javascript:cancel('+${registration.id}+')'"
-                                       class="cancel-btn">CANCEL</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<div class="wrap">
+    <div class="home">
+        <!-- left menu -->
+        <div th:insert="~{fragment/adminHeader :: copy}"></div>
+        <!-- contents -->
+        <div class="contents">
+            <div class="container">
+                <div class="content">
+                    <h2 class="end_title"> 전체 책 등록 내역 </h2>
+                    <table class="styled-table">
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>저자</th>
+                            <th>출판사</th>
+                            <th>가격</th>
+                            <th>등록 날짜</th>
+                            <th>등록 상태</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="registration : ${list}" >
+                            <td th:text="${registration.id}">1</td>
+                            <td th:text="${registration.title}">책 제목</td>
+                            <td th:text="${registration.author}">저자</td>
+                            <td th:text="${registration.publisher}">출판사</td>
+                            <td th:text="${{registration.price}}" >16,200원</td>
+                            <td th:text="${{registration.createdDate}}">등록 일시</td>
+                            <td th:text="${registration.status}">COMP</td>
+                            <td>
+                                <a th:if="${registration.status.name() == 'READY'}" href="#"
+                                   th:href="'javascript:comp('+${registration.id}+')'"
+                                   class="comp-btn">COMP</a>
+                            </td>
+                            <td>
+                                <a th:if="${registration.status.name() == 'READY'}" href="#"
+                                   th:href="'javascript:cancel('+${registration.id}+')'"
+                                   class="cancel-btn">CANCEL</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- footer -->
-            <div th:replace="fragment/footer :: copy"></div>
         </div>
+        <!-- footer -->
+        <div th:replace="fragment/footer :: copy"></div>
     </div>
-</body>
+</div>
 <script>
+    window.addEventListener('load', function() {
+        var allElements = document.getElementsByTagName('*');
+        Array.prototype.forEach.call(allElements, function(el) {
+            var includePath = el.dataset.includePath;
+            if (includePath) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        el.outerHTML = this.responseText;
+                    }
+                };
+                xhttp.open('GET', includePath, true);
+                xhttp.send();
+            }
+        });
+    });
     function comp(id) {
         var form = document.createElement("form");
         form.setAttribute("method", "post");
@@ -85,9 +89,10 @@
     function cancel(id) {
         var form = document.createElement("form");
         form.setAttribute("method", "post");
-        form.setAttribute("action", "/admin/registrations/" + id + "/cancel");
+        form.setAttribute("action", "/members/myPage/registrations/" + id + "/cancel");
         document.body.appendChild(form);
         form.submit();
     }
 </script>
+</body>
 </html>
