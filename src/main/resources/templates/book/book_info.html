@@ -22,7 +22,7 @@
           <div class="slide_detail_img">
             <ul class="img217" style="visibility:visible">
               <li th:unless="${book.attachFile==null || book.attachFile.storeFileName==''}">
-                <img th:src="@{/images/{fileName}(fileName=${book.attachFile.storeFileName})}" style="width: 217px!important; max-height: 315px" alt="책">
+                <img th:src="@{/images/{fileName}(fileName=${book.attachFile.storeFileName})}" style="width: 297px!important; max-height: 315px" alt="책">
               </li>
               <li th:unless="${book.thumbnail==null || book.thumbnail==''}">
                 <img th:src="${book.thumbnail}" alt="책">
@@ -104,7 +104,7 @@
                   <!--                  <span class="discount_price">-->
                   <!--                    <strong>11,000<span>원</span></strong>-->
                   <!--                  </span>-->
-                  <strong>합계</strong><span class="total" th:text="${book.price}">9,900</span><span style="font-weight: bold"> P</span>
+                  <strong>합계</strong><span class="total" th:text="${book.price}">9,900</span><span style="font-size: 30px; font-weight: bold; margin-bottom: 3px;"> P</span>
                   <!--                <em class="saving">-->
                   <!--                  <span class="badges_red">적립</span>-->
                   <!--                  <span>포인트 </span>-->
@@ -124,9 +124,8 @@
           <div class="detail_info_notice">
             <table>
               <tbody>
-              <tr scope="row">기타사항</tr>
               <tr th:each="registration : ${book.registrations}">
-                <th scope="row"></th>
+                <th class="strong" scope="row">기타사항</th>
                 <td th:unless="${registration.clazz==null || registration.clazz==''}" th:text="${registration.clazz}">
                   기타사항 내용
                 </td>
