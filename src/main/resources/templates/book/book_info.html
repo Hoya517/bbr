@@ -124,9 +124,9 @@
           <div class="detail_info_notice">
             <table>
               <tbody>
+              <tr class="strong" scope="row">기타사항</tr>
               <tr th:each="registration : ${book.registrations}">
-                <th class="strong" scope="row">기타사항</th>
-                <td th:unless="${registration.clazz==null || registration.clazz==''}" th:text="${registration.clazz}">
+                <td th:unless="${registration.etc==null || registration.etc==''}" th:text="${registration.etc}">
                   기타사항 내용
                 </td>
               </tr>

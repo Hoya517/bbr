@@ -37,7 +37,7 @@ public class BookApiController {
 
     @GetMapping("/api/books/myDept")
     public List<BookListResponseDto> searchByMyDepartment(@Login Member loginMember) {
-        return bookService.findByMyDept(loginMember);
+        return bookService.findByDept(loginMember.getDepartment());
     }
 
     @GetMapping("/api/books/dept")

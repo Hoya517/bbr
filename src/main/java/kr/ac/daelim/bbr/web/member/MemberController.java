@@ -112,9 +112,13 @@ public class MemberController {
     }
 
     @GetMapping("/myPage/registrations")
-    public String registrations(@Login Member loginMember, Model model) {
+    public String registrations(@Login Member loginMember, Model model, HttpServletRequest request) {
         if (loginMember != null) {
-            model.addAttribute("member", loginMember);
+            Member member = memberService.findById(loginMember.getId());
+            HttpSession session = request.getSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, member);
+
+            model.addAttribute("member", member);
             model.addAttribute("list", registrationService.findAllDesc(loginMember));
         }
         return "members/registrations";
